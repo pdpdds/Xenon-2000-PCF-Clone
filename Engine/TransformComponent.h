@@ -35,4 +35,8 @@ public:
 	Vector2D velocity;
 
 	int speed = 3;
+	int width = TILESIZE;
+	int height = TILESIZE;
+	int scale = 1;
+
 };

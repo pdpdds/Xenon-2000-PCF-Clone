@@ -11,13 +11,15 @@
 #include "TransformComponent.h"
 #include "SpriteComponent.h"
 #include "PlayerController.h"
+#include "Pawn.h"
+#include "GroupLabels.h"
 
 Renderer* GameEngine::m_renderer = nullptr;
-
-Manager m_manager;
+Manager GameEngine::manager;
 SDL_Event GameEngine::event;
-auto& m_player(m_manager.AddEntity());
 
+//Entity& m_player = m_manager.AddEntity();
+//Entity& m_player = GameEngine::m_manager.AddEntity();
 
 GameEngine::GameEngine()
 {
@@ -44,17 +46,16 @@ void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight
 
 	GameEngine::m_renderer = new Renderer(m_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	m_isActive = true;
-	
-	m_map = new Map();
 
-	m_player.AddComponent<TransformComponent>(0, 0);
-	m_player.AddComponent<SpriteComponent>("../Assets/graphics/Ship1.bmp");
-	m_player.AddComponent<PlayerController>();
-	//m_player.AddComponent<KeyboardController>();
+	GameEngine::manager.Init();
 }
 
 void GameEngine::Run()
 {
+	m_map = new Map();
+
+	Pawn* pawn = new Pawn();
+
 	Uint32 frameStart;
 	int frameTime;
 
@@ -82,8 +83,8 @@ void GameEngine::Run()
 
 void GameEngine::Update()
 {
-	m_manager.Refresh();
-	m_manager.Update();
+	GameEngine::manager.Refresh();
+	GameEngine::manager.Update();
 }
 
 void GameEngine::HandleEvents()
@@ -106,7 +107,11 @@ void GameEngine::Render()
 	SDL_SetRenderDrawColor(GameEngine::GetRenderer(), 0, 0, 0, 0);
 	SDL_RenderClear(GameEngine::GetRenderer());
 	m_map->DrawMap(); 
-	m_manager.Draw();
+	/*for (auto& p : players)
+	{
+		p->Draw();
+	}*/
+	GameEngine::manager.Draw();
 	SDL_RenderPresent(GameEngine::GetRenderer());
 }
 

@@ -10,4 +10,5 @@ public:
 private:
 	class KeyboardController* m_keyboardController;
 	class TransformComponent* m_transformComponent;
+	class SpriteComponent* m_spriteComponent;
 };
