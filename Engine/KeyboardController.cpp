@@ -43,6 +43,8 @@ void KeyboardController::Update()
 			m_transformComponent->velocity.x = 1;
 			//m_SpriteComponent->Play("TurnRight");
 			break;
+		case SDLK_SPACE:
+			std::cout << "Fire" << std::endl;
 		default:
 			break;
 		}
