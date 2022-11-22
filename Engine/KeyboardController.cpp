@@ -23,7 +23,8 @@ void KeyboardController::Init()
 
 void KeyboardController::Update()
 {
-	switch (GameEngine::event.type) {
+	switch (GameEngine::event.type) 
+	{
 	case SDL_KEYDOWN:
 		switch (GameEngine::event.key.keysym.sym) {
 		case SDLK_w:

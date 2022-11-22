@@ -9,6 +9,7 @@ public:
 
 private:
 	class KeyboardController* m_keyboardController;
+	class GamepadController* m_gamepadController;
 	class TransformComponent* m_transformComponent;
 	class SpriteComponent* m_spriteComponent;
 };

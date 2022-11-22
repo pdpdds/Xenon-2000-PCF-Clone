@@ -41,32 +41,26 @@ void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight
 	}
 
 	
-	m_sdl = new SDLWrapper(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_GAMECONTROLLER);
+	m_sdl = new SDLWrapper(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_GAMECONTROLLER | SDL_INIT_JOYSTICK);
 
 	m_window = new Window(windowTitle, windowWidth, windowHeight, flag);
 
 	GameEngine::m_renderer = new Renderer(m_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	m_isActive = true;
 
-	SDL_GameController* controller{};
-
-	for (int i = 0; i < SDL_NumJoysticks(); ++i) {
-		if (SDL_IsGameController(i)) {
-			char* mapping;
-			std::cout << "Index '" << i << "' is a compatible controller, named '" <<
-				SDL_GameControllerNameForIndex(i) << "'" << std::endl;
-			controller = SDL_GameControllerOpen(i);
-			mapping = SDL_GameControllerMapping(controller);
-			std::cout << "Controller " << i << " is mapped as \"" << mapping << std::endl;
-			SDL_free(mapping);
-		}
-		else {
-			std::cout << "Index '" << i << "' is not a compatible controller." << std::endl;
-		}
+	std::cout << SDL_NumJoysticks() << std::endl;
+	SDL_Joystick* joystick = SDL_JoystickOpen(0);
+	if (joystick == NULL)
+		std::cout << "Unable to open Gamepad " << SDL_GetError() << std::endl;
+	else
+	{
+		std::cout << "Name: " << SDL_JoystickName(joystick) << std::endl;
+		std::cout << "Num Axes: " << SDL_JoystickNumAxes(joystick) << std::endl;
+		std::cout << "Num Buttons: " << SDL_JoystickNumButtons(joystick) << std::endl;
+		std::cout << "Num Track balls: " << SDL_JoystickNumBalls(joystick) << std::endl;
+		std::cout << "Num Hats: " << SDL_JoystickNumHats(joystick) << std::endl;
 	}
-
-	if (controller != NULL)
-		SDL_GameControllerClose(controller);
+	SDL_JoystickClose(joystick);
 
 
 	GameEngine::manager.Init();
@@ -145,6 +139,10 @@ void GameEngine::Shutdown()
 	SDL_Quit();
 
 	std::cout << "Engine shutdown" << std::endl;
+}
+
+void GameEngine::InitController()
+{
 }
 
 bool GameEngine::IsActive()

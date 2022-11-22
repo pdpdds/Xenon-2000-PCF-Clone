@@ -21,5 +21,4 @@ void Pawn::Start()
 	m_player.AddComponent<PlayerController>();
 
 	std::cout << "Pawn Initialized" << std::endl;
-	std::cout << "Pawn test" << std::endl;
 }

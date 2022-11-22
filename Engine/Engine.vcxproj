@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngine.cpp" />
+    <ClCompile Include="GamepadController.cpp" />
     <ClCompile Include="InitError.cpp" />
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="KeyboardController.cpp" />

@@ -1,6 +1,7 @@
 #include "PlayerController.h"
 #include "EntityComponentSystem.h"
 #include "KeyboardController.h"
+#include "GamepadController.h"
 #include "TransformComponent.h"
 #include "SpriteComponent.h"
 #include <stdio.h>
@@ -14,6 +15,7 @@ void PlayerController::Init()
 	{
 		std::cout << "Player Controller Initialized" << std::endl;
 		&m_entity->AddComponent<KeyboardController>();
+		&m_entity->AddComponent<GamepadController>();
 	}
 	else
 	{
