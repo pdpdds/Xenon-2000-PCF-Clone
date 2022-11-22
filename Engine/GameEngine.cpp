@@ -39,13 +39,35 @@ void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight
 	{ 
 		flag = SDL_WINDOW_FULLSCREEN;
 	}
+
 	
-	m_sdl = new SDLWrapper(SDL_INIT_VIDEO | SDL_INIT_TIMER);
+	m_sdl = new SDLWrapper(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_GAMECONTROLLER);
 
 	m_window = new Window(windowTitle, windowWidth, windowHeight, flag);
 
 	GameEngine::m_renderer = new Renderer(m_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	m_isActive = true;
+
+	SDL_GameController* controller{};
+
+	for (int i = 0; i < SDL_NumJoysticks(); ++i) {
+		if (SDL_IsGameController(i)) {
+			char* mapping;
+			std::cout << "Index '" << i << "' is a compatible controller, named '" <<
+				SDL_GameControllerNameForIndex(i) << "'" << std::endl;
+			controller = SDL_GameControllerOpen(i);
+			mapping = SDL_GameControllerMapping(controller);
+			std::cout << "Controller " << i << " is mapped as \"" << mapping << std::endl;
+			SDL_free(mapping);
+		}
+		else {
+			std::cout << "Index '" << i << "' is not a compatible controller." << std::endl;
+		}
+	}
+
+	if (controller != NULL)
+		SDL_GameControllerClose(controller);
+
 
 	GameEngine::manager.Init();
 }
@@ -83,6 +105,7 @@ void GameEngine::Run()
 
 void GameEngine::Update()
 {
+	//m_map->Update();
 	GameEngine::manager.Refresh();
 	GameEngine::manager.Update();
 }

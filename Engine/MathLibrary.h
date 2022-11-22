@@ -5,7 +5,7 @@ class MathLibrary
 {
 public:
 
-	const float m_PI = 3.141592654f;
+	const float PI = 3.141592654f;
 
 	inline static float Abs(float v)
 	{
