@@ -7,7 +7,8 @@ namespace Groups
 	{
 		GROUP_MAP,
 		GROUP_PLAYERS,
-		GROUP_ENEMIES
+		GROUP_ENEMIES,
+		GROUP_COLLIDERS
 	};
 }
 

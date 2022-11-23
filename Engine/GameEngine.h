@@ -19,8 +19,6 @@ public:
 
 	void Shutdown();
 
-	void InitController();
-
 	bool IsActive();
 	class GameEngine* GetEngine();
 

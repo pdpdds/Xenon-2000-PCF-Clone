@@ -13,7 +13,7 @@ class Entity;
 class Manager;
 
 using ComponentID = std::size_t;
-//using Group = std::size_t;
+using Group = std::size_t;
 
 inline ComponentID GetNewComponentTypeID() 
 { 
@@ -32,7 +32,7 @@ template <typename T> inline ComponentID GetComponentTypeID() noexcept
 constexpr std::size_t maxComponents = 32;
 
 //Max groups
-//constexpr std::size_t maxGroups = 32;
+constexpr std::size_t maxGroups = 32;
 
 /*
 * Allows us to check if an entity has a selection of components,
@@ -41,7 +41,7 @@ constexpr std::size_t maxComponents = 32;
 */
 using ComponentBitSet = std::bitset <maxComponents>;
 
-//using GroupBitSet = std::bitset <maxGroups>;
+using GroupBitSet = std::bitset <maxGroups>;
 
 //Array of Components, length of our max components
 using ComponentArray = std::array<Component*, maxComponents>;
@@ -70,27 +70,28 @@ public:
 class Entity
 {
 private:
-	//Manager& m_manager;
+	Manager* m_manager = nullptr;
 	bool m_isActive = true;
 	std::vector<std::unique_ptr<Component>> m_components;
-	std::vector<std::unique_ptr<GameObject>> m_gameObjects;
+	//std::vector<std::unique_ptr<GameObject>> m_gameObjects;
 
 	ComponentArray m_componentArray;
 	ComponentBitSet m_componentBitSet;
-	//GroupBitSet m_groupBiset;
+	GroupBitSet m_groupBiset;
 
 public:
-	//Entity(Manager& manager) : m_manager(manager) {}
+	Entity() = default;
+	Entity(Manager* manager) : m_manager(manager) {}
 
-	void Init()
+	virtual void Init()
 	{
-		for (auto& g : m_gameObjects)
+		/*for (auto& g : m_gameObjects)
 		{
 			g->Start();
-		}
+		}*/
 	}
 
-	void Update()
+	virtual void Update()
 	{
 		//Loop through all of its components and call their update
 		for (auto& c : m_components)
@@ -98,13 +99,13 @@ public:
 			c->Update();
 		}
 
-		for (auto& g : m_gameObjects)
+		/*for (auto& g : m_gameObjects)
 		{
 			g->Update();
-		}
+		}*/
 	}
 
-	void Draw() 
+	virtual void Draw() 
 	{
 		//Loop through all of its components and call their draw functions
 		for (auto& c : m_components)
@@ -113,24 +114,22 @@ public:
 		}
 	}
 
+	//void Instantiate(Entity& entity, class Vector2D position);
+	
 	//Remove inactive entities from the game
-	void Destroy() { m_isActive = false; }
+	virtual void Destroy() { m_isActive = false; }
 
 	//Check if entity is active
 	bool IsActive() const { return m_isActive; }
 
 	//Check if entity has group
-	//bool HasGroup(Group group) { return m_groupBiset[group]; }
+	bool HasGroup(Group group) { return m_groupBiset[group]; }
 
-	//Add to group bitset
-	/*void AddGroup(Group group)
-	{
-		m_groupBiset[group] = true;
-		m_manager.AddToGroup(this, group);
-	}*/
+	//Add self to the group
+	void AddGroup(Group group);
 
 	//Remove from  group bitset
-	//void DeleteGroup(Group group) { m_groupBiset[false]; }
+	void DeleteGroup(Group group) { m_groupBiset[false]; }
 
 	//Check if entity has components
 	template <typename T> bool HasComponent() const
@@ -165,20 +164,20 @@ public:
 		return *static_cast<T*>(ptr);
 	}
 
-	//Add GameObject
-	void AddGameObject()
-	{
-		GameObject* g = new GameObject();
-		std::unique_ptr<GameObject> uPtr{ g };
-		m_gameObjects.emplace_back(std::move(uPtr));
-	}
+	////Add GameObject
+	//void AddGameObject()
+	//{
+	//	GameObject* g = new GameObject();
+	//	std::unique_ptr<GameObject> uPtr{ g };
+	//	m_gameObjects.emplace_back(std::move(uPtr));
+	//}
 };
 
 class Manager
 {
 private:
 	std::vector<std::unique_ptr<Entity>> m_entities;
-	//std::array<std::vector<Entity*>, maxGroups> m_groupedEntities;
+	std::array<std::vector<Entity*>, maxGroups> m_groupedEntities;
 
 public:
 	void Init()
@@ -211,16 +210,16 @@ public:
 	//Move through entities and remove ones that don't exist
 	void Refresh()
 	{
-		/*for (auto i(0u); i < maxGroups; ++i)
+		for (auto i(0u); i < maxGroups; ++i)
 		{
 			auto& j(m_groupedEntities[i]);
 			j.erase(std::remove_if(std::begin(j), std::end(j),
 				[i](Entity* mEntity)
 				{
 					return !mEntity->IsActive() || !mEntity->HasGroup(i);
-				}), 
+				}),
 				std::end(j));
-		}*/
+		}
 
 		m_entities.erase(std::remove_if(std::begin(m_entities), std::end(m_entities),
 			[](const std::unique_ptr<Entity>& mEntity)
@@ -231,24 +230,24 @@ public:
 	}
 	
 	//Add entity to group
-	/*void AddToGroup(Entity* entity, Group group)
+	void AddToGroup(Entity* entity, Group group)
 	{
 		m_groupedEntities[group].emplace_back(entity);
-	}*/
+	}
 
 	//List of entities inside a group
-	/*std::vector<Entity*>& GetGroup(Group group)
+	std::vector<Entity*>& GetGroup(Group group)
 	{
 		return m_groupedEntities[group];
-	}*/
+	}
 
 	//Add Entity
 	Entity& AddEntity()
 	{
-		Entity* e = new Entity();
+		Entity* e = new Entity(this);
 		std::unique_ptr<Entity> uPtr{ e };
 		m_entities.emplace_back(std::move(uPtr));
-		e->AddGameObject();
+		//e->AddGameObject();
 
 		return *e;
 	}

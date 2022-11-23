@@ -9,7 +9,7 @@ public:
 	~Map();
 
 	void LoadMap();
-	void Draw(int x, int y, SDL_Rect* clip);
+	void Draw(int x, int y, class SDL_Rect* clip);
 	void Update();
 	void DrawMap();
 

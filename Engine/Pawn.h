@@ -1,13 +1,13 @@
 #pragma once
 
-#include "GameObjects.h"
+#include "EntityComponentSystem.h"
 
-class Pawn : public GameObject
+class Pawn : public Entity
 {
 public:
 	Pawn();
 	
-	void Start() override;
+	void Init() override;
 	void Update() override {};
 
 };

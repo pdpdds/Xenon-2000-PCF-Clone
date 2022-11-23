@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="EntityComponentSystem.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GamepadController.cpp" />
     <ClCompile Include="InitError.cpp" />

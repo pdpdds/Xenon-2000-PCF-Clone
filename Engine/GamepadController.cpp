@@ -23,12 +23,58 @@ void GamepadController::Init()
 
 void GamepadController::Update()
 {
-	/*switch (GameEngine::event.type)
+	switch (GameEngine::event.type)
 	{
 	case SDL_CONTROLLERBUTTONDOWN:
-		std::cout << "SDL_CONTROLLERBUTTONDOWN" << std::endl;
+		switch (GameEngine::event.cbutton.button)
+		{
+			case SDL_CONTROLLER_BUTTON_DPAD_UP:
+				m_transformComponent->velocity.y = -1;
+				break;
+
+			case SDL_CONTROLLER_BUTTON_DPAD_LEFT:
+				m_transformComponent->velocity.x = -1;
+				break;
+
+			case SDL_CONTROLLER_BUTTON_DPAD_DOWN:
+				m_transformComponent->velocity.y = 1;
+				break;
+
+			case SDL_CONTROLLER_BUTTON_DPAD_RIGHT:
+				m_transformComponent->velocity.x = 1;
+				break;
+
+			case SDL_CONTROLLER_BUTTON_A:
+				break;
+
+			default:
+				break;
+		}
+		break;
+	case SDL_CONTROLLERBUTTONUP:
+		switch (GameEngine::event.cbutton.button)
+		{
+		case SDL_CONTROLLER_BUTTON_DPAD_UP:
+			m_transformComponent->velocity.y = 0;
+			break;
+
+		case SDL_CONTROLLER_BUTTON_DPAD_LEFT:
+			m_transformComponent->velocity.x = 0;
+			break;
+
+		case SDL_CONTROLLER_BUTTON_DPAD_DOWN:
+			m_transformComponent->velocity.y = 0;
+			break;
+
+		case SDL_CONTROLLER_BUTTON_DPAD_RIGHT:
+			m_transformComponent->velocity.x = 0;
+			break;
+
+		default:
+			break;
+		}
 		break;
 	default:
 		break;
-	}*/
+	}
 }

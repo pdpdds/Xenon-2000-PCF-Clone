@@ -17,9 +17,9 @@
 Renderer* GameEngine::m_renderer = nullptr;
 Manager GameEngine::manager;
 SDL_Event GameEngine::event;
+SDL_GameController* controller = nullptr;
 
-//Entity& m_player = m_manager.AddEntity();
-//Entity& m_player = GameEngine::m_manager.AddEntity();
+auto& players(GameEngine::manager.GetGroup(Groups::GROUP_PLAYERS));
 
 GameEngine::GameEngine()
 {
@@ -41,35 +41,31 @@ void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight
 	}
 
 	
-	m_sdl = new SDLWrapper(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_GAMECONTROLLER | SDL_INIT_JOYSTICK);
+	m_sdl = new SDLWrapper(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_GAMECONTROLLER);
 
 	m_window = new Window(windowTitle, windowWidth, windowHeight, flag);
 
 	GameEngine::m_renderer = new Renderer(m_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	m_isActive = true;
-
-	SDL_GameController* controller{};
-	int i;
-	SDL_Init(SDL_INIT_GAMECONTROLLER);
-	for (i = 0; i < SDL_NumJoysticks(); ++i) {
-		if (SDL_IsGameController(i)) {
-			char* mapping;
-			std::cout << "Index '" << i << "' is a compatible controller, named '" <<
-				SDL_GameControllerNameForIndex(i) << "'" << std::endl;
-			controller = SDL_GameControllerOpen(i);
-			mapping = SDL_GameControllerMapping(controller);
-			std::cout << "Controller " << i << " is mapped as \"" << mapping << std::endl;
-			SDL_free(mapping);
-		}
-		else {
-			std::cout << "Index '" << i << "' is not a compatible controller." << std::endl;
-		}
+		
+	if (SDL_Init(SDL_INIT_GAMECONTROLLER) < 0)
+	{
+		std::cout << "ERROR: Game Controller failed to initialize" << std::endl;
+		throw InitError();
 	}
-	if (controller != NULL)
-		SDL_GameControllerClose(controller);
+	if (SDL_NumJoysticks() < 1)
+	{
+		std::cout << "WARNING: No Gamepad detected" << std::endl;
+	}
+	else
+	{
+		controller = SDL_GameControllerOpen(0);	
+	}
 
-
-	GameEngine::manager.Init();
+	/*for (auto& p : players)
+	{
+		p->Init();
+	}*/
 }
 
 void GameEngine::Run()
@@ -104,7 +100,6 @@ void GameEngine::Run()
 
 void GameEngine::Update()
 {
-	//m_map->Update();
 	GameEngine::manager.Refresh();
 	GameEngine::manager.Update();
 }
@@ -119,9 +114,6 @@ void GameEngine::HandleEvents()
 	case SDL_QUIT:
 		m_isRunning = false;
 		break;
-	case SDL_CONTROLLERBUTTONDOWN:
-		std::cout << "SDL_CONTROLLERBUTTONDOWN" << std::endl;
-		break;
 	default:
 		break;
 	}
@@ -132,11 +124,12 @@ void GameEngine::Render()
 	SDL_SetRenderDrawColor(GameEngine::GetRenderer(), 0, 0, 0, 0);
 	SDL_RenderClear(GameEngine::GetRenderer());
 	m_map->DrawMap(); 
-	/*for (auto& p : players)
+	//Render all active players
+	for (auto& p : players)
 	{
 		p->Draw();
-	}*/
-	GameEngine::manager.Draw();
+	}
+	//GameEngine::manager.Draw();
 	SDL_RenderPresent(GameEngine::GetRenderer());
 }
 
@@ -147,10 +140,6 @@ void GameEngine::Shutdown()
 	SDL_Quit();
 
 	std::cout << "Engine shutdown" << std::endl;
-}
-
-void GameEngine::InitController()
-{
 }
 
 bool GameEngine::IsActive()

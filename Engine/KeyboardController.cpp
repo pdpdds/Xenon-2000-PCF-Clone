@@ -44,7 +44,7 @@ void KeyboardController::Update()
 			//m_SpriteComponent->Play("TurnRight");
 			break;
 		case SDLK_SPACE:
-			std::cout << "Fire" << std::endl;
+			//std::cout << "Fire" << std::endl;
 		default:
 			break;
 		}

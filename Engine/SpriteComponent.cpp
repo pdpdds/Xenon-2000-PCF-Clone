@@ -1,4 +1,4 @@
-#include "SDL.h"
+#include <SDL.h>
 #include "SpriteComponent.h"
 #include "TransformComponent.h"
 #include "Texture.h"
