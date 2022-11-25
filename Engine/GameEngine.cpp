@@ -8,11 +8,8 @@
 #include <stdlib.h>
 #include "Map.h"
 #include "Components.h"
-#include "TransformComponent.h"
-#include "SpriteComponent.h"
-#include "PlayerController.h"
-#include "Pawn.h"
 #include "GroupLabels.h"
+#include "Input.h"
 
 Renderer* GameEngine::m_renderer = nullptr;
 Manager GameEngine::manager;
@@ -61,18 +58,11 @@ void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight
 	{
 		controller = SDL_GameControllerOpen(0);	
 	}
-
-	/*for (auto& p : players)
-	{
-		p->Init();
-	}*/
 }
 
 void GameEngine::Run()
 {
 	m_map = new Map();
-
-	Pawn* pawn = new Pawn();
 
 	Uint32 frameStart;
 	int frameTime;
@@ -102,6 +92,12 @@ void GameEngine::Update()
 {
 	GameEngine::manager.Refresh();
 	GameEngine::manager.Update();
+
+	//Update all active players
+	for (auto& p : players)
+	{
+		p->Update();
+	}
 }
 
 void GameEngine::HandleEvents()
@@ -113,10 +109,11 @@ void GameEngine::HandleEvents()
 	{
 	case SDL_QUIT:
 		m_isRunning = false;
-		break;
-	default:
+		Shutdown();
 		break;
 	}
+
+	Input::GetInstance()->Listen();
 }
 
 void GameEngine::Render()
@@ -124,12 +121,12 @@ void GameEngine::Render()
 	SDL_SetRenderDrawColor(GameEngine::GetRenderer(), 0, 0, 0, 0);
 	SDL_RenderClear(GameEngine::GetRenderer());
 	m_map->DrawMap(); 
-	//Render all active players
-	for (auto& p : players)
-	{
-		p->Draw();
-	}
-	//GameEngine::manager.Draw();
+	////Render all active players
+	//for (auto& p : players)
+	//{
+	//	p->Draw();
+	//}
+	GameEngine::manager.Draw();
 	SDL_RenderPresent(GameEngine::GetRenderer());
 }
 

@@ -8,8 +8,8 @@
 
 void KeyboardController::Init()
 {
-	m_transformComponent = &m_entity->GetComponent<TransformComponent>();
-	m_SpriteComponent = &m_entity->GetComponent<SpriteComponent>();
+	m_transformComponent = &entity->GetComponent<TransformComponent>();
+	m_SpriteComponent = &entity->GetComponent<SpriteComponent>();
 
 	if (m_transformComponent)
 	{
@@ -44,7 +44,7 @@ void KeyboardController::Update()
 			//m_SpriteComponent->Play("TurnRight");
 			break;
 		case SDLK_SPACE:
-			//std::cout << "Fire" << std::endl;
+			std::cout << "Fire" << std::endl;
 		default:
 			break;
 		}

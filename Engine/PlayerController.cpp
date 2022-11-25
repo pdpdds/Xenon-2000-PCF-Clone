@@ -8,14 +8,14 @@
 
 void PlayerController::Init()
 {
-	m_transformComponent = &m_entity->GetComponent<TransformComponent>();
-	m_spriteComponent = &m_entity->GetComponent<SpriteComponent>();
+	m_transformComponent = &entity->GetComponent<TransformComponent>();
+	m_spriteComponent = &entity->GetComponent<SpriteComponent>();
 
 	if (m_transformComponent && m_spriteComponent)
 	{
 		std::cout << "Player Controller Initialized" << std::endl;
-		&m_entity->AddComponent<KeyboardController>();
-		&m_entity->AddComponent<GamepadController>();
+		&entity->AddComponent<KeyboardController>();
+		&entity->AddComponent<GamepadController>();
 	}
 	else
 	{

@@ -8,8 +8,8 @@
 
 void GamepadController::Init()
 {
-	m_transformComponent = &m_entity->GetComponent<TransformComponent>();
-	m_SpriteComponent = &m_entity->GetComponent<SpriteComponent>();
+	m_transformComponent = &entity->GetComponent<TransformComponent>();
+	m_SpriteComponent = &entity->GetComponent<SpriteComponent>();
 
 	if (m_transformComponent)
 	{

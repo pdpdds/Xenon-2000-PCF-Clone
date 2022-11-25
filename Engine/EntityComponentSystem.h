@@ -51,7 +51,7 @@ class Component
 public:
 	//virtual ~Component();
 
-	Entity* m_entity;
+	Entity* entity;
 
 	virtual void Init() {}
 	virtual void Update() {}
@@ -73,7 +73,6 @@ private:
 	Manager* m_manager = nullptr;
 	bool m_isActive = true;
 	std::vector<std::unique_ptr<Component>> m_components;
-	//std::vector<std::unique_ptr<GameObject>> m_gameObjects;
 
 	ComponentArray m_componentArray;
 	ComponentBitSet m_componentBitSet;
@@ -83,12 +82,9 @@ public:
 	Entity() = default;
 	Entity(Manager* manager) : m_manager(manager) {}
 
-	virtual void Init()
+	virtual void Init() 
 	{
-		/*for (auto& g : m_gameObjects)
-		{
-			g->Start();
-		}*/
+	
 	}
 
 	virtual void Update()
@@ -98,11 +94,6 @@ public:
 		{
 			c->Update();
 		}
-
-		/*for (auto& g : m_gameObjects)
-		{
-			g->Update();
-		}*/
 	}
 
 	virtual void Draw() 
@@ -141,7 +132,7 @@ public:
 	template <typename T, typename... TArgs> T& AddComponent(TArgs&&... mArgs)
 	{
 		T* c(new T(std::forward<TArgs>(mArgs)...));
-		c->m_entity = this;
+		c->entity = this;
 		std::unique_ptr<Component> uPtr{ c };
 		//Add to component vector
 		m_components.emplace_back(std::move(uPtr));
@@ -163,14 +154,6 @@ public:
 
 		return *static_cast<T*>(ptr);
 	}
-
-	////Add GameObject
-	//void AddGameObject()
-	//{
-	//	GameObject* g = new GameObject();
-	//	std::unique_ptr<GameObject> uPtr{ g };
-	//	m_gameObjects.emplace_back(std::move(uPtr));
-	//}
 };
 
 class Manager
@@ -242,13 +225,24 @@ public:
 	}
 
 	//Add Entity
-	Entity& AddEntity()
+	Entity* AddEntity()
 	{
 		Entity* e = new Entity(this);
 		std::unique_ptr<Entity> uPtr{ e };
 		m_entities.emplace_back(std::move(uPtr));
-		//e->AddGameObject();
 
-		return *e;
+		return e;
 	}
+
+	template <typename T, typename... TArgs> T* CreateEntity(TArgs&& ...mArgs) 
+	{
+		//T* obj = new T(std::forward(mArgs));
+		T* obj(new T(std::forward<TArgs>(mArgs)...));
+		std::unique_ptr<Entity> uPtr{ obj };
+		m_entities.emplace_back(std::move(uPtr));
+		obj->Init();
+
+		return obj;
+	}
+
 };

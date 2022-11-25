@@ -57,9 +57,6 @@
     <ClCompile Include="Texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="InputHandler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Vector2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -84,6 +81,15 @@
     <ClCompile Include="EntityComponentSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LevelManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ProjectileComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="InitError.h">
@@ -103,9 +109,6 @@
     </ClInclude>
     <ClInclude Include="Renderer.h">
       <Filter>Header Files\SDL Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="InputHandler.h">
-      <Filter>Header Files\Input</Filter>
     </ClInclude>
     <ClInclude Include="Keycodes.h">
       <Filter>Header Files\Utilities</Filter>
@@ -150,6 +153,15 @@
       <Filter>Header Files\Utilities</Filter>
     </ClInclude>
     <ClInclude Include="GamepadController.h">
+      <Filter>Header Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelManager.h">
+      <Filter>Header Files\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="ProjectileComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
       <Filter>Header Files\Input</Filter>
     </ClInclude>
   </ItemGroup>

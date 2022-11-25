@@ -14,7 +14,7 @@ SpriteComponent::SpriteComponent(const char* texPath, bool isAnimated)
 	m_animated = isAnimated;
 
 	Animation m_idle = Animation(0, 1, 200);
-	Animation m_turnRight = Animation(0, 7, 200);
+	Animation m_turnRight = Animation(0, 3, 200);
 
 	m_animations.emplace("Idle", m_idle);
 	m_animations.emplace("TurnRight", m_turnRight);
@@ -27,12 +27,12 @@ SpriteComponent::SpriteComponent(const char* texPath, bool isAnimated)
 
 SpriteComponent::~SpriteComponent()
 {
-	SDL_DestroyTexture(m_texture);
+	/*SDL_DestroyTexture(m_texture);*/
 }
 
 void SpriteComponent::Init()
 {
-	m_transformComponent = &m_entity->GetComponent<TransformComponent>();
+	m_transformComponent = &entity->GetComponent<TransformComponent>();
 
 	m_srcRect.x = m_srcRect.y = 0;
 	m_srcRect.w = m_transformComponent->width;

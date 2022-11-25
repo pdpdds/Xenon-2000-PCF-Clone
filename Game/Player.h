@@ -7,5 +7,6 @@ class Player : public Pawn
 public:
 	Player();
 
-	void Init() override;
+	virtual void Init();
+	virtual void Update();
 };

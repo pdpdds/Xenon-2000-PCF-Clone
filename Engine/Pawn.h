@@ -6,8 +6,8 @@ class Pawn : public Entity
 {
 public:
 	Pawn();
+	virtual ~Pawn();
 	
-	void Init() override;
-	void Update() override {};
-
+	virtual void Init() = 0 ;
+	virtual void Update() = 0;
 };

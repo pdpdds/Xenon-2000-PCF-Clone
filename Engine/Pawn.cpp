@@ -9,17 +9,22 @@
 
 Pawn::Pawn()
 {
-	Init();
+	
+}
+
+Pawn::~Pawn()
+{
+	Destroy();
 }
 
 void Pawn::Init()
 {
-	/*auto& m_player = GameEngine::manager.AddEntity();
-
-	m_player.AddComponent<TransformComponent>(0, 0);
-	m_player.AddComponent<SpriteComponent>("../Assets/graphics/Ship2.bmp", false);
-	m_player.AddComponent<PlayerController>();
-	m_player.AddGroup(Groups::GROUP_PLAYERS);*/
-
+	__super::Init();
+	
 	std::cout << "Pawn Initialized" << std::endl;
+}
+
+void Pawn::Update()
+{
+	__super::Update();
 }

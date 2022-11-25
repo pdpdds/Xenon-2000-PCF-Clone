@@ -25,7 +25,6 @@ public:
 	static class SDL_Renderer* GetRenderer();
 	static union SDL_Event event;
 	static class Manager manager;
-	//inline static class Manager GetManager() { return GameEngine::m_manager; }
 
 private:
 	class SDLWrapper* m_sdl = nullptr;
