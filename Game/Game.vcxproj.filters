@@ -16,6 +16,9 @@
     <Filter Include="Header Files\Player">
       <UniqueIdentifier>{57cd11e2-fe7f-424c-9f9c-1587e7adefd5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Enemies">
+      <UniqueIdentifier>{92db527b-7bc1-48dc-91b6-2adef6c00d79}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -24,10 +27,16 @@
     <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Loner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
       <Filter>Header Files\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Loner.h">
+      <Filter>Header Files\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

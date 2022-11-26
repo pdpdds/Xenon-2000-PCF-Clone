@@ -13,14 +13,14 @@ SpriteComponent::SpriteComponent(const char* texPath, bool isAnimated)
 {
 	m_animated = isAnimated;
 
-	Animation m_idle = Animation(0, 1, 200);
-	Animation m_turnRight = Animation(0, 3, 200);
+	Animation m_playerIdle = Animation(0, 1, 200);
+	Animation m_playerTurnRight = Animation(0, 3, 200);
 
-	m_animations.emplace("Idle", m_idle);
-	m_animations.emplace("TurnRight", m_turnRight);
-	
+	Animation m_enemyIdle = Animation(0, 4, 200);
 
-	Play("Idle");
+	m_animations.emplace("PlayerIdle", m_playerIdle);
+	m_animations.emplace("PlayerTurnRight", m_playerTurnRight);
+	m_animations.emplace("EnemyIdle", m_enemyIdle);
 
 	SetTexture(texPath);
 }

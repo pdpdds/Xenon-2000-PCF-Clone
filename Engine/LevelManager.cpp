@@ -1,37 +1,61 @@
 #include "LevelManager.h"
-#include "EntityComponentSystem.h"
+#include "GameEngine.h"
 #include "Vector2D.h"
+#include "EntityComponentSystem.h"
+#include "Projectile.h"
 #include "TransformComponent.h"
 #include "SpriteComponent.h"
-#include "PlayerController.h"
-#include "ProjectileComponent.h"
 #include "GroupLabels.h"
 #include <iostream>
 
-LevelManager::LevelManager(Manager* manager) : m_manager(manager)
+LevelManager* LevelManager::m_instance = nullptr;
+
+
+LevelManager::LevelManager()
 {
+	m_manager = &GameEngine::manager;
 }
 
 LevelManager::~LevelManager()
 {
 }
 
+Manager* LevelManager::GetManager()
+{
+	return m_manager;
+}
+
+
 void LevelManager::CreateProjectile(Vector2D position, int projectileRange, int projectileSpeed)
 {
+	auto* projectile = m_manager->CreateEntity<Projectile>();
+	projectile->AddComponent<TransformComponent>(position.x, position.y);
+	projectile->AddComponent<SpriteComponent>("../Assets/graphics/missile.bmp", false);
 }
 
-void LevelManager::Instantiate(Entity* entity, Vector2D position)
+//void LevelManager::Instantiate(Entity* entity, Vector2D position)
+//{
+//	
+//}
+
+void LevelManager::SpawnEnemies()
 {
-	entity = m_manager->CreateEntity<Entity>();
+	auto* loner = GameEngine::manager.CreateEntity<Loner>();
 
-	//Add Components
-	entity->AddComponent<TransformComponent>(position.x, position.y);
-	entity->AddComponent<SpriteComponent>("../Assets/graphics/ShipIdle.bmp", false);
-	//entity->AddComponent<PlayerController>();
-	//entity->AddGroup(Groups::GROUP_PLAYERS);
+	spawnTimerMax = 5.f;
+	spawnTimer = spawnTimerMax;
 
-	////Initialize Entity
-	//entity->Init();
+	spawning = true;
 
-	//std::cout << "Instantiated Entity" << std::endl;
+	while (spawning)
+	{
+		spawnTimer += 0.5f;
+
+		if (spawnTimer >= spawnTimerMax)
+		{
+			lonerEnemies.push_back(loner);
+			spawnTimer = 0.f;
+		}
+	}
 }
+

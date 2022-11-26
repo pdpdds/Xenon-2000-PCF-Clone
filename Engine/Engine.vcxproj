@@ -29,6 +29,7 @@
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Pawn.cpp" />
     <ClCompile Include="PlayerController.cpp" />
+    <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="ProjectileComponent.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="SDLWrapper.cpp" />
@@ -54,6 +55,7 @@
     <ClInclude Include="MathLibrary.h" />
     <ClInclude Include="Pawn.h" />
     <ClInclude Include="PlayerController.h" />
+    <ClInclude Include="Projectile.h" />
     <ClInclude Include="ProjectileComponent.h" />
     <ClInclude Include="TransformComponent.h" />
     <ClInclude Include="Renderer.h" />

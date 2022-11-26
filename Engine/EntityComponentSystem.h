@@ -224,15 +224,15 @@ public:
 		return m_groupedEntities[group];
 	}
 
-	//Add Entity
-	Entity* AddEntity()
-	{
-		Entity* e = new Entity(this);
-		std::unique_ptr<Entity> uPtr{ e };
-		m_entities.emplace_back(std::move(uPtr));
+	////Add Entity
+	//Entity* AddEntity()
+	//{
+	//	Entity* e = new Entity(this);
+	//	std::unique_ptr<Entity> uPtr{ e };
+	//	m_entities.emplace_back(std::move(uPtr));
 
-		return e;
-	}
+	//	return e;
+	//}
 
 	template <typename T, typename... TArgs> T* CreateEntity(TArgs&& ...mArgs) 
 	{

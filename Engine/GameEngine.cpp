@@ -14,7 +14,6 @@
 Renderer* GameEngine::m_renderer = nullptr;
 Manager GameEngine::manager;
 SDL_Event GameEngine::event;
-SDL_GameController* controller = nullptr;
 
 auto& players(GameEngine::manager.GetGroup(Groups::GROUP_PLAYERS));
 
@@ -37,27 +36,12 @@ void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight
 		flag = SDL_WINDOW_FULLSCREEN;
 	}
 
-	
 	m_sdl = new SDLWrapper(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_GAMECONTROLLER);
 
 	m_window = new Window(windowTitle, windowWidth, windowHeight, flag);
 
 	GameEngine::m_renderer = new Renderer(m_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	m_isActive = true;
-		
-	if (SDL_Init(SDL_INIT_GAMECONTROLLER) < 0)
-	{
-		std::cout << "ERROR: Game Controller failed to initialize" << std::endl;
-		throw InitError();
-	}
-	if (SDL_NumJoysticks() < 1)
-	{
-		std::cout << "WARNING: No Gamepad detected" << std::endl;
-	}
-	else
-	{
-		controller = SDL_GameControllerOpen(0);	
-	}
 }
 
 void GameEngine::Run()

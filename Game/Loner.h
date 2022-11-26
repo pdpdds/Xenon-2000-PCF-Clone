@@ -3,10 +3,10 @@
 #include "Pawn.h"
 #include "Vector2D.h"
 
-class Player : public Pawn
+class Loner : public Pawn
 {
 public:
-	Player();
+	Loner();
 
 	virtual void Init();
 	virtual void Update();

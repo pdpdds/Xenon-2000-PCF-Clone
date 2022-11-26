@@ -8,15 +8,7 @@
 //
 //ProjectileComponent::~ProjectileComponent()
 //{
-//	m_distance += m_speed;
-//
-//	//If the distance traveled is greater than the projectile range, destroy the projectile
-//	if (m_distance > m_range)
-//	{
-//		entity->Destroy();
-//	}
-//
-//	//TODO: Destroy projectile when out of bounds
+//	
 //}
 //
 //void ProjectileComponent::Init()
@@ -26,4 +18,16 @@
 //
 //void ProjectileComponent::Update()
 //{
+//	m_distance += m_speed;
+//
+//	//If the distance traveled is greater than the projectile range, destroy the projectile
+//	if (m_distance > m_range)
+//	{
+//		entity->Destroy();
+//	}
+//
+//	
+//
+//	//TODO: Destroy projectile when out of bounds
 //}
+//

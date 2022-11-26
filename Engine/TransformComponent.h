@@ -25,8 +25,8 @@ public:
 
 	void Update() override
 	{
-		position.x += velocity.x * speed;
-		position.y += velocity.y * speed;
+		position.x += velocity.x;
+		position.y += velocity.y;
 	}
 
 	inline Vector2D GetPosition() const { return position; }
