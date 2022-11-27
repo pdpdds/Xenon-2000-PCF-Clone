@@ -185,6 +185,8 @@ public:
 		c->Init();
 
 		return *c;
+
+		delete c;
 	}
 
 	//Get Component
@@ -271,6 +273,8 @@ public:
 		obj->Init();
 
 		return obj;
+
+		delete obj;
 	}
 
 };

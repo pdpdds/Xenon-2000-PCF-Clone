@@ -14,10 +14,21 @@ public:
 
 	virtual void Fire();
 
+	bool CanFire();
+
+	void FireCooldown();
+
 private:
 	Vector2D playerStartPosition;
 	Vector2D playerPosition;
 	float playerSpeed;
 
 	class TransformComponent* playerTransform = nullptr;
+
+	float fireTimer;
+	float fireTimerMax;
+
+	bool canFire;
+
+	float gunOffset;
 };

@@ -7,6 +7,7 @@ public:
 	static Input* GetInstance()
 	{
 		return m_instance = (m_instance != nullptr) ? m_instance : new Input();
+		delete m_instance;
 	}
 
 	void Listen();
@@ -18,6 +19,7 @@ public:
 
 private:
 	Input();
+	~Input();
 	void KeyUp();
 	void KeyDown();
 

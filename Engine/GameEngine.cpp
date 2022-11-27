@@ -16,8 +16,6 @@ Renderer* GameEngine::m_renderer = nullptr;
 Manager GameEngine::manager;
 SDL_Event GameEngine::event;
 
-auto& players(GameEngine::manager.GetGroup(Groups::GROUP_PLAYERS));
-
 GameEngine::GameEngine()
 {
 	m_isRunning = false;
@@ -70,6 +68,7 @@ void GameEngine::Run()
 			SDL_Delay(frameDelay - frameTime);
 		}
 	}
+
 	Shutdown();
 }
 

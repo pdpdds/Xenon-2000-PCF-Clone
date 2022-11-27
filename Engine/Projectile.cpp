@@ -14,6 +14,7 @@ Projectile::Projectile(Vector2D pos, float projRange, float projSpeed)
 Projectile::~Projectile()
 {
 	Destroy();
+	delete projectileTransform;
 }
 
 void Projectile::Init()
@@ -36,7 +37,6 @@ void Projectile::Update()
 	//If the distance traveled is greater than the projectile range, destroy the projectile
 	if (distance > range)
 	{
-		std::cout << "Destroy" << std::endl;
 		Destroy();
 	}
 }

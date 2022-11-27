@@ -12,6 +12,7 @@ Rusher::Rusher()
 Rusher::~Rusher()
 {
 	Destroy();
+	delete &this->GetComponent<SpriteComponent>();
 	delete transformComponent;
 }
 

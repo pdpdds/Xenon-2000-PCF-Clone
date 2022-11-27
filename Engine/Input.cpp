@@ -26,6 +26,13 @@ Input::Input()
 	}
 }
 
+Input::~Input()
+{
+	delete m_keyStates;
+	delete m_controllerStates;
+	delete m_instance;
+}
+
 void Input::Listen()
 {
 	switch (GameEngine::event.type)
