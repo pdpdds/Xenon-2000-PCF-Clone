@@ -17,8 +17,6 @@ int main(int argc, char ** argv)
 
     GameEngine::manager.CreateEntity<Player>();
 
-    LevelManager::GetInstance()->CreateProjectile(Vector2D(500, 500), 800, 2);
-
     /*
     * -------------------------------------------------
     */

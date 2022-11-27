@@ -48,14 +48,32 @@ using ComponentArray = std::array<Component*, maxComponents>;
 
 class Component
 {
+private:
+	bool m_isActive = true;
+
 public:
-	//virtual ~Component();
+	~Component()
+	{
+		Destroy();
+	}
 
 	Entity* entity;
 
 	virtual void Init() {}
 	virtual void Update() {}
 	virtual void Draw() {}
+
+	//Remove inactive components from the game
+	virtual void Destroy()
+	{
+		m_isActive = false;
+	}
+
+	//Check if component is active
+	bool IsActive() const
+	{
+		return m_isActive;
+	}
 };
 
 class GameObject
@@ -81,28 +99,45 @@ private:
 public:
 	Entity() = default;
 	Entity(Manager* manager) : m_manager(manager) {}
+	~Entity()
+	{
+		Destroy();
+	}
 
 	virtual void Init() 
 	{
-	
+		for (int i = 0; i < m_components.size(); ++i)
+		{
+			m_components[i]->Init();
+		}
 	}
 
 	virtual void Update()
 	{
-		//Loop through all of its components and call their update
-		for (auto& c : m_components)
+		for (int i = 0; i < m_components.size(); ++i)
 		{
-			c->Update();
+			m_components[i]->Update();
 		}
+
+		RefreshComponents();
 	}
 
 	virtual void Draw() 
 	{
-		//Loop through all of its components and call their draw functions
-		for (auto& c : m_components)
+		for (int i = 0; i < m_components.size(); ++i)
 		{
-			c->Draw();
+			m_components[i]->Draw();
 		}
+	}
+
+	void RefreshComponents()
+	{
+		m_components.erase(std::remove_if(std::begin(m_components), std::end(m_components),
+			[](const std::unique_ptr<Component>& mComponent)
+			{
+				return !mComponent->IsActive();
+			}),
+			std::end(m_components));
 	}
 
 	//void Instantiate(Entity& entity, class Vector2D position);
@@ -171,28 +206,25 @@ private:
 public:
 	void Init()
 	{
-		//Init all entities
-		for (auto& e : m_entities)
+		for (int i = 0; i < m_entities.size(); ++i)
 		{
-			e->Init();
+			m_entities[i]->Init();
 		}
 	}
 
 	void Update()
 	{
-		//Update all entities
-		for (auto& e : m_entities)
+		for (int i = 0; i < m_entities.size(); ++i) 
 		{
-			e->Update();
+			m_entities[i]->Update();
 		}
 	}
 
 	void Draw()
 	{
-		//Draw all entities
-		for (auto& e : m_entities)
+		for (int i = 0; i < m_entities.size(); ++i)
 		{
-			e->Draw();
+			m_entities[i]->Draw();
 		}
 	}
 

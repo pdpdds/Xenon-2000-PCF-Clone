@@ -134,4 +134,7 @@ GameEngine::~GameEngine()
 {
 	delete m_window;
 	delete m_sdl;
+	delete m_renderer;
+	delete m_map;
+	delete m_engine;
 }

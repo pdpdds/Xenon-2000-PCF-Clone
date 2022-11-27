@@ -12,6 +12,11 @@ Player::Player()
 	playerSpeed = 0.f;
 }
 
+Player::~Player()
+{
+	delete playerTransform;
+}
+
 void Player::Init()
 {	
 	__super::Init();

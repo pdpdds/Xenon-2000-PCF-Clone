@@ -32,4 +32,5 @@ void Texture::Draw(SDL_Texture* texture, SDL_Rect srcRect, SDL_Rect dstRect)
 Texture::~Texture()
 {
 	SDL_DestroyTexture(texture);
+	delete texture;
 }

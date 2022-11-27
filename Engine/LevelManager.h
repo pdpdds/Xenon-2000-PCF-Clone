@@ -11,6 +11,7 @@ public:
 	static LevelManager* GetInstance()
 	{
 		return m_instance = (m_instance != nullptr) ? m_instance : new LevelManager();
+		delete m_instance;
 	}
 
 	void Update();

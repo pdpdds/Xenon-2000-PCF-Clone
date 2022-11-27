@@ -19,6 +19,9 @@
     <Filter Include="Header Files\Enemies">
       <UniqueIdentifier>{92db527b-7bc1-48dc-91b6-2adef6c00d79}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Map">
+      <UniqueIdentifier>{bf534d1a-6218-4e17-90ed-2a6460c0b973}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -33,6 +36,9 @@
     <ClCompile Include="Rusher.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -43,6 +49,9 @@
     </ClInclude>
     <ClInclude Include="Rusher.h">
       <Filter>Header Files\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>Header Files\Map</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -29,6 +29,8 @@ LevelManager::LevelManager()
 
 LevelManager::~LevelManager()
 {
+	delete m_manager;
+	delete m_instance;
 }
 
 Manager* LevelManager::GetManager()
@@ -58,7 +60,7 @@ void LevelManager::SpawnEnemies()
 
 		for (int i = 0; i < enemiesToSpawn; ++i)
 		{
-			auto* loner = GameEngine::manager.CreateEntity<Loner>();
+			GameEngine::manager.CreateEntity<Loner>();
 		}
 		
 		lonerSpawnTimer = 0.f;
@@ -70,7 +72,7 @@ void LevelManager::SpawnEnemies()
 
 		for (int i = 0; i < enemiesToSpawn; ++i)
 		{
-			auto* rusher = GameEngine::manager.CreateEntity<Rusher>();
+			GameEngine::manager.CreateEntity<Rusher>();
 		}
 
 		rusherSpawnTimer = 0.f;

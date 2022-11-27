@@ -12,6 +12,7 @@ Loner::Loner()
 Loner::~Loner()
 {
 	Destroy();
+	delete transformComponent;
 }
 
 void Loner::Init()
