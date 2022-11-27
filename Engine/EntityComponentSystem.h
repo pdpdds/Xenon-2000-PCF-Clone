@@ -108,10 +108,16 @@ public:
 	//void Instantiate(Entity& entity, class Vector2D position);
 	
 	//Remove inactive entities from the game
-	virtual void Destroy() { m_isActive = false; }
+	virtual void Destroy() 
+	{ 
+		m_isActive = false; 
+	}
 
 	//Check if entity is active
-	bool IsActive() const { return m_isActive; }
+	bool IsActive() const 
+	{ 
+		return m_isActive; 
+	}
 
 	//Check if entity has group
 	bool HasGroup(Group group) { return m_groupBiset[group]; }
@@ -193,7 +199,7 @@ public:
 	//Move through entities and remove ones that don't exist
 	void Refresh()
 	{
-		for (auto i(0u); i < maxGroups; ++i)
+		/*for (auto i(0u); i < maxGroups; i++)
 		{
 			auto& j(m_groupedEntities[i]);
 			j.erase(std::remove_if(std::begin(j), std::end(j),
@@ -202,7 +208,7 @@ public:
 					return !mEntity->IsActive() || !mEntity->HasGroup(i);
 				}),
 				std::end(j));
-		}
+		}*/
 
 		m_entities.erase(std::remove_if(std::begin(m_entities), std::end(m_entities),
 			[](const std::unique_ptr<Entity>& mEntity)
@@ -223,16 +229,6 @@ public:
 	{
 		return m_groupedEntities[group];
 	}
-
-	////Add Entity
-	//Entity* AddEntity()
-	//{
-	//	Entity* e = new Entity(this);
-	//	std::unique_ptr<Entity> uPtr{ e };
-	//	m_entities.emplace_back(std::move(uPtr));
-
-	//	return e;
-	//}
 
 	template <typename T, typename... TArgs> T* CreateEntity(TArgs&& ...mArgs) 
 	{

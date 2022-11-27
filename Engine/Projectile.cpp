@@ -2,14 +2,13 @@
 #include "Vector2D.h"
 #include "TransformComponent.h"
 #include "SpriteComponent.h"
-#include "ProjectileComponent.h"
 #include <iostream>
 
-Projectile::Projectile()
+Projectile::Projectile(Vector2D pos, float projRange, float projSpeed)
 {
-	/*range = projectileRange;
-	speed = projectileSpeed;*/
-	/*Spawn(position, range, speed);*/
+	range = projRange;
+	speed = projSpeed;
+	playerStartPosition = pos;
 }
 
 Projectile::~Projectile()
@@ -19,25 +18,25 @@ Projectile::~Projectile()
 
 void Projectile::Init()
 {
-	std::cout << "Projectile Initialized" << std::endl;
+	__super::Init();
+
+	AddComponent<TransformComponent>(playerStartPosition.x, playerStartPosition.y);
+	AddComponent<SpriteComponent>("../Assets/graphics/missileA.bmp", false);
 	projectileTransform = &GetComponent<TransformComponent>();
 }
 
 void Projectile::Update()
 {
+	__super::Update();
+	
 	distance += speed;
 
-	GetComponent<TransformComponent>().velocity.y = -1 * speed;
+	projectileTransform->velocity.y = -1 * speed;
 
 	//If the distance traveled is greater than the projectile range, destroy the projectile
-	if (distance >= range)
+	if (distance > range)
 	{
+		std::cout << "Destroy" << std::endl;
 		Destroy();
 	}
-}
-
-void Projectile::Spawn(Vector2D pos, int range, int speed)
-{
-	AddComponent<TransformComponent>(pos.x, pos.y);
-	AddComponent<SpriteComponent>("../Assets/graphics/playerjet.bmp", false);
 }

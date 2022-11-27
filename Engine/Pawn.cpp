@@ -20,8 +20,6 @@ Pawn::~Pawn()
 void Pawn::Init()
 {
 	__super::Init();
-	
-	std::cout << "Pawn Initialized" << std::endl;
 }
 
 void Pawn::Update()

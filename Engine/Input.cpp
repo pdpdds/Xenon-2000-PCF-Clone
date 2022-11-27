@@ -9,6 +9,7 @@ SDL_GameController* controller = nullptr;
 Input::Input()
 {
 	m_keyStates = SDL_GetKeyboardState(nullptr);
+	m_controllerStates = nullptr;
 
 	if (SDL_Init(SDL_INIT_GAMECONTROLLER) < 0)
 	{
@@ -35,6 +36,12 @@ void Input::Listen()
 	case SDL_KEYUP:
 		KeyUp();
 		break;
+	case SDL_CONTROLLERBUTTONDOWN:
+		ButtonUp();
+		break;
+	case SDL_CONTROLLERBUTTONUP:
+		ButtonDown();
+		break;
 	}
 }
 
@@ -50,16 +57,48 @@ bool Input::GetKeyDown(SDL_Scancode key)
 
 bool Input::GetKeyUp(SDL_Scancode key)
 {
+	if (m_keyStates[key] == 0)
+	{
+		return true;
+	}
+	return false;
+}
+
+bool Input::GetButtonDown(SDL_GameControllerButton button)
+{
+	//Returns true if key is being pushed down
+	if (m_keyStates[button] == 1)
+	{
+		std::cout << "Pressing a button" << std::endl;
+		return true;
+	}
+	return false;
+}
+
+bool Input::GetButtonUp(SDL_GameControllerButton button)
+{
+	if (m_keyStates[button] == 0)
+	{
+		return true;
+	}
 	return false;
 }
 
 void Input::KeyUp()
 {
-	m_keyStates = SDL_GetKeyboardState(nullptr);
+
 }
 
 void Input::KeyDown()
 {
 
+}
+
+void Input::ButtonUp()
+{
+}
+
+void Input::ButtonDown()
+{
 }
 

@@ -3,8 +3,8 @@
 #include "SpriteComponent.h"
 #include "GroupLabels.h"
 #include "Input.h"
-#include "LevelManager.h"
 #include <iostream>
+#include "LevelManager.h"
 
 Player::Player()
 {
@@ -31,7 +31,7 @@ void Player::Update()
 
 	playerPosition = playerTransform->position;
 
-	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_W))
+	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_W) || Input::GetInstance()->GetButtonDown(SDL_CONTROLLER_BUTTON_DPAD_UP))
 	{
 		GetComponent<TransformComponent>().velocity.y = -1 * playerSpeed;
 	}
@@ -40,7 +40,7 @@ void Player::Update()
 		GetComponent<TransformComponent>().velocity.y = 0;
 	}
 
-	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_A))
+	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_A) || Input::GetInstance()->GetButtonDown(SDL_CONTROLLER_BUTTON_DPAD_LEFT))
 	{
 		GetComponent<TransformComponent>().velocity.x = -1 * playerSpeed;
 	}
@@ -49,17 +49,17 @@ void Player::Update()
 		GetComponent<TransformComponent>().velocity.x = 0;
 	}
 
-	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_S))
+	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_S) || Input::GetInstance()->GetButtonDown(SDL_CONTROLLER_BUTTON_DPAD_RIGHT))
 	{
 		GetComponent<TransformComponent>().velocity.y = 1 * playerSpeed;
 	}
 
-	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_D))
+	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_D) || Input::GetInstance()->GetButtonDown(SDL_CONTROLLER_BUTTON_DPAD_DOWN))
 	{
 		GetComponent<TransformComponent>().velocity.x = 1 * playerSpeed;
 	}
 
-	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_SPACE))
+	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_SPACE) || Input::GetInstance()->GetButtonDown(SDL_CONTROLLER_BUTTON_A))
 	{
 		Fire();
 	}
@@ -67,5 +67,5 @@ void Player::Update()
 
 void Player::Fire()
 {
-	//LevelManager::GetInstance()->CreateProjectile(playerPosition, 100, 1);
+	LevelManager::GetInstance()->CreateProjectile(playerPosition, 850, 2);
 }

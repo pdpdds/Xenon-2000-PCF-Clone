@@ -1,11 +1,8 @@
 #pragma once
 
-#include "../Game/Loner.h"
-
 class LevelManager
 {
 public:
-	//LevelManager(class Manager* manager);
 	LevelManager();
 	~LevelManager();
 
@@ -16,24 +13,23 @@ public:
 		return m_instance = (m_instance != nullptr) ? m_instance : new LevelManager();
 	}
 
-	//Create Projectile
-	void CreateProjectile(class Vector2D position, int projectileRange, int projectileSpeed);
+	void Update();
 
-	////Instantiate Entity
-	//void Instantiate(class Entity* entity, class Vector2D position);
+	//Create Projectile
+	void CreateProjectile(class Vector2D position, float projectileRange, float projectileSpeed);
 
 	void SpawnEnemies();
 
 private:
-	static class Manager* m_manager;
+	static Manager* m_manager;
 	static LevelManager* m_instance;
 
-	//Enemies Array
-	std::vector<Loner*> lonerEnemies;
+	int enemiesToSpawn = 0;
 
 	//Spawn Timers
-	float spawnTimer;
-	float spawnTimerMax;
+	float lonerSpawnTimer;
+	float lonerSpawnTimerMax;
 
-	bool spawning = false;
+	float rusherSpawnTimer;
+	float rusherSpawnTimerMax;
 };

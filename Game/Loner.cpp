@@ -1,33 +1,41 @@
 #include "Loner.h"
 #include "TransformComponent.h"
 #include "SpriteComponent.h"
-#include "Window.h"
+#include "GroupLabels.h"
 
 Loner::Loner()
 {
-	playerStartPosition = Vector2D(950.f, 0.f);
-	playerSpeed = 0.f;
+	startPosition = Vector2D(1000.f, rand() % 400);
+	speed = 0.f;
+}
+
+Loner::~Loner()
+{
+	Destroy();
 }
 
 void Loner::Init()
 {
 	__super::Init();
 
-	AddComponent<TransformComponent>(playerStartPosition.x, playerStartPosition.y);
+	AddComponent<TransformComponent>(startPosition.x, startPosition.y);
 	AddComponent<SpriteComponent>("../Assets/graphics/LonerA.bmp", true);
 	GetComponent<SpriteComponent>().Play("EnemyIdle");
 
-	playerSpeed = 2.f;
-	playerTransform = &GetComponent<TransformComponent>();
-
-	std::cout << "Loner Initialized" << std::endl;
+	speed = rand() % (int)3.3f + 3;
+	transformComponent = &GetComponent<TransformComponent>();
 }
 
 void Loner::Update()
 {
 	__super::Update();
-
-	GetComponent<TransformComponent>().velocity.x = -1 * playerSpeed;
+	
+	transformComponent->velocity.x = -1 * speed;
+	
+	if (transformComponent->position.x < -50)
+	{
+		Destroy();
+	}
 }
 
 void Loner::Fire()

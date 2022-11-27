@@ -4,6 +4,7 @@
 #include "EntityComponentSystem.h"
 #include "TransformComponent.h"
 #include "SpriteComponent.h"
+#include "LevelManager.h"
 #include <iostream>
 
 void KeyboardController::Init()
@@ -45,8 +46,6 @@ void KeyboardController::Update()
 			break;
 		case SDLK_SPACE:
 			std::cout << "Fire" << std::endl;
-		default:
-			break;
 		}
 		break;
 	case SDL_KEYUP:

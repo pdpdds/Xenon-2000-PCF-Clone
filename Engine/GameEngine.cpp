@@ -10,6 +10,7 @@
 #include "Components.h"
 #include "GroupLabels.h"
 #include "Input.h"
+#include "LevelManager.h"
 
 Renderer* GameEngine::m_renderer = nullptr;
 Manager GameEngine::manager;
@@ -77,11 +78,7 @@ void GameEngine::Update()
 	GameEngine::manager.Refresh();
 	GameEngine::manager.Update();
 
-	//Update all active players
-	for (auto& p : players)
-	{
-		p->Update();
-	}
+	LevelManager::GetInstance()->Update();
 }
 
 void GameEngine::HandleEvents()
@@ -105,11 +102,6 @@ void GameEngine::Render()
 	SDL_SetRenderDrawColor(GameEngine::GetRenderer(), 0, 0, 0, 0);
 	SDL_RenderClear(GameEngine::GetRenderer());
 	m_map->DrawMap(); 
-	////Render all active players
-	//for (auto& p : players)
-	//{
-	//	p->Draw();
-	//}
 	GameEngine::manager.Draw();
 	SDL_RenderPresent(GameEngine::GetRenderer());
 }

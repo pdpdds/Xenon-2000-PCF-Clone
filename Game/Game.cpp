@@ -1,6 +1,7 @@
 #include "GameEngine.h"
 #include "Player.h"
 #include "LevelManager.h"
+#include "Vector2D.h"
 #include <iostream>
 
 int main(int argc, char ** argv)
@@ -16,7 +17,7 @@ int main(int argc, char ** argv)
 
     GameEngine::manager.CreateEntity<Player>();
 
-    LevelManager::GetInstance()->SpawnEnemies();
+    LevelManager::GetInstance()->CreateProjectile(Vector2D(500, 500), 800, 2);
 
     /*
     * -------------------------------------------------
