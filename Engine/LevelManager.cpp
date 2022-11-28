@@ -2,11 +2,11 @@
 #include "GameEngine.h"
 #include "Vector2D.h"
 #include "EntityComponentSystem.h"
-#include "Projectile.h"
 #include "TransformComponent.h"
 #include "SpriteComponent.h"
 #include "GroupLabels.h"
 #include <iostream>
+#include "Projectile.h"
 #include "../Game/Loner.h"
 #include "../Game/Rusher.h"
 #include "../Game/Level.h"
@@ -45,7 +45,7 @@ Manager* LevelManager::GetManager()
 
 void LevelManager::Update()
 {
-	//SpawnEnemies();
+	SpawnEnemies();
 	SpawnDebris();
 }
 
@@ -95,7 +95,8 @@ void LevelManager::SpawnDebris()
 
 	if (debrisSpawnTimer >= debrisSpawnTimerMax)
 	{
-		m_manager->CreateEntity<Debris>();
+		m_manager->CreateEntity<Debris>(true);
+		m_manager->CreateEntity<Debris>(false);
 		debrisSpawnTimer = 0.f;
 	}
 }

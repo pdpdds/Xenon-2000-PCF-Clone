@@ -3,9 +3,10 @@
 #include "TransformComponent.h"
 #include "SpriteComponent.h"
 
-Debris::Debris()
+Debris::Debris(bool isLeftDebris)
 {
 	scrollingSpeed = 0.8f;
+	leftDebris = isLeftDebris;
 }
 
 Debris::~Debris()
@@ -20,10 +21,16 @@ void Debris::Init()
 	__super::Init();
 
 
-	AddComponent<TransformComponent>(590, -950);
-	
-
-	AddComponent<SpriteComponent>("../Assets/graphics/blocksA.bmp", false);
+	if (!leftDebris)
+	{
+		AddComponent<TransformComponent>(590, -950);
+		AddComponent<SpriteComponent>("../Assets/graphics/blocksA.bmp", false);
+	}
+	else
+	{
+		AddComponent<TransformComponent>(-550, -995);
+		AddComponent<SpriteComponent>("../Assets/graphics/blocksB.bmp", false);
+	}
 
 	spriteComponent = &GetComponent<SpriteComponent>();
 	transformComponent = &GetComponent<TransformComponent>();

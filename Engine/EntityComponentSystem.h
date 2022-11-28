@@ -255,6 +255,8 @@ public:
 				return !mEntity->IsActive();
 			}),
 			std::end(m_entities));
+
+		//std::cout << "Active Entities: " << m_entities.size() << std::endl;
 	}
 	
 	//Add entity to group

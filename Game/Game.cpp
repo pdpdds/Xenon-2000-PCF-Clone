@@ -15,8 +15,7 @@ int main(int argc, char ** argv)
     * Declare variables / objects here --------------------------
     */
 
-    LevelManager::GetInstance()->CreateLevel();
-
+	LevelManager::GetInstance()->CreateLevel();
     GameEngine::manager.CreateEntity<Player>();
 
     /*

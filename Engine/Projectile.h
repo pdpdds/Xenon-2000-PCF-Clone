@@ -6,6 +6,7 @@
 class Projectile : public Entity
 {
 public:
+	Projectile();
 	Projectile(Vector2D position, float projRange, float projSpeed);
 	~Projectile();
 

@@ -4,11 +4,11 @@
 #include "SpriteComponent.h"
 #include <iostream>
 
-Projectile::Projectile(Vector2D pos, float projRange, float projSpeed)
+Projectile::Projectile(Vector2D position, float projRange, float projSpeed)
 {
 	range = projRange;
 	speed = projSpeed;
-	playerStartPosition = pos;
+	playerStartPosition = position;
 }
 
 Projectile::~Projectile()

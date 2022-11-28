@@ -5,7 +5,7 @@
 class Debris : public Entity
 {
 public:
-	Debris();
+	Debris(bool isLeftDebris);
 	~Debris();
 
 	virtual void Init();
@@ -16,4 +16,6 @@ private:
 
 	class SpriteComponent* spriteComponent;
 	class TransformComponent* transformComponent;
+
+	bool leftDebris;
 };
