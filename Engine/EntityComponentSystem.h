@@ -206,6 +206,11 @@ private:
 	std::array<std::vector<Entity*>, maxGroups> m_groupedEntities;
 
 public:
+	~Manager()
+	{
+		m_entities.clear();
+	}
+
 	void Init()
 	{
 		for (int i = 0; i < m_entities.size(); ++i)

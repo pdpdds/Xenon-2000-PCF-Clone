@@ -39,6 +39,9 @@
     <ClCompile Include="Level.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Debris.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -51,6 +54,9 @@
       <Filter>Header Files\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="Level.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Debris.h">
       <Filter>Header Files\Map</Filter>
     </ClInclude>
   </ItemGroup>

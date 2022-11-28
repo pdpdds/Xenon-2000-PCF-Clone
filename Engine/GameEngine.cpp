@@ -45,8 +45,6 @@ void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight
 
 void GameEngine::Run()
 {
-	m_map = new Map();
-
 	Uint32 frameStart;
 	int frameTime;
 
@@ -100,7 +98,6 @@ void GameEngine::Render()
 {
 	SDL_SetRenderDrawColor(GameEngine::GetRenderer(), 0, 0, 0, 0);
 	SDL_RenderClear(GameEngine::GetRenderer());
-	m_map->DrawMap(); 
 	GameEngine::manager.Draw();
 	SDL_RenderPresent(GameEngine::GetRenderer());
 }
@@ -134,6 +131,5 @@ GameEngine::~GameEngine()
 	delete m_window;
 	delete m_sdl;
 	delete m_renderer;
-	delete m_map;
 	delete m_engine;
 }

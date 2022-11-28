@@ -155,6 +155,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Debris.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Loner.cpp" />
@@ -162,6 +163,7 @@
     <ClCompile Include="Rusher.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Debris.h" />
     <ClInclude Include="Loner.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Player.h" />

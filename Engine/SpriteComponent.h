@@ -20,6 +20,10 @@ public:
 
 	void SetTexture(const char* texPath);
 
+	void ChangeDstRect(int width, int height) { m_dstRect.w = width; m_dstRect.h = height; }
+
+	void ChangeSrcRect(int width, int height) { m_srcRect.w = width; m_srcRect.h = height; }
+
 	int m_animIndex = 0;
 	
 	std::map<const char*, struct Animation> m_animations;

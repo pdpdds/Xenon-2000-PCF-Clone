@@ -30,7 +30,6 @@ private:
 	class SDLWrapper* m_sdl = nullptr;
 	class Window* m_window = nullptr;
 	static class Renderer* m_renderer;
-	class Map* m_map = nullptr;
 
 	bool m_isRunning;
 	bool m_isActive;

@@ -2,11 +2,11 @@
 
 #include "EntityComponentSystem.h"
 
-class Level : public Entity
+class Debris : public Entity
 {
 public:
-	Level();
-	~Level();
+	Debris();
+	~Debris();
 
 	virtual void Init();
 	virtual void Update();

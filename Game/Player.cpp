@@ -44,30 +44,30 @@ void Player::Update()
 
 	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_W) || Input::GetInstance()->GetButtonDown(SDL_CONTROLLER_BUTTON_DPAD_UP))
 	{
-		GetComponent<TransformComponent>().velocity.y = -1 * playerSpeed;
+		playerTransform->velocity.y = -1 * playerSpeed;
 	}
 	else
 	{
-		GetComponent<TransformComponent>().velocity.y = 0;
+		playerTransform->velocity.y = 0;
 	}
 
 	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_A) || Input::GetInstance()->GetButtonDown(SDL_CONTROLLER_BUTTON_DPAD_LEFT))
 	{
-		GetComponent<TransformComponent>().velocity.x = -1 * playerSpeed;
+		playerTransform->velocity.x = -1 * playerSpeed;
 	}
 	else
 	{
-		GetComponent<TransformComponent>().velocity.x = 0;
+		playerTransform->velocity.x = 0;
 	}
 
 	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_S) || Input::GetInstance()->GetButtonDown(SDL_CONTROLLER_BUTTON_DPAD_RIGHT))
 	{
-		GetComponent<TransformComponent>().velocity.y = 1 * playerSpeed;
+		playerTransform->velocity.y = 1 * playerSpeed;
 	}
 
 	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_D) || Input::GetInstance()->GetButtonDown(SDL_CONTROLLER_BUTTON_DPAD_DOWN))
 	{
-		GetComponent<TransformComponent>().velocity.x = 1 * playerSpeed;
+		playerTransform->velocity.x = 1 * playerSpeed;
 	}
 
 	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_SPACE) || Input::GetInstance()->GetButtonDown(SDL_CONTROLLER_BUTTON_A))

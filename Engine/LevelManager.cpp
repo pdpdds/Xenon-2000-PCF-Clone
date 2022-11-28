@@ -9,6 +9,8 @@
 #include <iostream>
 #include "../Game/Loner.h"
 #include "../Game/Rusher.h"
+#include "../Game/Level.h"
+#include "../Game/Debris.h"
 
 LevelManager* LevelManager::m_instance = nullptr;
 Manager* LevelManager::m_manager = nullptr;
@@ -24,6 +26,9 @@ LevelManager::LevelManager()
 	rusherSpawnTimer = 0.f;
 	rusherSpawnTimerMax = rand() % 190 + 205;
 
+	debrisSpawnTimer = 800.f;
+	debrisSpawnTimerMax = 800.f;
+
 	enemiesToSpawn = 0;
 }
 
@@ -38,15 +43,20 @@ Manager* LevelManager::GetManager()
 	return m_manager;
 }
 
-
 void LevelManager::Update()
 {
-	SpawnEnemies();
+	//SpawnEnemies();
+	SpawnDebris();
 }
 
 void LevelManager::CreateProjectile(Vector2D position, float projectileRange, float projectileSpeed)
 {
 	m_manager->CreateEntity<Projectile>(position, projectileRange, projectileSpeed);
+}
+
+void LevelManager::CreateLevel()
+{
+	m_manager->CreateEntity<Level>();
 }
 
 void LevelManager::SpawnEnemies()
@@ -76,6 +86,17 @@ void LevelManager::SpawnEnemies()
 		}
 
 		rusherSpawnTimer = 0.f;
+	}
+}
+
+void LevelManager::SpawnDebris()
+{
+	debrisSpawnTimer += 0.5f;
+
+	if (debrisSpawnTimer >= debrisSpawnTimerMax)
+	{
+		m_manager->CreateEntity<Debris>();
+		debrisSpawnTimer = 0.f;
 	}
 }
 

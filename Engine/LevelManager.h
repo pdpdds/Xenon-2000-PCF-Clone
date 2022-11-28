@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 class LevelManager
 {
 public:
@@ -19,7 +21,12 @@ public:
 	//Create Projectile
 	void CreateProjectile(class Vector2D position, float projectileRange, float projectileSpeed);
 
+	//Create Projectile
+	void CreateLevel();
+
 	void SpawnEnemies();
+
+	void SpawnDebris();
 
 private:
 	static Manager* m_manager;
@@ -33,4 +40,7 @@ private:
 
 	float rusherSpawnTimer;
 	float rusherSpawnTimerMax;
+
+	float debrisSpawnTimer;
+	float debrisSpawnTimerMax;
 };

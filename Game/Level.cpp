@@ -1,28 +1,35 @@
-#include <SDL.h>
 #include "Level.h"
-#include "Texture.h"
-#include "GameEngine.h"
+#include "TransformComponent.h"
+#include "SpriteComponent.h"
 
 Level::Level()
 {
-	m_bgTexture = Texture::LoadTexture("../Assets/graphics/galaxy2.bmp");
-
-
-	SDL_QueryTexture(m_bgTexture, nullptr, nullptr, &mWidth, &mHeight);
+	scrollingSpeed = 0.1f;
 }
 
 Level::~Level()
 {
+	delete spriteComponent;
+	delete transformComponent;
+	Destroy();
 }
 
-void Level::Draw(int x, int y, SDL_Rect* clip)
+void Level::Init()
 {
+	__super::Init();
+
+	AddComponent<TransformComponent>(0,-198);
+	AddComponent<SpriteComponent>("../Assets/graphics/galaxy2.bmp", false);
+
+	spriteComponent = &GetComponent<SpriteComponent>();
+	transformComponent = &GetComponent<TransformComponent>();
 }
 
 void Level::Update()
 {
-}
+	__super::Update();
 
-void Level::DrawMap()
-{
+	spriteComponent->ChangeSrcRect(1000, 1000);
+	spriteComponent->ChangeDstRect(1500, 1200);
+
 }
