@@ -146,6 +146,7 @@ public:
 	virtual void Destroy() 
 	{ 
 		m_isActive = false; 
+
 	}
 
 	//Check if entity is active

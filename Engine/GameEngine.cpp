@@ -49,6 +49,7 @@ void GameEngine::Run()
 	int frameTime;
 
 	m_isRunning = true;
+	srand(time(NULL));
 
 	while (m_isRunning)
 	{

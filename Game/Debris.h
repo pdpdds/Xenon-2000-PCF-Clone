@@ -5,7 +5,7 @@
 class Debris : public Entity
 {
 public:
-	Debris(bool isLeftDebris);
+	Debris(bool isAlive);
 	~Debris();
 
 	virtual void Init();
@@ -13,9 +13,12 @@ public:
 
 private:
 	float scrollingSpeed = 0.f;
+	int horizontalMargin = 0.f;
+	int verticalMargin = 0.f;
+	int whichDebris = 0;
 
 	class SpriteComponent* spriteComponent;
 	class TransformComponent* transformComponent;
 
-	bool leftDebris;
+	bool isActive;
 };

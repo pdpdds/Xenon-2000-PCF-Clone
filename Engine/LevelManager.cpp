@@ -21,13 +21,13 @@ LevelManager::LevelManager()
 	m_manager = &GameEngine::manager;
 
 	lonerSpawnTimer = 0.f;
-	lonerSpawnTimerMax = rand() % 110 + 100;
+	lonerSpawnTimerMax = 100.f + (rand() % (110 - 100) + 1);
 
 	rusherSpawnTimer = 0.f;
-	rusherSpawnTimerMax = rand() % 190 + 205;
+	rusherSpawnTimerMax = 190 + (rand() % (205 - 190) + 1);
 
-	debrisSpawnTimer = 800.f;
-	debrisSpawnTimerMax = 800.f;
+	debrisSpawnTimer = 150.f;
+	debrisSpawnTimerMax = 150 + (rand() % (200 - 150) + 1);
 
 	enemiesToSpawn = 0;
 }
@@ -47,6 +47,8 @@ void LevelManager::Update()
 {
 	SpawnEnemies();
 	SpawnDebris();
+	//std::cout << debrisSpawnTimer << std::endl;
+
 }
 
 void LevelManager::CreateProjectile(Vector2D position, float projectileRange, float projectileSpeed)
@@ -96,7 +98,7 @@ void LevelManager::SpawnDebris()
 	if (debrisSpawnTimer >= debrisSpawnTimerMax)
 	{
 		m_manager->CreateEntity<Debris>(true);
-		m_manager->CreateEntity<Debris>(false);
+		debrisSpawnTimerMax = 150 + (rand() % (200 - 150) + 1);
 		debrisSpawnTimer = 0.f;
 	}
 }
