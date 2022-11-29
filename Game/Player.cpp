@@ -19,6 +19,7 @@ Player::Player()
 Player::~Player()
 {
 	delete playerTransform;
+	delete spriteComponent;
 }
 
 void Player::Init()
@@ -26,10 +27,15 @@ void Player::Init()
 	__super::Init();
 
 	AddComponent<TransformComponent>(playerStartPosition.x, playerStartPosition.y);
-	AddComponent<SpriteComponent>("../Assets/graphics/ShipIdle.bmp", false);
+	playerTransform = &GetComponent<TransformComponent>();
+
+	AddComponent<SpriteComponent>("../Assets/graphics/Ship.bmp", true, true);
+	spriteComponent = &GetComponent<SpriteComponent>();
+
+	spriteComponent->Play("PlayerIdle");
 
 	playerSpeed = 3.f;
-	playerTransform = &GetComponent<TransformComponent>();
+
 
 	gunOffset = playerPosition.x + 15;
 
@@ -57,10 +63,14 @@ void Player::Update()
 		|| Input::GetInstance()->GetButtonDown(SDL_CONTROLLER_BUTTON_DPAD_LEFT)
 		|| Input::GetInstance()->GetAxis(SDL_CONTROLLER_AXIS_LEFTX) < 0)
 	{ 
+		spriteComponent->Play("PlayerTurnRight");
+		spriteComponent->spriteFlip = SDL_FLIP_HORIZONTAL;
 		playerTransform->velocity.x = -1 * playerSpeed;
 	}
 	else
 	{
+		spriteComponent->Play("PlayerIdle");
+		spriteComponent->spriteFlip = SDL_FLIP_NONE;
 		playerTransform->velocity.x = 0;
 	}
 
@@ -75,6 +85,7 @@ void Player::Update()
 		|| Input::GetInstance()->GetButtonDown(SDL_CONTROLLER_BUTTON_DPAD_RIGHT)
 		|| Input::GetInstance()->GetAxis(SDL_CONTROLLER_AXIS_LEFTX) > 0)
 	{
+		spriteComponent->Play("PlayerTurnRight");
 		playerTransform->velocity.x = 1 * playerSpeed;
 	}
 

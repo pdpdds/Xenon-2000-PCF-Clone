@@ -21,7 +21,7 @@ void Loner::Init()
 	__super::Init();
 
 	AddComponent<TransformComponent>(startPosition.x, startPosition.y);
-	AddComponent<SpriteComponent>("../Assets/graphics/LonerA.bmp", true);
+	AddComponent<SpriteComponent>("../Assets/graphics/LonerA.bmp", true, true);
 	GetComponent<SpriteComponent>().Play("EnemyIdle");
 
 	speed = rand() % (int)3.3f + 3;

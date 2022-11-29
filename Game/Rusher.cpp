@@ -22,7 +22,7 @@ void Rusher::Init()
 	__super::Init();
 
 	AddComponent<TransformComponent>(startPosition.x, startPosition.y);
-	AddComponent<SpriteComponent>("../Assets/graphics/rusherB.bmp", true);
+	AddComponent<SpriteComponent>("../Assets/graphics/rusherB.bmp", true, true);
 	GetComponent<SpriteComponent>().Play("EnemyIdle");
 
 	speed = rand() % 4 + (int)3.5f;

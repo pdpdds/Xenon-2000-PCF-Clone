@@ -22,7 +22,7 @@ void Projectile::Init()
 	__super::Init();
 
 	AddComponent<TransformComponent>(playerStartPosition.x, playerStartPosition.y);
-	AddComponent<SpriteComponent>("../Assets/graphics/missileA.bmp", false);
+	AddComponent<SpriteComponent>("../Assets/graphics/missileA.bmp", false, false);
 	projectileTransform = &GetComponent<TransformComponent>();
 }
 

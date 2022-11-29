@@ -19,7 +19,7 @@ void Level::Init()
 	__super::Init();
 
 	AddComponent<TransformComponent>(0,-198);
-	AddComponent<SpriteComponent>("../Assets/graphics/galaxy2.bmp", false);
+	AddComponent<SpriteComponent>("../Assets/graphics/galaxy2.bmp", false, false);
 
 	spriteComponent = &GetComponent<SpriteComponent>();
 	transformComponent = &GetComponent<TransformComponent>();

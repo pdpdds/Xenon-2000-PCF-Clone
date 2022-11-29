@@ -24,6 +24,7 @@ private:
 	float playerSpeed;
 
 	class TransformComponent* playerTransform = nullptr;
+	class SpriteComponent* spriteComponent = nullptr;
 
 	float fireTimer;
 	float fireTimerMax;

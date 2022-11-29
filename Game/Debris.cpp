@@ -30,7 +30,7 @@ void Debris::Init()
 		std::cout << horizontalMargin << std::endl;
 		std::cout << verticalMargin << std::endl;
 		AddComponent<TransformComponent>(horizontalMargin, verticalMargin);
-		AddComponent<SpriteComponent>("../Assets/graphics/blocksA.bmp", false);
+		AddComponent<SpriteComponent>("../Assets/graphics/blocksA.bmp", false, false);
 	}
 	else if (whichDebris == 1)
 	{
@@ -40,7 +40,7 @@ void Debris::Init()
 		std::cout << horizontalMargin << std::endl;
 		std::cout << verticalMargin << std::endl;
 		AddComponent<TransformComponent>(horizontalMargin, verticalMargin);
-		AddComponent<SpriteComponent>("../Assets/graphics/blocksB.bmp", false);
+		AddComponent<SpriteComponent>("../Assets/graphics/blocksB.bmp", false, false);
 	}
 
 	spriteComponent = &GetComponent<SpriteComponent>();

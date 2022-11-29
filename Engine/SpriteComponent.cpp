@@ -9,12 +9,13 @@ SpriteComponent::SpriteComponent(const char* texPath)
 	SetTexture(texPath);
 }
 
-SpriteComponent::SpriteComponent(const char* texPath, bool isAnimated)
+SpriteComponent::SpriteComponent(const char* texPath, bool isAnimated, bool isLoop)
 {
 	m_animated = isAnimated;
+	m_loopable = isLoop;
 
-	Animation m_playerIdle = Animation(0, 1, 200);
-	Animation m_playerTurnRight = Animation(0, 3, 200);
+	Animation m_playerIdle = Animation(0, 1, 1000);
+	Animation m_playerTurnRight = Animation(1, 3, 300);
 
 	Animation m_enemyIdle = Animation(0, 4, 200);
 
@@ -42,9 +43,13 @@ void SpriteComponent::Init()
 
 void SpriteComponent::Update()
 {
-	if (m_animated)
+	if (m_animated && m_loopable)
 	{
 		m_srcRect.x = m_srcRect.w * static_cast<int>((SDL_GetTicks() / m_speed) % m_frames);
+	}
+	else if (m_animated && !m_loopable)
+	{
+		m_srcRect.x = m_srcRect.w * static_cast<int>((SDL_GetTicks() / m_speed));
 	}
 
 	m_srcRect.y = m_animIndex * m_transformComponent->height;
@@ -57,7 +62,7 @@ void SpriteComponent::Update()
 
 void SpriteComponent::Draw()
 {
-	Texture::Draw(m_texture, m_srcRect, m_dstRect);
+	Texture::Draw(m_texture, m_srcRect, m_dstRect, spriteFlip);
 }
 
 void SpriteComponent::Play(const char* animName)

@@ -9,7 +9,7 @@ class SpriteComponent : public Component
 public:
 	SpriteComponent() = default;
 	SpriteComponent(const char* texPath);
-	SpriteComponent(const char* texPath, bool isAnimated);
+	SpriteComponent(const char* texPath, bool isAnimated, bool isLoop);
 	~SpriteComponent();
 
 	void Init() override;
@@ -28,6 +28,8 @@ public:
 	
 	std::map<const char*, struct Animation> m_animations;
 
+	SDL_RendererFlip spriteFlip = SDL_FLIP_NONE;
+
 private:
 	class TransformComponent* m_transformComponent;
 	class SDL_Texture* m_texture;
@@ -35,6 +37,7 @@ private:
 	class SDL_Rect m_dstRect;
 
 	bool m_animated = false;
+	bool m_loopable = false;
 	int m_frames = 0;
 	int m_speed = 100;
 };

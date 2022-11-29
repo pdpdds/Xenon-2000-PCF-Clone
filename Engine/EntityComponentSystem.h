@@ -200,7 +200,7 @@ private:
 public:
 	~Manager()
 	{
-		m_entities.clear();
+
 	}
 
 	void Init()

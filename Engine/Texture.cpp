@@ -24,9 +24,9 @@ SDL_Texture* Texture::LoadTexture(const char* filePath)
 	return texture;
 }
 
-void Texture::Draw(SDL_Texture* texture, SDL_Rect srcRect, SDL_Rect dstRect)
+void Texture::Draw(SDL_Texture* texture, SDL_Rect srcRect, SDL_Rect dstRect, SDL_RendererFlip renderFlip)
 {
-	SDL_RenderCopy(GameEngine::GetRenderer(), texture, &srcRect, &dstRect);
+	SDL_RenderCopyEx(GameEngine::GetRenderer(), texture, &srcRect, &dstRect, NULL, NULL, renderFlip);
 }
 
 Texture::~Texture()
