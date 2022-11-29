@@ -9,7 +9,7 @@ SDL_GameController* controller = nullptr;
 Input::Input()
 {
 	m_keyStates = SDL_GetKeyboardState(nullptr);
-	m_controllerStates = nullptr;
+
 
 	if (SDL_Init(SDL_INIT_GAMECONTROLLER) < 0)
 	{
@@ -22,6 +22,8 @@ Input::Input()
 	}
 	else
 	{
+		//m_controllerState = SDL_GameControllerEventState(SDL_ENABLE);
+		std::cout << "Game Controller Initialized" << std::endl;
 		controller = SDL_GameControllerOpen(0);
 	}
 }
@@ -29,8 +31,8 @@ Input::Input()
 Input::~Input()
 {
 	delete m_keyStates;
-	delete m_controllerStates;
 	delete m_instance;
+	delete controller;
 }
 
 void Input::Listen()
@@ -48,6 +50,9 @@ void Input::Listen()
 		break;
 	case SDL_CONTROLLERBUTTONUP:
 		ButtonDown();
+		break;
+	case SDL_JOYAXISMOTION:
+		Axis();
 		break;
 	}
 }
@@ -73,22 +78,17 @@ bool Input::GetKeyUp(SDL_Scancode key)
 
 bool Input::GetButtonDown(SDL_GameControllerButton button)
 {
-	//Returns true if key is being pushed down
-	if (m_keyStates[button] == 1)
-	{
-		std::cout << "Pressing a button" << std::endl;
-		return true;
-	}
-	return false;
+	return (bool)SDL_GameControllerGetButton(controller, button);
 }
 
 bool Input::GetButtonUp(SDL_GameControllerButton button)
 {
-	if (m_keyStates[button] == 0)
-	{
-		return true;
-	}
-	return false;
+	return true;
+}
+
+int Input::GetAxis(SDL_GameControllerAxis axis)
+{
+	return (int)SDL_GameControllerGetAxis(controller, axis);
 }
 
 void Input::KeyUp()
@@ -99,6 +99,10 @@ void Input::KeyUp()
 void Input::KeyDown()
 {
 
+}
+
+void Input::Axis()
+{
 }
 
 void Input::ButtonUp()

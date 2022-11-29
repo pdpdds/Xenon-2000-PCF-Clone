@@ -17,16 +17,19 @@ public:
 	bool GetButtonDown(SDL_GameControllerButton button);
 	bool GetButtonUp(SDL_GameControllerButton button);
 
+	int GetAxis(SDL_GameControllerAxis axis);
+
 private:
 	Input();
 	~Input();
 	void KeyUp();
 	void KeyDown();
 
+	void Axis();
+
 	void ButtonUp();
 	void ButtonDown();
 
 	const uint8_t* m_keyStates;
-	const uint8_t* m_controllerStates;
 	static Input* m_instance;
 };

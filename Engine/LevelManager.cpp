@@ -47,8 +47,6 @@ void LevelManager::Update()
 {
 	SpawnEnemies();
 	SpawnDebris();
-	//std::cout << debrisSpawnTimer << std::endl;
-
 }
 
 void LevelManager::CreateProjectile(Vector2D position, float projectileRange, float projectileSpeed)

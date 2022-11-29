@@ -42,7 +42,9 @@ void Player::Update()
 
 	playerPosition = playerTransform->position;
 
-	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_W) || Input::GetInstance()->GetButtonDown(SDL_CONTROLLER_BUTTON_DPAD_UP))
+	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_W) 
+		|| Input::GetInstance()->GetButtonDown(SDL_CONTROLLER_BUTTON_DPAD_UP)
+		|| Input::GetInstance()->GetAxis(SDL_CONTROLLER_AXIS_LEFTY) < -1)
 	{
 		playerTransform->velocity.y = -1 * playerSpeed;
 	}
@@ -51,8 +53,10 @@ void Player::Update()
 		playerTransform->velocity.y = 0;
 	}
 
-	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_A) || Input::GetInstance()->GetButtonDown(SDL_CONTROLLER_BUTTON_DPAD_LEFT))
-	{
+	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_A) 
+		|| Input::GetInstance()->GetButtonDown(SDL_CONTROLLER_BUTTON_DPAD_LEFT)
+		|| Input::GetInstance()->GetAxis(SDL_CONTROLLER_AXIS_LEFTX) < 0)
+	{ 
 		playerTransform->velocity.x = -1 * playerSpeed;
 	}
 	else
@@ -60,12 +64,16 @@ void Player::Update()
 		playerTransform->velocity.x = 0;
 	}
 
-	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_S) || Input::GetInstance()->GetButtonDown(SDL_CONTROLLER_BUTTON_DPAD_RIGHT))
+	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_S) 
+		|| Input::GetInstance()->GetButtonDown(SDL_CONTROLLER_BUTTON_DPAD_DOWN)
+		|| Input::GetInstance()->GetAxis(SDL_CONTROLLER_AXIS_LEFTY) > 0)
 	{
 		playerTransform->velocity.y = 1 * playerSpeed;
 	}
 
-	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_D) || Input::GetInstance()->GetButtonDown(SDL_CONTROLLER_BUTTON_DPAD_DOWN))
+	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_D) 
+		|| Input::GetInstance()->GetButtonDown(SDL_CONTROLLER_BUTTON_DPAD_RIGHT)
+		|| Input::GetInstance()->GetAxis(SDL_CONTROLLER_AXIS_LEFTX) > 0)
 	{
 		playerTransform->velocity.x = 1 * playerSpeed;
 	}

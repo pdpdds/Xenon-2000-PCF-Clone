@@ -76,15 +76,6 @@ public:
 	}
 };
 
-class GameObject
-{
-public:
-	Entity* m_entity;
-
-	virtual void Start() {}
-	virtual void Update() {}
-};
-
 class Entity
 {
 private:
@@ -250,14 +241,15 @@ public:
 				std::end(j));
 		}*/
 
-		m_entities.erase(std::remove_if(std::begin(m_entities), std::end(m_entities),
-			[](const std::unique_ptr<Entity>& mEntity)
-			{
-				return !mEntity->IsActive();
-			}),
-			std::end(m_entities));
-
-		//std::cout << "Active Entities: " << m_entities.size() << std::endl;
+		for (int i = 0; i < m_entities.size(); ++i)
+		{
+			m_entities.erase(std::remove_if(std::begin(m_entities), std::end(m_entities),
+				[](const std::unique_ptr<Entity>& mEntity)
+				{
+					return !mEntity->IsActive();
+				}),
+				std::end(m_entities));
+		}
 	}
 	
 	//Add entity to group

@@ -88,7 +88,6 @@ void GameEngine::HandleEvents()
 	{
 	case SDL_QUIT:
 		m_isRunning = false;
-		Shutdown();
 		break;
 	}
 
