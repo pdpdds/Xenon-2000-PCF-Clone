@@ -35,7 +35,10 @@ private:
 	bool m_isActive;
 
 	class GameEngine* m_engine;
-
-	const int FPS = 60;
-	const int frameDelay = 1000 / FPS;
+	
+	float frameStart;
+	int currentTime;
+	float frameTime;
+	float deltaTime;
+	float frameRate;
 };

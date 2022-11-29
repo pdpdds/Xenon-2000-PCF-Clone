@@ -27,6 +27,16 @@ void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight
 {
 	system("Color 0A");
 
+	//Framerate variables
+	frameStart = 0.f;
+	currentTime = 0.f;
+	frameTime = 0.f;
+	deltaTime = 0.f;
+	frameRate = 60.f;
+
+	//Generate new random seed every time the engine is initialized
+	srand(time(NULL));
+
 	//Used to adjust if window should be full screen
 	int flag = 0;
 
@@ -45,27 +55,25 @@ void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight
 
 void GameEngine::Run()
 {
-	Uint32 frameStart;
-	int frameTime;
 
 	m_isRunning = true;
-	srand(time(NULL));
 
 	while (m_isRunning)
 	{
-		frameStart = SDL_GetTicks();
-		
-		HandleEvents();
-		Update();
-		Render();
-		m_window->updateSurface();
+		frameStart = currentTime;
+		currentTime = SDL_GetTicks();
+		deltaTime = (currentTime - frameStart) / 1000.0f;
 
-		frameTime = SDL_GetTicks() - frameStart;
+		frameTime += deltaTime;
 
-		if (frameDelay > frameTime)
+		if (frameTime >= (1.0f / frameRate))
 		{
-			SDL_Delay(frameDelay - frameTime);
+			HandleEvents();
+			Update();
+			frameTime = 0.f;
 		}
+ 		Render();
+		m_window->updateSurface();
 	}
 
 	Shutdown();
