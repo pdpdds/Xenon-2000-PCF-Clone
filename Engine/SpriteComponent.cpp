@@ -28,7 +28,6 @@ SpriteComponent::SpriteComponent(const char* texPath, bool isAnimated, bool isLo
 
 SpriteComponent::~SpriteComponent()
 {
-	delete m_transformComponent;
 	SDL_DestroyTexture(m_texture);
 }
 

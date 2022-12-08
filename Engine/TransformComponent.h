@@ -17,6 +17,11 @@ public:
 		position.SetY(y);
 	}
 
+	~TransformComponent()
+	{
+
+	}
+
 	void Init() override
 	{
 		velocity.SetX(0.f);

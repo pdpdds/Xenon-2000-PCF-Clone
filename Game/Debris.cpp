@@ -11,10 +11,8 @@ Debris::Debris(bool isAlive)
 
 Debris::~Debris()
 {
-	delete spriteComponent;
-	delete transformComponent;
-	std::cout << "deconstructor" << std::endl;
-	Destroy();
+	/*delete spriteComponent;
+	delete transformComponent;*/
 }
 
 void Debris::Init()

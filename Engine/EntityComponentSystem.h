@@ -52,9 +52,9 @@ private:
 	bool m_isActive = true;
 
 public:
-	~Component()
+	virtual ~Component()
 	{
-		Destroy();
+		
 	}
 
 	Entity* entity;
@@ -90,9 +90,9 @@ private:
 public:
 	Entity() = default;
 	Entity(Manager* manager) : m_manager(manager) {}
-	~Entity()
+	virtual ~Entity()
 	{
-		Destroy();
+		
 	}
 
 	virtual void Init() 
@@ -130,8 +130,6 @@ public:
 			}),
 			std::end(m_components));
 	}
-
-	//void Instantiate(Entity& entity, class Vector2D position);
 	
 	//Remove inactive entities from the game
 	virtual void Destroy() 
@@ -177,8 +175,6 @@ public:
 		c->Init();
 
 		return *c;
-
-		delete c;
 	}
 
 	//Get Component
@@ -273,8 +269,5 @@ public:
 		obj->Init();
 
 		return obj;
-
-		delete obj;
 	}
-
 };

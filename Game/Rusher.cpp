@@ -11,10 +11,8 @@ Rusher::Rusher()
 
 Rusher::~Rusher()
 {
-	std::cout << "rusher out" << std::endl;
-	Destroy();
-	delete &this->GetComponent<SpriteComponent>();
-	delete transformComponent;
+	//delete &this->GetComponent<SpriteComponent>();
+	//delete transformComponent;
 }
 
 void Rusher::Init()

@@ -116,6 +116,11 @@ void GameEngine::Shutdown()
 	SDL_DestroyWindow(m_window->GetWindow());
 	SDL_Quit();
 
+	delete m_window;
+	delete m_sdl;
+	delete m_renderer;
+	delete m_engine;
+
 	std::cout << "Engine shutdown" << std::endl;
 }
 
@@ -136,8 +141,8 @@ SDL_Renderer* GameEngine::GetRenderer()
 
 GameEngine::~GameEngine()
 {
-	delete m_window;
-	delete m_sdl;
-	delete m_renderer;
-	delete m_engine;
+	//delete m_window;
+	//delete m_sdl;
+	//delete m_renderer;
+	//delete m_engine;
 }

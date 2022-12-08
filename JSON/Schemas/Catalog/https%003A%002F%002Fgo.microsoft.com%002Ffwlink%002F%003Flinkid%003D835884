@@ -42,7 +42,8 @@
       "versions": {
         "1.2": "https://json.schemastore.org/agripparc-1.2.json",
         "1.3": "https://json.schemastore.org/agripparc-1.3.json",
-        "1.4": "https://json.schemastore.org/agripparc-1.4.json"
+        "1.4": "https://json.schemastore.org/agripparc-1.4.json",
+        "2.0": "https://json.schemastore.org/agripparc-2.0.json"
       }
     },
     {
@@ -88,37 +89,37 @@
     {
       "name": "Ansible Execution Environment",
       "description": "Ansible execution-environment.yml file",
-      "url": "https://raw.githubusercontent.com/ansible/schemas/main/f/ansible-ee.json",
+      "url": "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/execution-environment.json",
       "fileMatch": ["**/execution-environment.yml"]
     },
     {
       "name": "Ansible Meta",
       "description": "Ansible meta/main.yml file",
-      "url": "https://raw.githubusercontent.com/ansible/schemas/main/f/ansible-meta.json",
+      "url": "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/meta.json",
       "fileMatch": ["**/meta/main.yml"]
     },
     {
       "name": "Ansible Meta Runtime",
       "description": "Ansible meta/runtime.yml file",
-      "url": "https://raw.githubusercontent.com/ansible/schemas/main/f/ansible-meta-runtime.json",
+      "url": "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/meta-runtime.json",
       "fileMatch": ["**/meta/runtime.yml"]
     },
     {
       "name": "Ansible Argument Specs",
       "description": "Ansible meta/argument_specs.yml file",
-      "url": "https://github.com/ansible/schemas/raw/main/f/ansible-argument-specs.json",
+      "url": "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/arg_specs.json",
       "fileMatch": ["**/meta/argument_specs.yml"]
     },
     {
       "name": "Ansible Requirements",
       "description": "Ansible requirements file",
-      "url": "https://raw.githubusercontent.com/ansible/schemas/main/f/ansible-requirements.json",
+      "url": "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/requirements.json",
       "fileMatch": ["requirements.yml"]
     },
     {
       "name": "Ansible Vars File",
       "description": "Ansible variables File",
-      "url": "https://raw.githubusercontent.com/ansible/schemas/main/f/ansible-vars.json",
+      "url": "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/vars.json",
       "fileMatch": [
         "**/vars/*.yml",
         "**/vars/*.yaml",
@@ -133,7 +134,7 @@
     {
       "name": "Ansible Tasks File",
       "description": "Ansible tasks file",
-      "url": "https://raw.githubusercontent.com/ansible/schemas/main/f/ansible.json#/$defs/tasks",
+      "url": "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks",
       "fileMatch": [
         "**/tasks/*.yml",
         "**/tasks/*.yaml",
@@ -144,7 +145,7 @@
     {
       "name": "Ansible Playbook",
       "description": "Ansible playbook files",
-      "url": "https://raw.githubusercontent.com/ansible/schemas/main/f/ansible.json#/$defs/playbook",
+      "url": "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/playbook",
       "fileMatch": [
         "playbook.yml",
         "playbook.yaml",
@@ -157,13 +158,13 @@
     {
       "name": "Ansible Inventory",
       "description": "Ansible inventory files",
-      "url": "https://raw.githubusercontent.com/ansible/schemas/main/f/ansible-inventory.json",
+      "url": "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/inventory.json",
       "fileMatch": ["inventory.yml", "inventory.yaml"]
     },
     {
       "name": "Ansible Collection Galaxy",
       "description": "Ansible Collection Galaxy metadata",
-      "url": "https://raw.githubusercontent.com/ansible/schemas/main/f/ansible-galaxy.json",
+      "url": "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/galaxy.json",
       "fileMatch": ["galaxy.yml"]
     },
     {
@@ -1145,7 +1146,11 @@
       "name": "detekt.yml",
       "description": "Detekt Configuration File schema",
       "fileMatch": ["detekt.yml", "detekt.yaml"],
-      "url": "https://json.schemastore.org/detekt.json"
+      "url": "https://json.schemastore.org/detekt-1.22.0.json",
+      "versions": {
+        "1.14.1": "https://json.schemastore.org/detekt-1.14.1.json",
+        "1.22.0": "https://json.schemastore.org/detekt-1.22.0.json"
+      }
     },
     {
       "name": "Discord Webhook",
@@ -1688,7 +1693,7 @@
       "name": "haxelib.json",
       "description": "Haxelib manifest",
       "fileMatch": ["haxelib.json"],
-      "url": "https://json.schemastore.org/haxelib.json"
+      "url": "https://raw.githubusercontent.com/HaxeFoundation/haxelib/master/schema.json"
     },
     {
       "name": "Hayson",
@@ -2661,6 +2666,12 @@
       "description": "Windows App localization file",
       "fileMatch": ["*.resjson"],
       "url": "https://json.schemastore.org/resjson.json"
+    },
+    {
+      "name": "Rust Project",
+      "description": "JSON schema for non-Cargo based Rust projects",
+      "fileMatch": ["rust-project.json"],
+      "url": "https://json.schemastore.org/rust-project.json"
     },
     {
       "name": "JSON Resume",
@@ -4339,6 +4350,18 @@
       "versions": {
         "1.0": "https://json.schemastore.org/qfconfig.json"
       }
+    },
+    {
+      "name": "Unreal Engine Uplugin",
+      "description": "Unreal Engine plugin configuration file",
+      "fileMatch": [".uplugin"],
+      "url": "https://json.schemastore.org/uplugin.json"
+    },
+    {
+      "name": "Unreal Engine Uproject",
+      "description": "Unreal Engine project configuration file",
+      "fileMatch": [".uproject"],
+      "url": "https://json.schemastore.org/uproject.json"
     }
   ],
   "version": 1

@@ -11,9 +11,7 @@ Loner::Loner()
 
 Loner::~Loner()
 {
-	Destroy();
-	delete &this->GetComponent<SpriteComponent>();
-	delete transformComponent;
+	std::cout << "Loner destructor" << std::endl;
 }
 
 void Loner::Init()
