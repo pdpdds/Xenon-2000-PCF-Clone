@@ -13,8 +13,7 @@ Projectile::Projectile(Vector2D position, float projRange, float projSpeed)
 
 Projectile::~Projectile()
 {
-	Destroy();
-	delete projectileTransform;
+	
 }
 
 void Projectile::Init()
