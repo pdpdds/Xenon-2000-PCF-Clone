@@ -34,9 +34,6 @@
     <Filter Include="Header Files\Level">
       <UniqueIdentifier>{7e11f52f-2816-46f7-9be0-0b44eb1d1309}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Controller">
-      <UniqueIdentifier>{877e511a-b818-49a4-858d-df9294cc09db}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="InitError.cpp">
@@ -66,25 +63,13 @@
     <ClCompile Include="SpriteComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="KeyboardController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Pawn.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GamepadController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="EntityComponentSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="LevelManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ProjectileComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Input.cpp">
@@ -113,9 +98,6 @@
     <ClInclude Include="Renderer.h">
       <Filter>Header Files\SDL Classes</Filter>
     </ClInclude>
-    <ClInclude Include="Keycodes.h">
-      <Filter>Header Files\Utilities</Filter>
-    </ClInclude>
     <ClInclude Include="MathLibrary.h">
       <Filter>Header Files\Utilities</Filter>
     </ClInclude>
@@ -137,17 +119,8 @@
     <ClInclude Include="Vector2D.h">
       <Filter>Header Files\Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="KeyboardController.h">
-      <Filter>Header Files\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerController.h">
-      <Filter>Header Files\Controller</Filter>
-    </ClInclude>
     <ClInclude Include="Animation.h">
       <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjects.h">
-      <Filter>Header Files\Objects</Filter>
     </ClInclude>
     <ClInclude Include="Pawn.h">
       <Filter>Header Files\Objects</Filter>
@@ -155,14 +128,8 @@
     <ClInclude Include="GroupLabels.h">
       <Filter>Header Files\Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="GamepadController.h">
-      <Filter>Header Files\Input</Filter>
-    </ClInclude>
     <ClInclude Include="LevelManager.h">
       <Filter>Header Files\Level</Filter>
-    </ClInclude>
-    <ClInclude Include="ProjectileComponent.h">
-      <Filter>Header Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="Input.h">
       <Filter>Header Files\Input</Filter>
