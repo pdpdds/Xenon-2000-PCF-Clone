@@ -11,6 +11,7 @@
 #include "GroupLabels.h"
 #include "Input.h"
 #include "LevelManager.h"
+#include "../Game/GameManager.h"
 
 Renderer* GameEngine::m_renderer = nullptr;
 Manager GameEngine::manager;
@@ -84,7 +85,8 @@ void GameEngine::Update()
 	GameEngine::manager.Refresh();
 	GameEngine::manager.Update();
 
-	LevelManager::GetInstance()->Update();
+	//LevelManager::GetInstance()->Update();
+	GameManager::GetInstance()->Update();
 }
 
 void GameEngine::HandleEvents()

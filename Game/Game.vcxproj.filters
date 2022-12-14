@@ -22,6 +22,9 @@
     <Filter Include="Header Files\Map">
       <UniqueIdentifier>{bf534d1a-6218-4e17-90ed-2a6460c0b973}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Projectiles">
+      <UniqueIdentifier>{868b078a-2960-49ff-b4f8-bb73ca97a221}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -42,6 +45,12 @@
     <ClCompile Include="Debris.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerProjectile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -58,6 +67,12 @@
     </ClInclude>
     <ClInclude Include="Debris.h">
       <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerProjectile.h">
+      <Filter>Header Files\Projectiles</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

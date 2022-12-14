@@ -14,11 +14,11 @@ public:
 	virtual void Update();
 
 private:
-	Vector2D playerStartPosition;
+	//Vector2D playerStartPosition;
 
-	class TransformComponent* projectileTransform = nullptr;
+	//class TransformComponent* projectileTransform = nullptr;
 
-	float range = 0;
-	float distance = 0;
-	float speed = 0;
+	//float range = 0;
+	//float distance = 0;
+	//float speed = 0;
 };

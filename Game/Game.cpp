@@ -1,6 +1,6 @@
 #include "GameEngine.h"
 #include "Player.h"
-#include "LevelManager.h"
+#include "GameManager.h"
 #include "Vector2D.h"
 #include <iostream>
 
@@ -15,8 +15,8 @@ int main(int argc, char ** argv)
     * Declare variables / objects here --------------------------
     */
 
-	LevelManager::GetInstance()->CreateLevel();
-    GameEngine::manager.CreateEntity<Player>();
+	GameManager::GetInstance()->CreateLevel();
+    GameManager::GetManager()->CreateEntity<Player>();
 
     /*
     * -------------------------------------------------

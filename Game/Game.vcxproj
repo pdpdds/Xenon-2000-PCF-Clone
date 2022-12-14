@@ -157,16 +157,20 @@
   <ItemGroup>
     <ClCompile Include="Debris.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Loner.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerProjectile.cpp" />
     <ClCompile Include="Rusher.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Debris.h" />
     <ClInclude Include="Loner.h" />
     <ClInclude Include="Level.h" />
+    <ClInclude Include="GameManager.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerProjectile.h" />
     <ClInclude Include="Rusher.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

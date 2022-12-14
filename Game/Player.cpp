@@ -4,7 +4,8 @@
 #include "GroupLabels.h"
 #include "Input.h"
 #include <iostream>
-#include "LevelManager.h"
+#include "GameManager.h"
+#include "PlayerProjectile.h"
 
 Player::Player()
 {
@@ -100,7 +101,7 @@ void Player::Fire()
 {
 	if (CanFire())
 	{
-		LevelManager::GetInstance()->CreateProjectile(Vector2D(playerPosition.x + gunOffset, playerPosition.y), 850, 10);
+		GameManager::GetInstance()->InstantiateProjectile<PlayerProjectile>(Vector2D(playerPosition.x + gunOffset, playerPosition.y), 850, 10);
 	}	
 }
 

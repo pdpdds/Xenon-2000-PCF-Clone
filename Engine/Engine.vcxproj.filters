@@ -34,6 +34,9 @@
     <Filter Include="Header Files\Level">
       <UniqueIdentifier>{7e11f52f-2816-46f7-9be0-0b44eb1d1309}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Manager">
+      <UniqueIdentifier>{8b5f7df0-47f3-4696-ab3f-1cf3c2c3cb25}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="InitError.cpp">

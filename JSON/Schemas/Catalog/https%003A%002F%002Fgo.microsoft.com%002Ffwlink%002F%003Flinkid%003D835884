@@ -840,7 +840,7 @@
       "name": "codemagic",
       "description": "JSON schema for Codemagic CI/CD file configuration",
       "fileMatch": ["codemagic.yaml", "codemagic.yml"],
-      "url": "https://static.codemagic.io/codemagic-schema.json"
+      "url": "https://codemagic.io/codemagic-schema.json"
     },
     {
       "name": "Codux",
@@ -3994,6 +3994,12 @@
       "description": "Schema for serverless framework configuration files",
       "fileMatch": ["serverless.yml"],
       "url": "https://raw.githubusercontent.com/lalcebo/json-schema/master/serverless/reference.json"
+    },
+    {
+      "name": "Alacritty Configuration Schema",
+      "description": "Schema for Alacritty configuration yaml file",
+      "fileMatch": [".alacritty.yml", "alacritty.yml"],
+      "url": "https://raw.githubusercontent.com/distinction-dev/alacritty-schema/main/alacritty/reference.json"
     },
     {
       "name": "Serverless Workflow Schema",
