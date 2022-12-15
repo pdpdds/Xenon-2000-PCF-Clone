@@ -156,6 +156,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Debris.cpp" />
+    <ClCompile Include="EnemyProjectile.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Level.cpp" />
@@ -166,6 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Debris.h" />
+    <ClInclude Include="EnemyProjectile.h" />
     <ClInclude Include="Loner.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="GameManager.h" />

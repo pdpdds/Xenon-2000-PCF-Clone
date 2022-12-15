@@ -4,6 +4,10 @@
 #include "Components.h"
 #include <map>
 
+class TransformComponent;
+class SDL_Texture;
+class SDL_Rect;
+
 class SpriteComponent : public Component
 {
 public:
@@ -31,10 +35,10 @@ public:
 	SDL_RendererFlip spriteFlip = SDL_FLIP_NONE;
 
 private:
-	class TransformComponent* m_transformComponent;
-	class SDL_Texture* m_texture;
-	class SDL_Rect m_srcRect;
-	class SDL_Rect m_dstRect;
+	TransformComponent* m_transformComponent;
+	SDL_Texture* m_texture;
+	SDL_Rect m_srcRect;
+	SDL_Rect m_dstRect;
 
 	bool m_animated = false;
 	bool m_loopable = false;

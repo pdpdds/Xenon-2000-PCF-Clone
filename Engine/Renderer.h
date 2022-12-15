@@ -1,14 +1,17 @@
 #pragma once
 
+class SDL_Renderer;
+class Window;
+
 class Renderer
 {
 public:
-	Renderer(class Window* window, int index, int flags);
+	Renderer(Window* window, int index, int flags);
 
 	class SDL_Renderer* GetRenderer();
 
 	~Renderer();
 
 private:
-	class SDL_Renderer* renderer;
+	SDL_Renderer* renderer;
 };

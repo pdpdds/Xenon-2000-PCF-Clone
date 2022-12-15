@@ -2,6 +2,9 @@
 
 #include "EntityComponentSystem.h"
 
+class SpriteComponent;
+class TransformComponent;
+
 class Level : public Entity
 {
 public:
@@ -14,6 +17,6 @@ public:
 private:
 	float scrollingSpeed = 0.f;
 
-	class SpriteComponent* spriteComponent;
-	class TransformComponent* transformComponent;
+	SpriteComponent* spriteComponent;
+	TransformComponent* transformComponent;
 };

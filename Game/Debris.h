@@ -2,6 +2,9 @@
 
 #include "EntityComponentSystem.h"
 
+class SpriteComponent;
+class TransformComponent;
+
 class Debris : public Entity
 {
 public:
@@ -17,8 +20,8 @@ private:
 	int verticalMargin = 0.f;
 	int whichDebris = 0;
 
-	class SpriteComponent* spriteComponent;
-	class TransformComponent* transformComponent;
+	SpriteComponent* spriteComponent;
+	TransformComponent* transformComponent;
 
 	bool isActive;
 };

@@ -101,7 +101,8 @@ void Player::Fire()
 {
 	if (CanFire())
 	{
-		GameManager::GetInstance()->InstantiateProjectile<PlayerProjectile>(Vector2D(playerPosition.x + gunOffset, playerPosition.y), 850, 10);
+		GameManager::GetInstance()->InstantiateProjectile<PlayerProjectile>(
+			Vector2D(playerPosition.x + gunOffset, playerPosition.y), 850, 2);
 	}	
 }
 

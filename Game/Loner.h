@@ -3,6 +3,8 @@
 #include "Pawn.h"
 #include "Vector2D.h"
 
+class TransformComponent;
+
 class Loner : public Pawn
 {
 public:
@@ -19,5 +21,9 @@ private:
 	Vector2D playerPosition;
 	float speed;
 
-	class TransformComponent* transformComponent = nullptr;
+	TransformComponent* transformComponent = nullptr;
+
+	//Fire Timers
+	float fireTimer;
+	float fireTimerMax;
 };

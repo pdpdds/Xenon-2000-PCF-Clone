@@ -5,12 +5,12 @@
 
 class TransformComponent;
 
-class PlayerProjectile : public Projectile
+class EnemyProjectile : public Projectile
 {
 public:
-	PlayerProjectile();
-	PlayerProjectile(Vector2D position, float projRange, float projSpeed);
-	~PlayerProjectile();
+	EnemyProjectile();
+	EnemyProjectile(Vector2D position, float projRange, float projSpeed);
+	~EnemyProjectile();
 
 	virtual void Init();
 	virtual void Update();
