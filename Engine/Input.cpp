@@ -8,9 +8,10 @@ SDL_GameController* controller = nullptr;
 
 Input::Input()
 {
+	//Get Keyboard State
 	m_keyStates = SDL_GetKeyboardState(nullptr);
 
-
+	//Initialize Game Controller
 	if (SDL_Init(SDL_INIT_GAMECONTROLLER) < 0)
 	{
 		std::cout << "ERROR: Game Controller failed to initialize" << std::endl;
@@ -22,7 +23,6 @@ Input::Input()
 	}
 	else
 	{
-		//m_controllerState = SDL_GameControllerEventState(SDL_ENABLE);
 		std::cout << "Game Controller Initialized" << std::endl;
 		controller = SDL_GameControllerOpen(0);
 	}
@@ -37,6 +37,7 @@ Input::~Input()
 
 void Input::Listen()
 {
+	//Check for Input
 	switch (GameEngine::event.type)
 	{
 	case SDL_KEYDOWN:

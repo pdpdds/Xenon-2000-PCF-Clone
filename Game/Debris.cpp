@@ -11,8 +11,7 @@ Debris::Debris(bool isAlive)
 
 Debris::~Debris()
 {
-	/*delete spriteComponent;
-	delete transformComponent;*/
+
 }
 
 void Debris::Init()
@@ -34,7 +33,7 @@ void Debris::Init()
 	{
 		horizontalMargin = -300 + (rand() % (-150 - -300) + 1);
 		verticalMargin = -1100 + (rand() % (-950 - -1100 + 1));
-		//std::cout << horizontalMargin <<  std::endl;
+
 		std::cout << horizontalMargin << std::endl;
 		std::cout << verticalMargin << std::endl;
 		AddComponent<TransformComponent>(horizontalMargin, verticalMargin);

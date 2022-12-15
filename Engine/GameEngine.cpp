@@ -46,19 +46,22 @@ void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight
 		flag = SDL_WINDOW_FULLSCREEN;
 	}
 
+	//Initialize SDL
 	m_sdl = new SDLWrapper(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_GAMECONTROLLER);
 
+	//Initialize Window
 	m_window = new Window(windowTitle, windowWidth, windowHeight, flag);
 
+	//Initialize Renderer
 	GameEngine::m_renderer = new Renderer(m_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	m_isActive = true;
 }
 
 void GameEngine::Run()
 {
-
 	m_isRunning = true;
 
+	//Engine Loop
 	while (m_isRunning)
 	{
 		frameStart = currentTime;
@@ -82,15 +85,17 @@ void GameEngine::Run()
 
 void GameEngine::Update()
 {
+	//Refresh and Update Entity Manager
 	GameEngine::manager.Refresh();
 	GameEngine::manager.Update();
 
-	//LevelManager::GetInstance()->Update();
+	//Update Game Manager
 	GameManager::GetInstance()->Update();
 }
 
 void GameEngine::HandleEvents()
 {
+	//Poll SDL Events
 	SDL_PollEvent(&GameEngine::event);
 
 	//Check events
@@ -101,6 +106,7 @@ void GameEngine::HandleEvents()
 		break;
 	}
 
+	//Check for Input
 	Input::GetInstance()->Listen();
 }
 
@@ -143,8 +149,5 @@ SDL_Renderer* GameEngine::GetRenderer()
 
 GameEngine::~GameEngine()
 {
-	//delete m_window;
-	//delete m_sdl;
-	//delete m_renderer;
-	//delete m_engine;
+
 }

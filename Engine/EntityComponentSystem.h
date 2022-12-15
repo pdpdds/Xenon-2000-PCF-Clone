@@ -89,12 +89,18 @@ private:
 
 public:
 	Entity() = default;
-	Entity(Manager* manager) : m_manager(manager) {}
+
+	Entity(Manager* manager) : m_manager(manager) 
+	{
+
+	}
+
 	virtual ~Entity()
 	{
 		
 	}
 
+	//Initializes Entity
 	virtual void Init() 
 	{
 		for (int i = 0; i < m_components.size(); ++i)
@@ -103,6 +109,7 @@ public:
 		}
 	}
 
+	//Updates Entity and Components
 	virtual void Update()
 	{
 		for (int i = 0; i < m_components.size(); ++i)
@@ -113,6 +120,7 @@ public:
 		RefreshComponents();
 	}
 
+	//Draws Entity
 	virtual void Draw() 
 	{
 		for (int i = 0; i < m_components.size(); ++i)
@@ -121,6 +129,7 @@ public:
 		}
 	}
 
+	//Checks for inactive components
 	void RefreshComponents()
 	{
 		m_components.erase(std::remove_if(std::begin(m_components), std::end(m_components),
@@ -199,6 +208,7 @@ public:
 
 	}
 
+	//Initializes Entities
 	void Init()
 	{
 		for (int i = 0; i < m_entities.size(); ++i)
@@ -207,6 +217,7 @@ public:
 		}
 	}
 
+	//Updates Entities
 	void Update()
 	{
 		for (int i = 0; i < m_entities.size(); ++i) 
@@ -215,6 +226,7 @@ public:
 		}
 	}
 
+	//Draws Entities
 	void Draw()
 	{
 		for (int i = 0; i < m_entities.size(); ++i)
@@ -260,9 +272,9 @@ public:
 		return m_groupedEntities[group];
 	}
 
+	//Create an Entity and add it to the entities vector
 	template <typename T, typename... TArgs> T* CreateEntity(TArgs&& ...mArgs) 
 	{
-		//T* obj = new T(std::forward(mArgs));
 		T* obj(new T(std::forward<TArgs>(mArgs)...));
 		std::unique_ptr<Entity> uPtr{ obj };
 		m_entities.emplace_back(std::move(uPtr));
