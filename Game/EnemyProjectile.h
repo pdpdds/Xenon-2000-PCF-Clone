@@ -14,6 +14,7 @@ public:
 
 	virtual void Init();
 	virtual void Update();
+	virtual void BeginOverlap(Entity* otherEntity);
 
 private:
 	Vector2D projectileStartPosition;

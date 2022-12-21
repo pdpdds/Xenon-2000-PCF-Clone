@@ -17,6 +17,8 @@ public:
 
 	virtual void Fire();
 
+	virtual void BeginOverlap(Entity* otherEntity);
+
 	bool CanFire();
 
 	void FireCooldown();

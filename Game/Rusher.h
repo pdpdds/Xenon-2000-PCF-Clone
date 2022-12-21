@@ -14,6 +14,8 @@ public:
 	virtual void Init();
 	virtual void Update();
 
+	virtual void BeginOverlap(Entity* otherEntity);
+
 	virtual void Fire();
 
 private:

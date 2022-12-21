@@ -3,6 +3,7 @@
 #include "TransformComponent.h"
 #include "SpriteComponent.h"
 #include <iostream>
+#include <ColliderComponent.h>
 
 EnemyProjectile::EnemyProjectile()
 {
@@ -25,6 +26,7 @@ void EnemyProjectile::Init()
 
 	AddComponent<TransformComponent>(projectileStartPosition.x, projectileStartPosition.y);
 	AddComponent<SpriteComponent>("../Assets/graphics/EnemyWeap6.bmp", false, false);
+	AddComponent<ColliderComponent>(this, 32, 32);
 	projectileTransform = &GetComponent<TransformComponent>();
 }
 
@@ -41,4 +43,8 @@ void EnemyProjectile::Update()
 	{
 		Destroy();
 	}
+}
+
+void EnemyProjectile::BeginOverlap(Entity* otherEntity)
+{
 }

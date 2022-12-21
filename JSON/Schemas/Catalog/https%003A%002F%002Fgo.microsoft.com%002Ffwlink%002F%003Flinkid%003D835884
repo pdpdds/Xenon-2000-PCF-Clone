@@ -42,8 +42,7 @@
       "versions": {
         "1.2": "https://json.schemastore.org/agripparc-1.2.json",
         "1.3": "https://json.schemastore.org/agripparc-1.3.json",
-        "1.4": "https://json.schemastore.org/agripparc-1.4.json",
-        "2.0": "https://json.schemastore.org/agripparc-2.0.json"
+        "1.4": "https://json.schemastore.org/agripparc-1.4.json"
       }
     },
     {
@@ -820,6 +819,12 @@
       "url": "https://json.schemastore.org/clasp.json"
     },
     {
+      "name": "clangd",
+      "description": "Clang language server daemon",
+      "fileMatch": [".clangd", ".clangd.yml", ".clangd.yaml"],
+      "url": "https://json.schemastore.org/clangd.json"
+    },
+    {
       "name": "cloudify",
       "description": "Cloudify Blueprint",
       "fileMatch": ["*.cfy.yaml"],
@@ -1258,6 +1263,15 @@
       "name": "dss-2.0.0.json",
       "description": "Digital Signature Service Core Protocols, Elements, and Bindings Version 2.0",
       "url": "https://json.schemastore.org/dss-2.0.0.json"
+    },
+    {
+      "name": "dstack Workflows",
+      "description": "YAML schema for dstack Workflows",
+      "fileMatch": [
+        "**/.dstack/workflows/*.yml",
+        "**/.dstack/workflows/*.yaml"
+      ],
+      "url": "https://raw.githubusercontent.com/dstackai/dstack/master/cli/dstack/schemas/workflows.json"
     },
     {
       "name": "dvc.yaml",
@@ -2614,6 +2628,12 @@
         ".readthedocs.yaml"
       ],
       "url": "https://raw.githubusercontent.com/readthedocs/readthedocs.org/master/readthedocs/rtd_tests/fixtures/spec/v2/schema.json"
+    },
+    {
+      "name": "Pulumi",
+      "description": "JSON schema for Pulumi project metadata and configuration",
+      "fileMatch": ["Pulumi.yaml", "pulumi.yaml"],
+      "url": "https://json.schemastore.org/pulumi.json"
     },
     {
       "name": "PyProject",
@@ -4144,7 +4164,7 @@
       "name": "CICS TS resource import",
       "description": "JSON schema for resource import in IBM CICS Transaction Server for z/OS",
       "fileMatch": ["*.cicsresourceimport.yaml", "*.cicsresourceimport.yml"],
-      "url": "https://public.dhe.ibm.com/ibmdl/export/pub/software/htp/cics/schemas/json/resourceimport.json"
+      "url": "https://public.dhe.ibm.com/ibmdl/export/pub/software/htp/cics/schemas/json/cicsts-resourceimport.json"
     },
     {
       "name": "CICS TS resource model",
@@ -4155,7 +4175,7 @@
         "*.cicsappconstraints.yaml",
         "*.cicsappconstraints.yml"
       ],
-      "url": "https://public.dhe.ibm.com/ibmdl/export/pub/software/htp/cics/schemas/json/resourcemodel.json"
+      "url": "https://public.dhe.ibm.com/ibmdl/export/pub/software/htp/cics/schemas/json/cicsts-resourcemodel.json"
     },
     {
       "name": "CICS TS resource overrides",

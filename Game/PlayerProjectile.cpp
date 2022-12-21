@@ -2,7 +2,9 @@
 #include "Vector2D.h"
 #include "TransformComponent.h"
 #include "SpriteComponent.h"
+#include "ColliderComponent.h"
 #include <iostream>
+#include "Loner.h"
 
 PlayerProjectile::PlayerProjectile()
 {
@@ -25,6 +27,7 @@ void PlayerProjectile::Init()
 	
 	AddComponent<TransformComponent>(projectileStartPosition.x, projectileStartPosition.y);
 	AddComponent<SpriteComponent>("../Assets/graphics/missileA.bmp", false, false);
+	AddComponent<ColliderComponent>(this, 32, 32);
 	projectileTransform = &GetComponent<TransformComponent>();
 }
 
@@ -40,5 +43,13 @@ void PlayerProjectile::Update()
 	if (distance > range)
 	{
 		Destroy();
+	}
+}
+
+void PlayerProjectile::BeginOverlap(Entity* otherEntity)
+{
+	if (dynamic_cast<Loner*>(otherEntity))
+	{
+		std::cout << "Hit enemy" << std::endl;
 	}
 }

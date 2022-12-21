@@ -153,22 +153,27 @@ public:
 		return m_isActive; 
 	}
 
+	virtual void BeginOverlap(Entity* otherEntity)
+	{
+
+	}
+
 	//Check if entity has group
 	bool HasGroup(Group group) { return m_groupBiset[group]; }
 
 	//Add self to the group
 	void AddGroup(Group group);
 
-	//Remove from  group bitset
+	//Remove from group bitset
 	void DeleteGroup(Group group) { m_groupBiset[false]; }
 
-	//Check if entity has components
+	//Check if the entity has components
 	template <typename T> bool HasComponent() const
 	{;
 	return m_componentBitSet[GetComponentTypeID<T>];
 	}
 
-	//Add Component
+	//Add New Specified Component
 	template <typename T, typename... TArgs> T& AddComponent(TArgs&&... mArgs)
 	{
 		T* c(new T(std::forward<TArgs>(mArgs)...));

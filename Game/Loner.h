@@ -16,6 +16,8 @@ public:
 
 	virtual void Fire();
 
+	virtual void BeginOverlap(Entity* otherEntity);
+
 private:
 	Vector2D startPosition;
 	Vector2D playerPosition;

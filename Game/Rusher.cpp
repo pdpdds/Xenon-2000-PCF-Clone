@@ -2,6 +2,7 @@
 #include "TransformComponent.h"
 #include "SpriteComponent.h"
 #include "GroupLabels.h"
+#include <ColliderComponent.h>
 
 Rusher::Rusher()
 {
@@ -21,6 +22,7 @@ void Rusher::Init()
 
 	AddComponent<TransformComponent>(startPosition.x, startPosition.y);
 	AddComponent<SpriteComponent>("../Assets/graphics/rusherB.bmp", true, true);
+	AddComponent<ColliderComponent>(this, 64, 64);
 	GetComponent<SpriteComponent>().Play("EnemyIdle");
 
 	speed = rand() % 4 + (int)3.5f;
@@ -45,6 +47,10 @@ void Rusher::Update()
 	{
 		Destroy();
 	}
+}
+
+void Rusher::BeginOverlap(Entity* otherEntity)
+{
 }
 
 void Rusher::Fire()

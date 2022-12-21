@@ -6,6 +6,7 @@
 #include <iostream>
 #include "GameManager.h"
 #include "PlayerProjectile.h"
+#include <ColliderComponent.h>
 
 Player::Player()
 {
@@ -34,6 +35,8 @@ void Player::Init()
 	spriteComponent = &GetComponent<SpriteComponent>();
 
 	spriteComponent->Play("PlayerIdle");
+
+	AddComponent<ColliderComponent>(this, 64, 64);
 
 	playerSpeed = 3.f;
 
@@ -102,8 +105,12 @@ void Player::Fire()
 	if (CanFire())
 	{
 		GameManager::GetInstance()->InstantiateProjectile<PlayerProjectile>(
-			Vector2D(playerPosition.x + gunOffset, playerPosition.y), 850, 2);
+			Vector2D(playerPosition.x + gunOffset, playerPosition.y), 850, 10);
 	}	
+}
+
+void Player::BeginOverlap(Entity* otherEntity)
+{
 }
 
 bool Player::CanFire()

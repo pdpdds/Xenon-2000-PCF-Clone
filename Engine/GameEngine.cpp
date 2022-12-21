@@ -12,6 +12,7 @@
 #include "Input.h"
 #include "LevelManager.h"
 #include "../Game/GameManager.h"
+#include "World.h"
 
 Renderer* GameEngine::m_renderer = nullptr;
 Manager GameEngine::manager;
@@ -55,6 +56,8 @@ void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight
 	//Initialize Renderer
 	GameEngine::m_renderer = new Renderer(m_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	m_isActive = true;
+
+	World::GetInstance()->Init();
 }
 
 void GameEngine::Run()
@@ -76,6 +79,15 @@ void GameEngine::Run()
 			Update();
 			frameTime = 0.f;
 		}
+
+
+		World::GetInstance()->Update(deltaTime);
+
+		/*for (int32 i = 0; i < 60; ++i)
+		{
+			World::GetInstance()->Update(deltaTime)
+		}*/
+
  		Render();
 		m_window->updateSurface();
 	}

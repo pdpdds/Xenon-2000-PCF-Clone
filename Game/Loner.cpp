@@ -4,6 +4,7 @@
 #include "GroupLabels.h"
 #include "GameManager.h"
 #include "EnemyProjectile.h"
+#include <ColliderComponent.h>
 
 Loner::Loner()
 {
@@ -25,7 +26,9 @@ void Loner::Init()
 
 	AddComponent<TransformComponent>(startPosition.x, startPosition.y);
 	AddComponent<SpriteComponent>("../Assets/graphics/LonerA.bmp", true, true);
+	AddComponent<ColliderComponent>(this, 64, 64);
 	GetComponent<SpriteComponent>().Play("EnemyIdle");
+
 
 	speed = rand() % (int)3.3f + 3;
 	transformComponent = &GetComponent<TransformComponent>();
@@ -59,4 +62,9 @@ void Loner::Fire()
 
 		fireTimer = 0;
 	}
+}
+
+void Loner::BeginOverlap(Entity* otherEntity)
+{
+	
 }

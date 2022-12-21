@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ColliderComponent.cpp" />
     <ClCompile Include="EntityComponentSystem.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="InitError.cpp" />
@@ -33,9 +34,11 @@
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Vector2D.cpp" />
     <ClCompile Include="Window.cpp" />
+    <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="ColliderComponent.h" />
     <ClInclude Include="Components.h" />
     <ClInclude Include="EntityComponentSystem.h" />
     <ClInclude Include="GroupLabels.h" />
@@ -54,6 +57,7 @@
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Vector2D.h" />
     <ClInclude Include="Window.h" />
+    <ClInclude Include="World.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
