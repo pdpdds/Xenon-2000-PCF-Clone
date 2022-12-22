@@ -1,6 +1,10 @@
 #pragma once
 
 #include "Components.h"
+#include "EntityFilters.h"
+
+
+using CollisionFilter = unsigned short;
 
 class b2World;
 class b2Body;
@@ -14,6 +18,11 @@ public:
 
 	void Init() override;
 	void Update() override;
+
+	/// Set the collision filter for this body, eg. EntityCategory::PLAYER_BULLET 
+	/// @param PLAYER_BULLET.
+	/// @param ENEMY .
+	void SetCollisionFilter(CollisionFilter collisionFilter);
 
 private:
 	b2World* m_world;

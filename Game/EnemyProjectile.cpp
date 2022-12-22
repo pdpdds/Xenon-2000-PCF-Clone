@@ -26,7 +26,7 @@ void EnemyProjectile::Init()
 
 	AddComponent<TransformComponent>(projectileStartPosition.x, projectileStartPosition.y);
 	AddComponent<SpriteComponent>("../Assets/graphics/EnemyWeap6.bmp", false, false);
-	AddComponent<ColliderComponent>(this, 32, 32);
+	AddComponent<ColliderComponent>(this, 64, 64);
 	projectileTransform = &GetComponent<TransformComponent>();
 }
 
@@ -46,5 +46,10 @@ void EnemyProjectile::Update()
 }
 
 void EnemyProjectile::BeginOverlap(Entity* otherEntity)
+{
+	
+}
+
+void EnemyProjectile::EndOverlap(Entity* otherEntity)
 {
 }

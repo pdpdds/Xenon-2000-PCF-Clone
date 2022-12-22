@@ -61,3 +61,14 @@ void ColliderComponent::Update()
 		m_bodyY = m_parent->GetComponent<TransformComponent>().position.y;
 	}
 }
+
+void ColliderComponent::SetCollisionFilter(CollisionFilter collisionFilter)
+{
+	b2Filter filter;
+	filter.categoryBits = collisionFilter;
+	filter.maskBits = 0x0003;
+	filter.groupIndex = 0;
+
+	m_fixture->SetFilterData(filter);
+}
+

@@ -20,6 +20,7 @@ public:
 	void Init();
 	void Update(float deltaTime);
 	void BeginContact(b2Contact* contact);
+	void EndContact(b2Contact* contact);
 
 private:
 	static World* m_instance;

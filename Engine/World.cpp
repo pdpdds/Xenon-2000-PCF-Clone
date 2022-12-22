@@ -33,7 +33,19 @@ void World::BeginContact(b2Contact* contact)
 
 	if (bodyA != nullptr && bodyB != nullptr)
 	{
-		((Entity*)bodyB)->BeginOverlap(((Entity*)bodyA));
 		((Entity*)bodyA)->BeginOverlap(((Entity*)bodyB));
+		((Entity*)bodyB)->BeginOverlap(((Entity*)bodyA));
+	}
+}
+
+void World::EndContact(b2Contact* contact)
+{
+	Entity* bodyA = ((Entity*)contact->GetFixtureA()->GetUserData().pointer);
+	Entity* bodyB = ((Entity*)contact->GetFixtureB()->GetUserData().pointer);
+
+	if (bodyA != nullptr && bodyB != nullptr)
+	{
+		((Entity*)bodyA)->EndOverlap(((Entity*)bodyB));
+		((Entity*)bodyB)->EndOverlap(((Entity*)bodyA));
 	}
 }

@@ -40,6 +40,8 @@ void Player::Init()
 
 	playerSpeed = 3.f;
 
+	SetName("Player");
+
 
 	gunOffset = playerPosition.x + 15;
 
@@ -110,6 +112,10 @@ void Player::Fire()
 }
 
 void Player::BeginOverlap(Entity* otherEntity)
+{
+}
+
+void Player::EndOverlap(Entity* otherEntity)
 {
 }
 

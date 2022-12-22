@@ -25,7 +25,9 @@ void Rusher::Init()
 	AddComponent<ColliderComponent>(this, 64, 64);
 	GetComponent<SpriteComponent>().Play("EnemyIdle");
 
-	speed = rand() % 4 + (int)3.5f;
+	SetName("Rusher");
+
+	speed = rand() % 3 + (int)2.8f;
 	transformComponent = &GetComponent<TransformComponent>();
 }
 
@@ -50,6 +52,14 @@ void Rusher::Update()
 }
 
 void Rusher::BeginOverlap(Entity* otherEntity)
+{
+	if (otherEntity != this)
+	{
+		std::cout << "rusher collision detected with " << otherEntity->GetName() << std::endl;
+	}
+}
+
+void Rusher::EndOverlap(Entity* otherEntity)
 {
 }
 

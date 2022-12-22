@@ -27,10 +27,12 @@ void Loner::Init()
 	AddComponent<TransformComponent>(startPosition.x, startPosition.y);
 	AddComponent<SpriteComponent>("../Assets/graphics/LonerA.bmp", true, true);
 	AddComponent<ColliderComponent>(this, 64, 64);
+	GetComponent<ColliderComponent>().SetCollisionFilter(EntityCategory::ENEMY);
 	GetComponent<SpriteComponent>().Play("EnemyIdle");
 
+	SetName("Loner");
 
-	speed = rand() % (int)3.3f + 3;
+	speed = rand() % (int)3.1f + 3;
 	transformComponent = &GetComponent<TransformComponent>();
 }
 
@@ -66,5 +68,12 @@ void Loner::Fire()
 
 void Loner::BeginOverlap(Entity* otherEntity)
 {
-	
+	if (otherEntity != this)
+	{
+		std::cout << "loner collision detected with " << otherEntity->GetName() << std::endl;
+	}
+}
+
+void Loner::EndOverlap(Entity* otherEntity)
+{
 }

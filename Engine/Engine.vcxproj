@@ -41,6 +41,7 @@
     <ClInclude Include="ColliderComponent.h" />
     <ClInclude Include="Components.h" />
     <ClInclude Include="EntityComponentSystem.h" />
+    <ClInclude Include="EntityFilters.h" />
     <ClInclude Include="GroupLabels.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="InitError.h" />

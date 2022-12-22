@@ -82,6 +82,7 @@ private:
 	Manager* m_manager = nullptr;
 	bool m_isActive = true;
 	std::vector<std::unique_ptr<Component>> m_components;
+	std::string m_name;
 
 	ComponentArray m_componentArray;
 	ComponentBitSet m_componentBitSet;
@@ -103,6 +104,7 @@ public:
 	//Initializes Entity
 	virtual void Init() 
 	{
+
 		for (int i = 0; i < m_components.size(); ++i)
 		{
 			m_components[i]->Init();
@@ -157,6 +159,18 @@ public:
 	{
 
 	}
+
+	virtual void EndOverlap(Entity* otherEntity)
+	{
+
+	}
+
+	void SetName(std::string inName)
+	{
+		m_name = inName;
+	}
+
+	inline std::string GetName() { return m_name; }
 
 	//Check if entity has group
 	bool HasGroup(Group group) { return m_groupBiset[group]; }

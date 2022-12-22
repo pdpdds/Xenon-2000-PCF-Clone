@@ -71,6 +71,8 @@ void GameEngine::Run()
 		currentTime = SDL_GetTicks();
 		deltaTime = (currentTime - frameStart) / 1000.0f;
 
+		float timeStep = 1.0f / 60.f;
+
 		frameTime += deltaTime;
 
 		if (frameTime >= (1.0f / frameRate))
@@ -80,13 +82,10 @@ void GameEngine::Run()
 			frameTime = 0.f;
 		}
 
-
-		World::GetInstance()->Update(deltaTime);
-
-		/*for (int32 i = 0; i < 60; ++i)
+		for (int32 i = 0; i < 60; ++i)
 		{
-			World::GetInstance()->Update(deltaTime)
-		}*/
+			World::GetInstance()->Update(timeStep);
+		}
 
  		Render();
 		m_window->updateSurface();
