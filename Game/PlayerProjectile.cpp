@@ -29,7 +29,7 @@ void PlayerProjectile::Init()
 	AddComponent<TransformComponent>(projectileStartPosition.x, projectileStartPosition.y);
 	AddComponent<SpriteComponent>("../Assets/graphics/missileA.bmp", false, false);
 	AddComponent<ColliderComponent>(this, 64, 64);
-	GetComponent<ColliderComponent>().SetCollisionFilter(EntityCategory::PLAYER_BULLET);
+	GetComponent<ColliderComponent>().SetCollisionFilter(EntityCategory::PLAYER_BULLET, 0x0006);
 	projectileTransform = &GetComponent<TransformComponent>();
 
 	SetName("PlayerBullet");

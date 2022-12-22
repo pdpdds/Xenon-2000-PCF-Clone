@@ -75,6 +75,7 @@ void GameEngine::Run()
 
 		frameTime += deltaTime;
 
+
 		if (frameTime >= (1.0f / frameRate))
 		{
 			HandleEvents();

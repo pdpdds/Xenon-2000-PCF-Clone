@@ -3,7 +3,6 @@
 #include "Components.h"
 #include "EntityFilters.h"
 
-
 using CollisionFilter = unsigned short;
 
 class b2World;
@@ -21,8 +20,17 @@ public:
 
 	/// Set the collision filter for this body, eg. EntityCategory::PLAYER_BULLET 
 	/// @param PLAYER_BULLET.
-	/// @param ENEMY .
-	void SetCollisionFilter(CollisionFilter collisionFilter);
+	/// @param ENEMY.
+	void SetCollisionFilter(CollisionFilter collisionFilter, unsigned short maskBit);
+
+	/// Returns the collision filter for this body
+	CollisionFilter GetCollisionFilter() 
+	{
+		return m_collisionFilter;
+	}
+
+	float m_bodyX;
+	float m_bodyY;
 
 private:
 	b2World* m_world;
@@ -30,9 +38,8 @@ private:
 	b2Fixture* m_fixture;
 	Entity* m_parent;
 
+	CollisionFilter m_collisionFilter;
+
 	float m_width;
 	float m_height;
-
-	float m_bodyX;
-	float m_bodyY;
 };

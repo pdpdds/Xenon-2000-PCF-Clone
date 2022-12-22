@@ -24,7 +24,7 @@ void ColliderComponent::Init()
 	if (!World::GetInstance()->GetWorld()->IsLocked())
 	{
 	
-		//Dynamic body for the collider
+		//Kinematic body for the collider
 		b2BodyDef bodyDef;
 		bodyDef.type = b2_dynamicBody;
 		bodyDef.position.Set(m_parent->GetComponent<TransformComponent>().position.x,
@@ -62,13 +62,14 @@ void ColliderComponent::Update()
 	}
 }
 
-void ColliderComponent::SetCollisionFilter(CollisionFilter collisionFilter)
+void ColliderComponent::SetCollisionFilter(CollisionFilter collisionFilter, unsigned short maskBit)
 {
+	m_collisionFilter = collisionFilter;
+
 	b2Filter filter;
-	filter.categoryBits = collisionFilter;
-	filter.maskBits = 0x0003;
+	filter.categoryBits = m_collisionFilter;
+	filter.maskBits = maskBit;
 	filter.groupIndex = 0;
 
 	m_fixture->SetFilterData(filter);
 }
-
