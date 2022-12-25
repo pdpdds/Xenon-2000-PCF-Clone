@@ -14,7 +14,7 @@ Pawn::Pawn()
 
 Pawn::~Pawn()
 {
-	Destroy();
+
 }
 
 void Pawn::Init()

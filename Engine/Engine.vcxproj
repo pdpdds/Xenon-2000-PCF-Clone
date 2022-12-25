@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ColliderComponent.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EntityComponentSystem.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="InitError.cpp" />
@@ -40,6 +41,7 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="ColliderComponent.h" />
     <ClInclude Include="Components.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="EntityComponentSystem.h" />
     <ClInclude Include="EntityFilters.h" />
     <ClInclude Include="GroupLabels.h" />

@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Pawn.h"
+#include "Enemy.h"
 #include "Vector2D.h"
 
 class TransformComponent;
 
-class Rusher : public Pawn
+class Rusher : public Enemy
 {
 public:
 	Rusher();

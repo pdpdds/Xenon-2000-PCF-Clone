@@ -64,9 +64,9 @@ void ColliderComponent::Update()
 
 void ColliderComponent::SetCollisionFilter(CollisionFilter collisionFilter, unsigned short maskBit)
 {
-	m_collisionFilter = collisionFilter;
+	m_collisionFilter = collisionFilter;	
 
-	b2Filter filter;
+	b2Filter filter;	
 	filter.categoryBits = m_collisionFilter;
 	filter.maskBits = maskBit;
 	filter.groupIndex = 0;
