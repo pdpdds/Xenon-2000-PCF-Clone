@@ -38,6 +38,7 @@ void Companion::Init()
 	AddComponent<ColliderComponent>(this, 32, 32);
 
 	SetName("Companion");
+	SetTag(Tag::Player);
 
 	if (spaceship->IsActive())
 	{

@@ -34,6 +34,7 @@ void PlayerProjectile::Init()
 	projectileTransform = &GetComponent<TransformComponent>();
 
 	SetName("PlayerBullet");
+	SetTag(Tag::Projectile);
 }
 
 void PlayerProjectile::Update()
@@ -53,9 +54,12 @@ void PlayerProjectile::Update()
 
 void PlayerProjectile::BeginOverlap(Entity* otherEntity)
 {
-	if (!dynamic_cast<PlayerProjectile*>(otherEntity) && !dynamic_cast<Player*>(otherEntity) && !dynamic_cast<Companion*>(otherEntity))
+	if (otherEntity->GetTag() != Tag::Projectile && otherEntity->GetTag() != Tag::Player) 
 	{
-		std::cout << "Player bullet" << " colliding with " << otherEntity->GetName() << std::endl;
+		if (otherEntity->GetTag() == Tag::Enemy)
+		{
+			std::cout << "Player bullet" << " colliding with " << otherEntity->GetName() << std::endl;
+		}	
 	}
 }
 

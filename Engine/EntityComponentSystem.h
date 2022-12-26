@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <bitset>
 #include <array>
+#include <map>
 
 class Component;
 class Pawn;
@@ -14,6 +15,13 @@ class Manager;
 
 using ComponentID = std::size_t;
 using Group = std::size_t;
+
+enum class Tag 
+{
+	Enemy,
+	Player,
+	Projectile,
+};
 
 inline ComponentID GetNewComponentTypeID() 
 { 
@@ -83,6 +91,13 @@ private:
 	bool m_isActive = true;
 	std::vector<std::unique_ptr<Component>> m_components;
 	std::string m_name;
+	Tag m_tag;
+	/*std::map<Tag, std::string> m_tags =
+	{
+		{Tag::Enemy, "Enemy"},
+		{Tag::Player, "Player"},
+		{Tag::Projectile, "Projectile"},
+	};*/
 
 	ComponentArray m_componentArray;
 	ComponentBitSet m_componentBitSet;
@@ -165,12 +180,27 @@ public:
 
 	}
 
+
+
 	void SetName(std::string inName)
 	{
 		m_name = inName;
 	}
 
 	inline std::string GetName() { return m_name; }
+
+	///// Set the entity tag filter for this entity, eg. Tag::Enemy 
+	///// @param Player.
+	///// @param Enemy.
+	///// @param Projectile.
+	void SetTag(Tag inTag)
+	{
+		m_tag = inTag;
+	}
+
+	/// Returns the tag of this entity
+	inline Tag GetTag() { return m_tag; }
+
 
 	//Check if entity has group
 	bool HasGroup(Group group) { return m_groupBiset[group]; }
@@ -257,17 +287,6 @@ public:
 	//Move through entities and remove ones that don't exist
 	void Refresh()
 	{
-		/*for (auto i(0u); i < maxGroups; i++)
-		{
-			auto& j(m_groupedEntities[i]);
-			j.erase(std::remove_if(std::begin(j), std::end(j),
-				[i](Entity* mEntity)
-				{
-					return !mEntity->IsActive() || !mEntity->HasGroup(i);
-				}),
-				std::end(j));
-		}*/
-
 		for (int i = 0; i < m_entities.size(); ++i)
 		{
 			m_entities.erase(std::remove_if(std::begin(m_entities), std::end(m_entities),

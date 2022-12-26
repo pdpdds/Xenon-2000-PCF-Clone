@@ -26,6 +26,7 @@ void Rusher::Init()
 	GetComponent<SpriteComponent>().Play("EnemyIdle");
 
 	SetName("Rusher");
+	SetTag(Tag::Enemy);
 
 	speed = rand() % 3 + (int)2.8f;
 	transformComponent = &GetComponent<TransformComponent>();
@@ -53,7 +54,7 @@ void Rusher::Update()
 
 void Rusher::BeginOverlap(Entity* otherEntity)
 {
-	if (otherEntity != this)
+	if (otherEntity->GetTag() != Tag::Enemy)
 	{
 		std::cout << "rusher collision detected with " << otherEntity->GetName() << std::endl;
 	}

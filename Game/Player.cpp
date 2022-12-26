@@ -43,6 +43,8 @@ void Player::Init()
 
 	SetName("Player");
 
+	SetTag(Tag::Player);
+
 
 	gunOffset = Vector2D(18, -20);
 

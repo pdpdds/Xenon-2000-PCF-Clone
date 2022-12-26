@@ -31,6 +31,7 @@ void Loner::Init()
 	GetComponent<SpriteComponent>().Play("EnemyIdle");
 
 	SetName("Loner");
+	SetTag(Tag::Enemy);
 
 	speed = rand() % (int)3.1f + 3;
 	transformComponent = &GetComponent<TransformComponent>();
@@ -68,7 +69,7 @@ void Loner::Fire()
 
 void Loner::BeginOverlap(Entity* otherEntity)
 {
-	if (otherEntity != this)
+	if (otherEntity->GetTag() != Tag::Enemy)
 	{
 		std::cout << "loner collision detected with " << otherEntity->GetName() << std::endl;
 	}
