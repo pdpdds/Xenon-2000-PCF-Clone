@@ -28,6 +28,8 @@ void EnemyProjectile::Init()
 	AddComponent<SpriteComponent>("../Assets/graphics/EnemyWeap6.bmp", false, false);
 	AddComponent<ColliderComponent>(this, 64, 64);
 	projectileTransform = &GetComponent<TransformComponent>();
+
+	SetName("Enemy Projectile");
 }
 
 void EnemyProjectile::Update()

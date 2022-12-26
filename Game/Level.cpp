@@ -23,6 +23,8 @@ void Level::Init()
 
 	spriteComponent = &GetComponent<SpriteComponent>();
 	transformComponent = &GetComponent<TransformComponent>();
+
+	SetName("Background");
 }
 
 void Level::Update()

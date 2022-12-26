@@ -3,6 +3,7 @@
 #include "GameManager.h"
 #include "Vector2D.h"
 #include <iostream>
+#include "Companion.h"
 
 int main(int argc, char ** argv)
 {
@@ -16,7 +17,9 @@ int main(int argc, char ** argv)
     */
 
 	GameManager::GetInstance()->CreateLevel();
-    GameManager::GetManager()->CreateEntity<Player>();
+    Player* player = GameManager::GetManager()->CreateEntity<Player>();
+    GameManager::GetManager()->CreateEntity<Companion>(player);
+    
 
     /*
     * -------------------------------------------------

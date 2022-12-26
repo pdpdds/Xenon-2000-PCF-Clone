@@ -18,6 +18,9 @@ public:
 		debrisSpawnTimer = 150.f;
 		debrisSpawnTimerMax = 150 + (rand() % (200 - 150) + 1);
 
+		droneSpawnTimer = 0.f;
+		droneSpawnTimerMax = 100.f + (rand() % (110 - 100) + 1);
+
 		enemiesToSpawn = 0;
 	}
 
@@ -57,6 +60,9 @@ private:
 
 	float rusherSpawnTimer;
 	float rusherSpawnTimerMax;
+
+	float droneSpawnTimer;
+	float droneSpawnTimerMax;
 
 	float debrisSpawnTimer;
 	float debrisSpawnTimerMax;

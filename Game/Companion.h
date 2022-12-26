@@ -5,12 +5,13 @@
 
 class TransformComponent;
 class SpriteComponent;
+class Player;
 
-class Player : public Pawn
+class Companion : public Pawn
 {
 public:
-	Player();
-	~Player();
+	Companion(Player* parent);
+	~Companion();
 
 	virtual void Init();
 	virtual void Update();
@@ -20,27 +21,22 @@ public:
 	virtual void BeginOverlap(Entity* otherEntity);
 	virtual void EndOverlap(Entity* otherEntity);
 
-	bool CanFire();
+	//bool CanFire();
 
-	bool IsFiring();
-
-	inline Vector2D GetPosition() { return playerPosition; }
-
-	void FireCooldown();
+	/*void FireCooldown();*/
 
 private:
-	Vector2D playerStartPosition;
-	Vector2D playerPosition;
-	float playerSpeed;
+	Vector2D startPosition;
+	Vector2D position;
 
-	TransformComponent* playerTransform = nullptr;
+	TransformComponent* transformComponent = nullptr;
 	SpriteComponent* spriteComponent = nullptr;
+	Player* spaceship = nullptr;
 
-	float fireTimer;
+	/*float fireTimer;
 	float fireTimerMax;
 
-	bool canFire;
-	bool isFiring;
+	bool canFire;*/
 
 	Vector2D gunOffset;
 };

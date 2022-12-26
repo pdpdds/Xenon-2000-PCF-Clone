@@ -18,6 +18,8 @@ void Debris::Init()
 {
 	__super::Init();
 
+	SetName("Debris");
+
 	whichDebris = rand() % 2;
 	std::cout << whichDebris << std::endl;
 	if (whichDebris == 0)

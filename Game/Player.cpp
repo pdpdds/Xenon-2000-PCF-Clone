@@ -16,6 +16,7 @@ Player::Player()
 	fireTimer = 0.f;
 	fireTimerMax = 2.5f;
 	canFire = true;
+	isFiring = false;
 }
 
 Player::~Player()
@@ -43,7 +44,7 @@ void Player::Init()
 	SetName("Player");
 
 
-	gunOffset = playerPosition.x + 15;
+	gunOffset = Vector2D(18, -20);
 
 	std::cout << "Player Initialized" << std::endl;
 }
@@ -103,12 +104,16 @@ void Player::Update()
 }
 
 void Player::Fire()
-{
+{	
 	if (CanFire())
 	{
-		GameManager::GetInstance()->InstantiateProjectile<PlayerProjectile>(
-			Vector2D(playerPosition.x + gunOffset, playerPosition.y), 850, 10);
+		isFiring = true;
+		GameManager::GetInstance()->InstantiateProjectile<PlayerProjectile>(Vector2D(playerPosition.x + gunOffset.x, playerPosition.y + gunOffset.y), 850, 10);
 	}	
+	else
+	{
+		isFiring = false;
+	}
 }
 
 void Player::BeginOverlap(Entity* otherEntity)
@@ -124,9 +129,15 @@ bool Player::CanFire()
 	return canFire;
 }
 
+bool Player::IsFiring()
+{
+	return isFiring;
+}
+
 void Player::FireCooldown()
 {
 	canFire = false;
+	//isFiring = false;
 
 	fireTimer += 0.3f;
 

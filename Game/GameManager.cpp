@@ -9,6 +9,7 @@
 #include "Rusher.h"
 #include "Level.h"
 #include "Debris.h"
+#include "Drone.h"
 
 GameManager* GameManager::m_instance = nullptr;
 Manager* GameManager::m_manager = nullptr;
@@ -39,6 +40,7 @@ void GameManager::SpawnEnemies()
 {
 	lonerSpawnTimer += 0.5f;
 	rusherSpawnTimer += +0.5f;
+	droneSpawnTimer += 0.5f;
 
 	if (lonerSpawnTimer >= lonerSpawnTimerMax)
 	{
@@ -62,6 +64,18 @@ void GameManager::SpawnEnemies()
 		}
 
 		rusherSpawnTimer = 0.f;
+	}
+
+	if (droneSpawnTimer >= droneSpawnTimerMax)
+	{
+		enemiesToSpawn = rand() % 8 + 4;
+
+		for (int i = 0; i < enemiesToSpawn; ++i)
+		{
+			GameEngine::manager.CreateEntity<Drone>();
+		}
+
+		droneSpawnTimer = 0.f;
 	}
 }
 

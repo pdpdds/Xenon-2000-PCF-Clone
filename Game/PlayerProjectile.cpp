@@ -6,6 +6,7 @@
 #include <iostream>
 #include "Loner.h"
 #include "Player.h"
+#include "Companion.h"
 
 PlayerProjectile::PlayerProjectile()
 {
@@ -29,7 +30,7 @@ void PlayerProjectile::Init()
 	AddComponent<TransformComponent>(projectileStartPosition.x, projectileStartPosition.y);
 	AddComponent<SpriteComponent>("../Assets/graphics/missileA.bmp", false, false);
 	AddComponent<ColliderComponent>(this, 64, 64);
-	GetComponent<ColliderComponent>().SetCollisionFilter(EntityCategory::PLAYER_BULLET, 0x0006);
+	//GetComponent<ColliderComponent>().SetCollisionFilter(EntityCategory::PLAYER_BULLET, 0x0006);
 	projectileTransform = &GetComponent<TransformComponent>();
 
 	SetName("PlayerBullet");
@@ -52,7 +53,7 @@ void PlayerProjectile::Update()
 
 void PlayerProjectile::BeginOverlap(Entity* otherEntity)
 {
-	if (otherEntity != this && !dynamic_cast<Player*>(otherEntity))
+	if (!dynamic_cast<PlayerProjectile*>(otherEntity) && !dynamic_cast<Player*>(otherEntity) && !dynamic_cast<Companion*>(otherEntity))
 	{
 		std::cout << "Player bullet" << " colliding with " << otherEntity->GetName() << std::endl;
 	}

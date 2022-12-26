@@ -19,9 +19,12 @@ SpriteComponent::SpriteComponent(const char* texPath, bool isAnimated, bool isLo
 
 	Animation m_enemyIdle = Animation(0, 4, 200);
 
+	Animation m_droneIdle = Animation(0, 16, 200);
+
 	m_animations.emplace("PlayerIdle", m_playerIdle);
 	m_animations.emplace("PlayerTurnRight", m_playerTurnRight);
 	m_animations.emplace("EnemyIdle", m_enemyIdle);
+	m_animations.emplace("DroneIdle", m_droneIdle);
 
 	SetTexture(texPath);
 }
