@@ -24,7 +24,7 @@ private:
 	Vector2D playerPosition;
 	float speed;
 
-	float amplitude = 30.f;
+	float amplitude = 50.f;
 
 	TransformComponent* transformComponent = nullptr;
 };

@@ -60,6 +60,12 @@
     <ClCompile Include="Companion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerProjectileMedium.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerProjectileHeavy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -91,6 +97,12 @@
     </ClInclude>
     <ClInclude Include="Companion.h">
       <Filter>Header Files\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerProjectileMedium.h">
+      <Filter>Header Files\Projectiles</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerProjectileHeavy.h">
+      <Filter>Header Files\Projectiles</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

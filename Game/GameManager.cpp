@@ -66,17 +66,19 @@ void GameManager::SpawnEnemies()
 		rusherSpawnTimer = 0.f;
 	}
 
-	/*if (droneSpawnTimer >= droneSpawnTimerMax)
+	if (droneSpawnTimer >= droneSpawnTimerMax)
 	{
-		enemiesToSpawn = rand() % 8 + 4;
+		enemiesToSpawn = 6;
 
 		for (int i = 0; i < enemiesToSpawn; ++i)
 		{
+
 			GameEngine::manager.CreateEntity<Drone>();
 		}
 
 		droneSpawnTimer = 0.f;
-	}*/
+	}
+
 }
 
 void GameManager::SpawnDebris()

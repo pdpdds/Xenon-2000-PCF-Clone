@@ -19,7 +19,7 @@ public:
 		debrisSpawnTimerMax = 150 + (rand() % (200 - 150) + 1);
 
 		droneSpawnTimer = 0.f;
-		droneSpawnTimerMax = 100.f + (rand() % (110 - 100) + 1);
+		droneSpawnTimerMax = 130.f + (rand() % (140 - 130) + 1);
 
 		enemiesToSpawn = 0;
 	}
@@ -66,4 +66,10 @@ private:
 
 	float debrisSpawnTimer;
 	float debrisSpawnTimerMax;
+
+	const int NUM_ENEMIES = 6; // the number of enemies to spawn
+	const int SPAWN_INTERVAL = 60; // the interval at which the enemies will spawn, in seconds
+	const int ENEMY_SPAWN_DELAY = 1; // the delay between spawning each enemy, in seconds
+
+	int elapsedTime = 0; // the elapsed time since the last enemy spawns
 };

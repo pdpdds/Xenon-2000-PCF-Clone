@@ -8,15 +8,14 @@
 #include "PlayerProjectile.h"
 #include <ColliderComponent.h>
 #include "Player.h"
+#include "PlayerProjectileMedium.h"
+#include "PlayerProjectileHeavy.h"
 
 Companion::Companion(Player* parent)
 {
 	startPosition = Vector2D(470.f, 700.f);
 	spaceship = parent;
 
-	//fireTimer = 0.f;
-	//fireTimerMax = 2.5f;
-	//canFire = true;
 }
 
 Companion::~Companion()
@@ -70,7 +69,7 @@ void Companion::Fire()
 {
 	if (spaceship->IsFiring())
 	{
-		GameManager::GetInstance()->InstantiateProjectile<PlayerProjectile>(Vector2D(position.x + gunOffset.x, position.y + gunOffset.y), 850, 10);
+		GameManager::GetInstance()->InstantiateProjectile<PlayerProjectile>(Vector2D(position.x + gunOffset.x, position.y + gunOffset.y), 850, 10);	
 	}
 }
 

@@ -7,11 +7,14 @@
 #include "GameManager.h"
 #include "PlayerProjectile.h"
 #include <ColliderComponent.h>
+#include "PlayerProjectileMedium.h"
+#include "PlayerProjectileHeavy.h"
 
 Player::Player()
 {
 	playerStartPosition = Vector2D(470.f, 700.f);
 	playerSpeed = 0.f;
+	weaponAugment = 1;
 	
 	fireTimer = 0.f;
 	fireTimerMax = 2.5f;
@@ -109,8 +112,21 @@ void Player::Fire()
 {	
 	if (CanFire())
 	{
-		isFiring = true;
-		GameManager::GetInstance()->InstantiateProjectile<PlayerProjectile>(Vector2D(playerPosition.x + gunOffset.x, playerPosition.y + gunOffset.y), 850, 10);
+		if (weaponAugment == 0)
+		{
+			isFiring = true;
+			GameManager::GetInstance()->InstantiateProjectile<PlayerProjectile>(Vector2D(playerPosition.x + gunOffset.x, playerPosition.y + gunOffset.y), 850, 10);
+		}
+		else if (weaponAugment == 1)
+		{
+			isFiring = true;
+			GameManager::GetInstance()->InstantiateProjectile<PlayerProjectileMedium>(Vector2D(playerPosition.x + gunOffset.x, playerPosition.y + gunOffset.y), 850, 10);
+		}
+		else if (weaponAugment >= 2)
+		{
+			isFiring = true;
+			GameManager::GetInstance()->InstantiateProjectile<PlayerProjectileHeavy>(Vector2D(playerPosition.x + gunOffset.x, playerPosition.y + gunOffset.y), 850, 10);
+		}
 	}	
 	else
 	{
@@ -148,4 +164,8 @@ void Player::FireCooldown()
 		canFire = true;
 		fireTimer = 0.f;
 	}
+}
+
+void Player::UpgradeWeapon()
+{
 }

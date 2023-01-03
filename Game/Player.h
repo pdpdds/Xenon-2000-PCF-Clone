@@ -26,7 +26,11 @@ public:
 
 	inline Vector2D GetPosition() { return playerPosition; }
 
+	inline int GetWeaponAugment() { return weaponAugment; }
+
 	void FireCooldown();
+
+	void UpgradeWeapon();
 
 private:
 	Vector2D playerStartPosition;
@@ -41,6 +45,8 @@ private:
 
 	bool canFire;
 	bool isFiring;
+
+	int weaponAugment;
 
 	Vector2D gunOffset;
 };

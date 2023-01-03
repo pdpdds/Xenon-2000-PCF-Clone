@@ -1,39 +1,39 @@
-#include "PlayerProjectile.h"
+#include "PlayerProjectileMedium.h"
 #include "Vector2D.h"
 #include "TransformComponent.h"
 #include "SpriteComponent.h"
 #include "ColliderComponent.h"
 #include <iostream>
 
-PlayerProjectile::PlayerProjectile()
+PlayerProjectileMedium::PlayerProjectileMedium()
 {
 }
 
-PlayerProjectile::PlayerProjectile(Vector2D position, float projRange, float projSpeed)
+PlayerProjectileMedium::PlayerProjectileMedium(Vector2D position, float projRange, float projSpeed)
 {
 	projectileStartPosition = position;
 	range = projRange;
 	speed = projSpeed;
 }
 
-PlayerProjectile::~PlayerProjectile()
+PlayerProjectileMedium::~PlayerProjectileMedium()
 {
 }
 
-void PlayerProjectile::Init()
+void PlayerProjectileMedium::Init()
 {
 	__super::Init();
-	
+
 	AddComponent<TransformComponent>(projectileStartPosition.x, projectileStartPosition.y);
-	AddComponent<SpriteComponent>("../Assets/graphics/missileA.bmp", false, false);
+	AddComponent<SpriteComponent>("../Assets/graphics/missileB.bmp", false, false);
 	AddComponent<ColliderComponent>(this, 64, 64);
 	projectileTransform = &GetComponent<TransformComponent>();
 
-	SetName("PlayerBullet");
+	SetName("PlayerBulletMedium");
 	SetTag(Tag::Projectile);
 }
 
-void PlayerProjectile::Update()
+void PlayerProjectileMedium::Update()
 {
 	__super::Update();
 
@@ -48,7 +48,7 @@ void PlayerProjectile::Update()
 	}
 }
 
-void PlayerProjectile::BeginOverlap(Entity* otherEntity)
+void PlayerProjectileMedium::BeginOverlap(Entity* otherEntity)
 {
 	if (otherEntity->GetTag() == Tag::Enemy)
 	{
@@ -56,7 +56,7 @@ void PlayerProjectile::BeginOverlap(Entity* otherEntity)
 	}
 }
 
-void PlayerProjectile::EndOverlap(Entity* otherEntity)
+void PlayerProjectileMedium::EndOverlap(Entity* otherEntity)
 {
-	
+
 }

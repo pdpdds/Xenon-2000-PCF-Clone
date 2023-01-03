@@ -30,7 +30,7 @@ void Drone::Init()
 	SetName("Drone");
 	SetTag(Tag::Enemy);
 
-	speed = rand() % (int)3.1f + 3;
+	speed = 0.3f;
 	transformComponent = &GetComponent<TransformComponent>();
 }
 

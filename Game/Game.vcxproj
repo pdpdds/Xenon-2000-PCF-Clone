@@ -165,6 +165,8 @@
     <ClCompile Include="Loner.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerProjectile.cpp" />
+    <ClCompile Include="PlayerProjectileHeavy.cpp" />
+    <ClCompile Include="PlayerProjectileMedium.cpp" />
     <ClCompile Include="Rusher.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -177,6 +179,8 @@
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerProjectile.h" />
+    <ClInclude Include="PlayerProjectileHeavy.h" />
+    <ClInclude Include="PlayerProjectileMedium.h" />
     <ClInclude Include="Rusher.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
