@@ -24,7 +24,7 @@ void ColliderComponent::Init()
 	if (!World::GetInstance()->GetWorld()->IsLocked())
 	{
 	
-		//Kinematic body for the collider
+		//dynamic body for the collider
 		b2BodyDef bodyDef;
 		bodyDef.type = b2_dynamicBody;
 		bodyDef.position.Set(m_parent->GetComponent<TransformComponent>().position.x,

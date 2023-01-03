@@ -28,12 +28,17 @@ void World::Update(float deltaTime)
 
 void World::BeginContact(b2Contact* contact)
 {
+	//Get the body A's entity parent
 	Entity* bodyA = ((Entity*)contact->GetFixtureA()->GetUserData().pointer);
+	//Get the body A's entity parent
 	Entity* bodyB = ((Entity*)contact->GetFixtureB()->GetUserData().pointer);
 
+	//If none of the bodies are null
 	if (bodyA != nullptr && bodyB != nullptr)
 	{
+		//Call the entity A BeginOverlap, passing the colliding entity as the entity B
 		((Entity*)bodyA)->BeginOverlap(((Entity*)bodyB));
+		//Call the entity B BeginOverlap, passing the colliding entity as the entity A
 		((Entity*)bodyB)->BeginOverlap(((Entity*)bodyA));
 	}
 }

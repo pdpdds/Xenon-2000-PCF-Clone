@@ -4,7 +4,7 @@
 #include "GroupLabels.h"
 #include "GameManager.h"
 #include "EnemyProjectile.h"
-#include <ColliderComponent.h>
+#include "ColliderComponent.h"
 
 Loner::Loner()
 {

@@ -30,7 +30,6 @@ void PlayerProjectile::Init()
 	AddComponent<TransformComponent>(projectileStartPosition.x, projectileStartPosition.y);
 	AddComponent<SpriteComponent>("../Assets/graphics/missileA.bmp", false, false);
 	AddComponent<ColliderComponent>(this, 64, 64);
-	//GetComponent<ColliderComponent>().SetCollisionFilter(EntityCategory::PLAYER_BULLET, 0x0006);
 	projectileTransform = &GetComponent<TransformComponent>();
 
 	SetName("PlayerBullet");
@@ -54,8 +53,10 @@ void PlayerProjectile::Update()
 
 void PlayerProjectile::BeginOverlap(Entity* otherEntity)
 {
+	//Ignore the projectile itself and the player
 	if (otherEntity->GetTag() != Tag::Projectile && otherEntity->GetTag() != Tag::Player) 
 	{
+		//Check if projectile has hit an enemy
 		if (otherEntity->GetTag() == Tag::Enemy)
 		{
 			std::cout << "Player bullet" << " colliding with " << otherEntity->GetName() << std::endl;
@@ -65,4 +66,5 @@ void PlayerProjectile::BeginOverlap(Entity* otherEntity)
 
 void PlayerProjectile::EndOverlap(Entity* otherEntity)
 {
+	
 }
