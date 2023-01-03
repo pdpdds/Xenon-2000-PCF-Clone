@@ -29,6 +29,7 @@ void EnemyProjectile::Init()
 	AddComponent<ColliderComponent>(this, 64, 64);
 	projectileTransform = &GetComponent<TransformComponent>();
 
+	SetTag(Tag::Projectile);
 	SetName("Enemy Projectile");
 }
 

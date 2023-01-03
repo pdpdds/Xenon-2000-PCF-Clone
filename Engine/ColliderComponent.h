@@ -32,6 +32,8 @@ public:
 	float m_bodyX;
 	float m_bodyY;
 
+	inline Entity* GetParent() const { return m_parent; }
+
 private:
 	b2World* m_world;
 	b2Body* m_body;

@@ -49,18 +49,16 @@ void PlayerProjectile::Update()
 	{
 		Destroy();
 	}
+
+	/*std::cout << "Bullet Position: (" << projectileTransform->position.x << " , " << projectileTransform->position.y << ")" << std::endl;
+	std::cout << "Bullet Body Position: (" << GetComponent<ColliderComponent>().m_bodyX << " , " << GetComponent<ColliderComponent>().m_bodyY << ")" << std::endl;*/
 }
 
 void PlayerProjectile::BeginOverlap(Entity* otherEntity)
 {
-	//Ignore the projectile itself and the player
-	if (otherEntity->GetTag() != Tag::Projectile && otherEntity->GetTag() != Tag::Player) 
+	if (otherEntity->GetTag() == Tag::Enemy)
 	{
-		//Check if projectile has hit an enemy
-		if (otherEntity->GetTag() == Tag::Enemy)
-		{
-			std::cout << "Player bullet" << " colliding with " << otherEntity->GetName() << std::endl;
-		}	
+		std::cout << "Player bullet" << " colliding with " << otherEntity->GetName() << std::endl;
 	}
 }
 

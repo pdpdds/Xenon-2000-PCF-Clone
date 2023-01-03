@@ -83,10 +83,10 @@ void GameEngine::Run()
 			frameTime = 0.f;
 		}
 
-		for (int32 i = 0; i < 60; ++i)
-		{
+		/*for (int32 i = 0; i < 60; ++i)
+		{*/
 			World::GetInstance()->Update(timeStep);
-		}
+		/*}*/
 
  		Render();
 		m_window->updateSurface();

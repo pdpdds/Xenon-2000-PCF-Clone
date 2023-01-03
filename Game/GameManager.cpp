@@ -66,7 +66,7 @@ void GameManager::SpawnEnemies()
 		rusherSpawnTimer = 0.f;
 	}
 
-	if (droneSpawnTimer >= droneSpawnTimerMax)
+	/*if (droneSpawnTimer >= droneSpawnTimerMax)
 	{
 		enemiesToSpawn = rand() % 8 + 4;
 
@@ -76,7 +76,7 @@ void GameManager::SpawnEnemies()
 		}
 
 		droneSpawnTimer = 0.f;
-	}
+	}*/
 }
 
 void GameManager::SpawnDebris()

@@ -31,6 +31,8 @@ void ColliderComponent::Init()
 			m_parent->GetComponent<TransformComponent>().position.y);
 		bodyDef.fixedRotation = true;
 		bodyDef.gravityScale = 0.f;
+		bodyDef.bullet = true;
+
 
 		m_body = m_world->CreateBody(&bodyDef);
 
@@ -44,10 +46,10 @@ void ColliderComponent::Init()
 		//Create fixture for the collider and attach it to the body
 		b2FixtureDef fixtureDef;
 		fixtureDef.shape = &shape;
-		fixtureDef.userData.pointer = (uintptr_t)m_parent;
-		fixtureDef.isSensor = true;
 		fixtureDef.density = 1.0f;
-		fixtureDef.friction = 0.02f;
+		fixtureDef.friction = 0.3f;
+		fixtureDef.isSensor = true;
+		fixtureDef.userData.pointer = (uintptr_t)m_parent;
 
 		m_fixture = m_body->CreateFixture(&fixtureDef);
 	}
