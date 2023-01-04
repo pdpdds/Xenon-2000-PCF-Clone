@@ -6,15 +6,17 @@
 #include <iostream>
 #include "GameManager.h"
 #include "PlayerProjectile.h"
-#include <ColliderComponent.h>
+#include "ColliderComponent.h"
+#include "CollisionComponent.h"
 #include "PlayerProjectileMedium.h"
 #include "PlayerProjectileHeavy.h"
+#include "Collision.h"
 
 Player::Player()
 {
 	playerStartPosition = Vector2D(470.f, 700.f);
 	playerSpeed = 0.f;
-	weaponAugment = 1;
+	weaponAugment = 0;
 	
 	fireTimer = 0.f;
 	fireTimerMax = 2.5f;
@@ -41,13 +43,13 @@ void Player::Init()
 	spriteComponent->Play("PlayerIdle");
 
 	AddComponent<ColliderComponent>(this, 64, 64);
+	AddComponent<CollisionComponent>();
 
 	playerSpeed = 3.f;
 
 	SetName("Player");
 
 	SetTag(Tag::Player);
-
 
 	gunOffset = Vector2D(18, -20);
 
@@ -132,6 +134,10 @@ void Player::Fire()
 	{
 		isFiring = false;
 	}
+	/*if (Collision::AABB(this->GetComponent<CollisionComponent>().collider, loner->GetComponent<CollisionComponent>().collider))
+	{
+		std::cout << "Enemy hit" << std::endl;
+	}*/
 }
 
 void Player::BeginOverlap(Entity* otherEntity)

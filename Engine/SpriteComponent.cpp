@@ -58,8 +58,8 @@ void SpriteComponent::Update()
 
 	m_dstRect.x = static_cast<int>(m_transformComponent->GetPosition().X());
 	m_dstRect.y = static_cast<int>(m_transformComponent->GetPosition().Y());
-	m_dstRect.w = TILESIZE;
-	m_dstRect.h = TILESIZE;
+	m_dstRect.w = m_transformComponent->width * 1;
+	m_dstRect.h = m_transformComponent->height * 1;
 }
 
 void SpriteComponent::Draw()

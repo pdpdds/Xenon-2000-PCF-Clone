@@ -28,14 +28,14 @@
     <Filter Include="Header Files\Utilities">
       <UniqueIdentifier>{94bb8d6c-9b79-4ecd-ab39-a0ca940c65f4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\State">
-      <UniqueIdentifier>{545d3edb-4f80-4e86-a745-870ccd67ce9c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Level">
       <UniqueIdentifier>{7e11f52f-2816-46f7-9be0-0b44eb1d1309}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Manager">
       <UniqueIdentifier>{8b5f7df0-47f3-4696-ab3f-1cf3c2c3cb25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Collision">
+      <UniqueIdentifier>{47934828-522c-41b8-9fb1-dbda90f017c6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -88,6 +88,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -160,6 +166,15 @@
     </ClInclude>
     <ClInclude Include="EntityFilters.h">
       <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>Header Files\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="B2DebugDraw.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

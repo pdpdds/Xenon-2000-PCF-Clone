@@ -4,6 +4,8 @@
 #include "SpriteComponent.h"
 #include "ColliderComponent.h"
 #include <iostream>
+#include <CollisionComponent.h>
+#include "Loner.h"
 
 PlayerProjectileMedium::PlayerProjectileMedium()
 {
@@ -27,6 +29,7 @@ void PlayerProjectileMedium::Init()
 	AddComponent<TransformComponent>(projectileStartPosition.x, projectileStartPosition.y);
 	AddComponent<SpriteComponent>("../Assets/graphics/missileB.bmp", false, false);
 	AddComponent<ColliderComponent>(this, 64, 64);
+	AddComponent<CollisionComponent>();
 	projectileTransform = &GetComponent<TransformComponent>();
 
 	SetName("PlayerBulletMedium");

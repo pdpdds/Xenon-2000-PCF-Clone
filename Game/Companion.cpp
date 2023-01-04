@@ -34,7 +34,7 @@ void Companion::Init()
 	AddComponent<SpriteComponent>("../Assets/graphics/cloneA.bmp", false, false);
 	spriteComponent = &GetComponent<SpriteComponent>();
 
-	AddComponent<ColliderComponent>(this, 32, 32);
+	AddComponent<ColliderComponent>(this, 64, 64);
 
 	SetName("Companion");
 	SetTag(Tag::Player);

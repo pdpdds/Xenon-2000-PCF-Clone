@@ -13,10 +13,13 @@
 #include "LevelManager.h"
 #include "../Game/GameManager.h"
 #include "World.h"
+#include "B2DebugDraw.h"
 
 Renderer* GameEngine::m_renderer = nullptr;
 Manager GameEngine::manager;
 SDL_Event GameEngine::event;
+
+B2DebugDraw draw;
 
 GameEngine::GameEngine()
 {
@@ -24,6 +27,7 @@ GameEngine::GameEngine()
 	m_isActive = false;
 	m_engine = this;
 }
+
 
 void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight, bool isFullScreen)
 {
@@ -58,6 +62,8 @@ void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight
 	m_isActive = true;
 
 	World::GetInstance()->Init();
+	draw.SetFlags(b2Draw::e_shapeBit);
+	World::GetInstance()->GetWorld()->SetDebugDraw(&draw);
 }
 
 void GameEngine::Run()

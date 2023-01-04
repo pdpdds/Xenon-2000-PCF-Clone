@@ -1625,7 +1625,7 @@
     {
       "name": "GraphQL Mesh",
       "description": "JSON Schema for GraphQL Mesh config file",
-      "url": "https://unpkg.com/@graphql-mesh/types/config-schema.json",
+      "url": "https://unpkg.com/@graphql-mesh/types/esm/config-schema.json",
       "fileMatch": [
         ".meshrc.yml",
         ".meshrc.yaml",
@@ -3843,6 +3843,17 @@
         "Taskfile.dist.yml"
       ],
       "url": "https://taskfile.dev/schema.json"
+    },
+    {
+      "name": "Hammerkit",
+      "description": "JSON Schema for hammerkit files.",
+      "fileMatch": [
+        ".hammerkit.yaml",
+        ".hammerkit.yml",
+        "*.hammerkit.yaml",
+        "*.hammerkit.yml"
+      ],
+      "url": "https://json.schemastore.org/hammerkit.json"
     },
     {
       "name": "Containerlab",

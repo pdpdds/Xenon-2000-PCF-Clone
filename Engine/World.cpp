@@ -1,5 +1,4 @@
 #include "World.h"
-#include "box2d/box2d.h"
 #include "EntityComponentSystem.h"
 
 World* World::m_instance = nullptr;
@@ -23,7 +22,9 @@ void World::Init()
 
 void World::Update(float deltaTime)
 {
-	m_world->Step(deltaTime, 6, 2);
+	m_world->SetContinuousPhysics(true);
+	m_world->DebugDraw();
+	m_world->Step(deltaTime, 36, 28);
 }
 
 void World::BeginContact(b2Contact* contact)

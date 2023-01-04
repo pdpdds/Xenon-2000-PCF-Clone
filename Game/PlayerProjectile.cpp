@@ -4,6 +4,8 @@
 #include "SpriteComponent.h"
 #include "ColliderComponent.h"
 #include <iostream>
+#include "../include/Box2D/box2d/box2d.h"
+#include <World.h>
 
 PlayerProjectile::PlayerProjectile()
 {

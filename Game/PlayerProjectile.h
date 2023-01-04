@@ -4,6 +4,9 @@
 #include "Vector2D.h"
 
 class TransformComponent;
+class b2World;
+class b2Body;
+class b2Fixture;
 
 class PlayerProjectile : public Projectile
 {
@@ -21,6 +24,10 @@ private:
 	Vector2D projectileStartPosition;
 
 	TransformComponent* projectileTransform = nullptr;
+
+	b2World* m_world;
+	b2Body* m_body;
+	b2Fixture* m_fixture;
 
 	float range = 0;
 	float distance = 0;
