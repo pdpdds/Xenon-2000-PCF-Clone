@@ -14,6 +14,8 @@ PlayerProjectileHeavy::PlayerProjectileHeavy(Vector2D position, float projRange,
 	projectileStartPosition = position;
 	range = projRange;
 	speed = projSpeed;
+
+	this->projectileDamage = 20.f;
 }
 
 PlayerProjectileHeavy::~PlayerProjectileHeavy()
@@ -52,7 +54,7 @@ void PlayerProjectileHeavy::BeginOverlap(Entity* otherEntity)
 {
 	if (otherEntity->GetTag() == Tag::Enemy)
 	{
-		std::cout << "Player bullet" << " colliding with " << otherEntity->GetName() << std::endl;
+		otherEntity->TakeDamage(this->projectileDamage);
 	}
 }
 

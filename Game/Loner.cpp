@@ -16,6 +16,9 @@ Loner::Loner()
 
 	fireTimer = 0.f;
 	fireTimerMax = 45.f;
+	
+	this->maxHp = 100;
+	this->hp = this->maxHp;
 }
 
 Loner::~Loner()
@@ -73,12 +76,19 @@ void Loner::Fire()
 
 void Loner::BeginOverlap(Entity* otherEntity)
 {
-	if (otherEntity->GetTag() != Tag::Enemy)
-	{
-		std::cout << "loner collision detected with " << otherEntity->GetName() << std::endl;
-	}
+	
 }
 
 void Loner::EndOverlap(Entity* otherEntity)
 {
+}
+
+void Loner::TakeDamage(float damage)
+{
+	this->hp -= damage;
+	
+	if (this->hp <= 0)
+	{
+		Destroy();
+	}
 }

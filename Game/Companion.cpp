@@ -81,6 +81,10 @@ void Companion::EndOverlap(Entity* otherEntity)
 {
 }
 
+void Companion::TakeDamage(float damage)
+{
+}
+
 //bool Companion::CanFire()
 //{
 //	return canFire;

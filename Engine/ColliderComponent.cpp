@@ -59,8 +59,8 @@ void ColliderComponent::Update()
 {
 	if (m_parent)
 	{
-		m_bodyX = m_parent->GetComponent<TransformComponent>().position.x;
-		m_bodyY = m_parent->GetComponent<TransformComponent>().position.y;
+		m_body->SetTransform(b2Vec2(m_parent->GetComponent<TransformComponent>().position.x,
+			m_parent->GetComponent<TransformComponent>().position.y), m_body->GetAngle());
 	}
 }
 

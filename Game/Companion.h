@@ -25,6 +25,8 @@ public:
 
 	/*void FireCooldown();*/
 
+	virtual void TakeDamage(float damage);
+
 private:
 	Vector2D startPosition;
 	Vector2D position;
@@ -32,11 +34,6 @@ private:
 	TransformComponent* transformComponent = nullptr;
 	SpriteComponent* spriteComponent = nullptr;
 	Player* spaceship = nullptr;
-
-	/*float fireTimer;
-	float fireTimerMax;
-
-	bool canFire;*/
 
 	Vector2D gunOffset;
 };

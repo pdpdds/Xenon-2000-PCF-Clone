@@ -32,6 +32,8 @@ public:
 
 	void UpgradeWeapon();
 
+	virtual void TakeDamage(float damage);
+
 private:
 	Vector2D playerStartPosition;
 	Vector2D playerPosition;

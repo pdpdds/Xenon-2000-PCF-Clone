@@ -19,8 +19,8 @@ public:
 
 	void Init();
 	void Update(float deltaTime);
-	void BeginContact(b2Contact* contact);
-	void EndContact(b2Contact* contact);
+	virtual void BeginContact(b2Contact* contact) override;
+	virtual void EndContact(b2Contact* contact) override;
 
 private:
 	static World* m_instance;

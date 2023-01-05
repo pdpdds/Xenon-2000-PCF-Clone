@@ -19,6 +19,8 @@ public:
 
 	virtual void Fire();
 
+	virtual void TakeDamage(float damage);
+
 private:
 	Vector2D startPosition;
 	Vector2D playerPosition;

@@ -12,4 +12,9 @@ public:
 	virtual void Update() = 0;
 
 	virtual void Fire() = 0;
+
+	virtual void TakeDamage(float damage) = 0;
+
+	float hp;
+	float maxHp;
 };

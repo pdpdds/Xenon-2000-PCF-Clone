@@ -117,7 +117,7 @@ void Player::Fire()
 		if (weaponAugment == 0)
 		{
 			isFiring = true;
-			GameManager::GetInstance()->InstantiateProjectile<PlayerProjectile>(Vector2D(playerPosition.x + gunOffset.x, playerPosition.y + gunOffset.y), 850, 10);
+			GameManager::GetInstance()->InstantiateProjectile<PlayerProjectile>(Vector2D(playerPosition.x + gunOffset.x, playerPosition.y + gunOffset.y * 2), 850, 10);
 		}
 		else if (weaponAugment == 1)
 		{
@@ -127,7 +127,7 @@ void Player::Fire()
 		else if (weaponAugment >= 2)
 		{
 			isFiring = true;
-			GameManager::GetInstance()->InstantiateProjectile<PlayerProjectileHeavy>(Vector2D(playerPosition.x + gunOffset.x, playerPosition.y + gunOffset.y), 850, 10);
+			GameManager::GetInstance()->InstantiateProjectile<PlayerProjectileHeavy>(Vector2D(playerPosition.x + gunOffset.x, playerPosition.y + gunOffset.y * 2), 850, 10);
 		}
 	}	
 	else
@@ -142,6 +142,7 @@ void Player::Fire()
 
 void Player::BeginOverlap(Entity* otherEntity)
 {
+
 }
 
 void Player::EndOverlap(Entity* otherEntity)
@@ -173,5 +174,9 @@ void Player::FireCooldown()
 }
 
 void Player::UpgradeWeapon()
+{
+}
+
+void Player::TakeDamage(float damage)
 {
 }

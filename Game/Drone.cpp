@@ -10,6 +10,9 @@ Drone::Drone()
 {
 	startPosition = Vector2D(500, 0);
 	speed = 0.f;
+	
+	this->maxHp = 100.f;
+	this->hp = this->maxHp;
 }
 
 Drone::~Drone()
@@ -58,12 +61,19 @@ void Drone::Fire()
 
 void Drone::BeginOverlap(Entity* otherEntity)
 {
-	if (otherEntity->GetTag() != Tag::Enemy)
-	{
-		std::cout << "loner collision detected with " << otherEntity->GetName() << std::endl;
-	}
+	
 }
 
 void Drone::EndOverlap(Entity* otherEntity)
 {
+}
+
+void Drone::TakeDamage(float damage)
+{
+	this->hp -= damage;
+
+	if (this->hp <= 0)
+	{
+		Destroy();
+	}
 }

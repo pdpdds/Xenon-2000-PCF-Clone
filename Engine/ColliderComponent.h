@@ -23,6 +23,8 @@ public:
 	/// @param ENEMY.
 	void SetCollisionFilter(CollisionFilter collisionFilter, unsigned short maskBit);
 
+	b2Body* GetBody() { return m_body; }
+
 	/// Returns the collision filter for this body
 	CollisionFilter GetCollisionFilter() 
 	{

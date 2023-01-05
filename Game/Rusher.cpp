@@ -8,6 +8,9 @@ Rusher::Rusher()
 {
 	startPosition = Vector2D(rand() % 950, (rand() > RAND_MAX / 2) ? 1 : 830);
 	speed = 0.f;
+
+	this->maxHp = 100.f;
+	this->hp = this->maxHp;
 }
 
 Rusher::~Rusher()
@@ -54,10 +57,7 @@ void Rusher::Update()
 
 void Rusher::BeginOverlap(Entity* otherEntity)
 {
-	if (otherEntity->GetTag() != Tag::Enemy)
-	{
-		std::cout << "rusher collision detected with " << otherEntity->GetName() << std::endl;
-	}
+
 }
 
 void Rusher::EndOverlap(Entity* otherEntity)
@@ -66,4 +66,14 @@ void Rusher::EndOverlap(Entity* otherEntity)
 
 void Rusher::Fire()
 {
+}
+
+void Rusher::TakeDamage(float damage)
+{
+	this->hp -= damage;
+
+	if (this->hp <= 0)
+	{
+		Destroy();
+	}
 }

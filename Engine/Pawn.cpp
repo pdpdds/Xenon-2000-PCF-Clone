@@ -9,7 +9,8 @@
 
 Pawn::Pawn()
 {
-	
+	maxHp = 0.f;
+	hp = maxHp;
 }
 
 Pawn::~Pawn()

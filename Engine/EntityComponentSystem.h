@@ -187,6 +187,10 @@ public:
 		m_name = inName;
 	}
 
+	virtual void TakeDamage(float damage)
+	{
+
+	}
 	inline std::string GetName() { return m_name; }
 
 	///// Set the entity tag filter for this entity, eg. Tag::Enemy 
@@ -202,7 +206,7 @@ public:
 	inline Tag GetTag() { return m_tag; }
 
 
-	//Check if entity has group
+	//Check if entity has group 
 	bool HasGroup(Group group) { return m_groupBiset[group]; }
 
 	//Add self to the group

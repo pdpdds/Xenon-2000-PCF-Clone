@@ -4,8 +4,6 @@
 #include "SpriteComponent.h"
 #include "ColliderComponent.h"
 #include <iostream>
-#include "../include/Box2D/box2d/box2d.h"
-#include <World.h>
 
 PlayerProjectile::PlayerProjectile()
 {
@@ -16,6 +14,7 @@ PlayerProjectile::PlayerProjectile(Vector2D position, float projRange, float pro
 	projectileStartPosition = position;
 	range = projRange;
 	speed = projSpeed;
+	this->projectileDamage = 10.f;
 }
 
 PlayerProjectile::~PlayerProjectile()
@@ -28,7 +27,7 @@ void PlayerProjectile::Init()
 	
 	AddComponent<TransformComponent>(projectileStartPosition.x, projectileStartPosition.y);
 	AddComponent<SpriteComponent>("../Assets/graphics/missileA.bmp", false, false);
-	AddComponent<ColliderComponent>(this, 64, 64);
+	AddComponent<ColliderComponent>(this, 32, 32);
 	projectileTransform = &GetComponent<TransformComponent>();
 
 	SetName("PlayerBullet");
@@ -54,7 +53,7 @@ void PlayerProjectile::BeginOverlap(Entity* otherEntity)
 {
 	if (otherEntity->GetTag() == Tag::Enemy)
 	{
-		std::cout << "Player bullet" << " colliding with " << otherEntity->GetName() << std::endl;
+		otherEntity->TakeDamage(this->projectileDamage);
 	}
 }
 

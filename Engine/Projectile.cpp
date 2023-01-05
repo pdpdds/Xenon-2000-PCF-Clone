@@ -6,12 +6,12 @@
 
 Projectile::Projectile()
 {
-
+	projectileDamage = 0.f;
 }
 
 Projectile::Projectile(Vector2D position, float projRange, float projSpeed)
 {
-
+	projectileDamage = 0.f;
 }
 
 Projectile::~Projectile()
