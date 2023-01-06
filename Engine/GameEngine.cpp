@@ -13,13 +13,10 @@
 #include "LevelManager.h"
 #include "../Game/GameManager.h"
 #include "World.h"
-#include "B2DebugDraw.h"
 
 Renderer* GameEngine::m_renderer = nullptr;
 Manager GameEngine::manager;
 SDL_Event GameEngine::event;
-
-B2DebugDraw draw;
 
 GameEngine::GameEngine()
 {
@@ -31,7 +28,8 @@ GameEngine::GameEngine()
 
 void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight, bool isFullScreen)
 {
-	system("Color 0A");
+	//Reset the text color to the default
+	std::cout << "\033[0m";
 
 	//Framerate variables
 	frameStart = 0.f;
@@ -62,8 +60,6 @@ void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight
 	m_isActive = true;
 
 	World::GetInstance()->Init();
-	draw.SetFlags(b2Draw::e_shapeBit);
-	World::GetInstance()->GetWorld()->SetDebugDraw(&draw);
 }
 
 void GameEngine::Run()
@@ -89,10 +85,8 @@ void GameEngine::Run()
 			frameTime = 0.f;
 		}
 
-		/*for (int32 i = 0; i < 60; ++i)
-		{*/
-			World::GetInstance()->Update(timeStep);
-		/*}*/
+	
+		World::GetInstance()->Update(timeStep);
 
  		Render();
 		m_window->updateSurface();
@@ -147,7 +141,7 @@ void GameEngine::Shutdown()
 	delete m_renderer;
 	delete m_engine;
 
-	std::cout << "Engine shutdown" << std::endl;
+	std::cout << "Engine Shutdown" << std::endl;
 }
 
 bool GameEngine::IsActive()

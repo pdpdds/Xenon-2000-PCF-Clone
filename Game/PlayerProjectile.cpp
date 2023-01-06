@@ -14,7 +14,7 @@ PlayerProjectile::PlayerProjectile(Vector2D position, float projRange, float pro
 	projectileStartPosition = position;
 	range = projRange;
 	speed = projSpeed;
-	this->projectileDamage = 10.f;
+	this->projectileDamage = 12.f;
 }
 
 PlayerProjectile::~PlayerProjectile()
@@ -54,6 +54,7 @@ void PlayerProjectile::BeginOverlap(Entity* otherEntity)
 	if (otherEntity->GetTag() == Tag::Enemy)
 	{
 		otherEntity->TakeDamage(this->projectileDamage);
+		Destroy();
 	}
 }
 

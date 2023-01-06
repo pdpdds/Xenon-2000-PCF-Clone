@@ -2,6 +2,7 @@
 #include "GameEngine.h"
 #include "InitError.h"
 #include <iostream>
+#include "LogOutput.h"
 
 Input* Input::m_instance = nullptr;
 SDL_GameController* controller = nullptr;
@@ -14,12 +15,12 @@ Input::Input()
 	//Initialize Game Controller
 	if (SDL_Init(SDL_INIT_GAMECONTROLLER) < 0)
 	{
-		std::cout << "ERROR: Game Controller failed to initialize" << std::endl;
+		DebugLog(LogMessage::ERROR, "ERROR: Game Controller failed to initialize");
 		throw InitError();
 	}
 	if (SDL_NumJoysticks() < 1)
 	{
-		std::cout << "WARNING: No Gamepad detected" << std::endl;
+		DebugLog(LogMessage::WARNING, "No Gamepad Detected");
 	}
 	else
 	{

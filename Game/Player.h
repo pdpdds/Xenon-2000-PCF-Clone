@@ -5,9 +5,18 @@
 
 class TransformComponent;
 class SpriteComponent;
+class Companion;
+
+enum class WeaponAugment : int
+{
+	DEFAULT = 0,
+	MEDIUM = 1,
+	HEAVY = 2
+};
 
 class Player : public Pawn
 {
+
 public:
 	Player();
 	~Player();
@@ -20,19 +29,25 @@ public:
 	virtual void BeginOverlap(Entity* otherEntity);
 	virtual void EndOverlap(Entity* otherEntity);
 
+	virtual void TakeDamage(float damage);
+
 	bool CanFire();
 
 	bool IsFiring();
 
 	inline Vector2D GetPosition() { return playerPosition; }
 
-	inline int GetWeaponAugment() { return weaponAugment; }
+	inline WeaponAugment GetWeaponAugment() { return currentWeaponAugment; }
+
+	inline Companion* GetCompanion() { return playerCompanion; }
 
 	void FireCooldown();
 
-	void UpgradeWeapon();
+	void UpgradeWeapon(WeaponAugment upgrade);
 
-	virtual void TakeDamage(float damage);
+	void ResetLife();
+
+	bool IsAlive();
 
 private:
 	Vector2D playerStartPosition;
@@ -48,7 +63,11 @@ private:
 	bool canFire;
 	bool isFiring;
 
-	int weaponAugment;
+	int playerLives;
+
+	WeaponAugment currentWeaponAugment;
 
 	Vector2D gunOffset;
+
+	Companion* playerCompanion;
 };

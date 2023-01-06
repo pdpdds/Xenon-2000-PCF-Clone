@@ -10,12 +10,13 @@
 #include "Player.h"
 #include "PlayerProjectileMedium.h"
 #include "PlayerProjectileHeavy.h"
+#include "LogOutput.h"
 
 Companion::Companion(Player* parent)
 {
 	startPosition = Vector2D(470.f, 700.f);
 	spaceship = parent;
-
+	currentMissileAugment = MissileAugment::DEFAULT;
 }
 
 Companion::~Companion()
@@ -60,7 +61,6 @@ void Companion::Update()
 		position = transformComponent->position;
 
 		Fire();
-		/*FireCooldown();*/
 	}
 	
 }
@@ -69,7 +69,20 @@ void Companion::Fire()
 {
 	if (spaceship->IsFiring())
 	{
-		GameManager::GetInstance()->InstantiateProjectile<PlayerProjectile>(Vector2D(position.x + gunOffset.x, position.y + gunOffset.y), 850, 10);	
+		//GameManager::GetInstance()->InstantiateProjectile<PlayerProjectile>(Vector2D(position.x + gunOffset.x, position.y + gunOffset.y), 850, 10);	
+
+		if (currentMissileAugment == MissileAugment::DEFAULT)
+		{
+			GameManager::GetInstance()->InstantiateProjectile<PlayerProjectile>(Vector2D(position.x + gunOffset.x, position.y + gunOffset.y), 850, 10);
+		}
+		else if (currentMissileAugment == MissileAugment::MEDIUM)
+		{
+			GameManager::GetInstance()->InstantiateProjectile<PlayerProjectileMedium>(Vector2D(position.x + gunOffset.x, position.y + gunOffset.y), 850, 10);
+		}
+		else if (currentMissileAugment >= MissileAugment::HEAVY)
+		{
+			GameManager::GetInstance()->InstantiateProjectile<PlayerProjectileHeavy>(Vector2D(position.x + gunOffset.x, position.y + gunOffset.y), 850, 10);
+		}
 	}
 }
 
@@ -81,24 +94,12 @@ void Companion::EndOverlap(Entity* otherEntity)
 {
 }
 
+void Companion::UpgradeWeapon(MissileAugment upgrade)
+{
+	currentMissileAugment = upgrade;
+	DebugLog(LogMessage::WARNING, "Upgraded Companion Weapon");
+}
+
 void Companion::TakeDamage(float damage)
 {
 }
-
-//bool Companion::CanFire()
-//{
-//	return canFire;
-//}
-//
-//void Companion::FireCooldown()
-//{
-//	canFire = false;
-//
-//	fireTimer += 0.3f;
-//
-//	if (fireTimer >= fireTimerMax)
-//	{
-//		canFire = true;
-//		fireTimer = 0.f;
-//	}
-//}

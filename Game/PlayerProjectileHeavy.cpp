@@ -4,6 +4,7 @@
 #include "SpriteComponent.h"
 #include "ColliderComponent.h"
 #include <iostream>
+#include "GameManager.h"
 
 PlayerProjectileHeavy::PlayerProjectileHeavy()
 {
@@ -15,7 +16,7 @@ PlayerProjectileHeavy::PlayerProjectileHeavy(Vector2D position, float projRange,
 	range = projRange;
 	speed = projSpeed;
 
-	this->projectileDamage = 20.f;
+	this->projectileDamage = 25.f;
 }
 
 PlayerProjectileHeavy::~PlayerProjectileHeavy()
@@ -55,10 +56,12 @@ void PlayerProjectileHeavy::BeginOverlap(Entity* otherEntity)
 	if (otherEntity->GetTag() == Tag::Enemy)
 	{
 		otherEntity->TakeDamage(this->projectileDamage);
+
+		Destroy();
 	}
 }
 
 void PlayerProjectileHeavy::EndOverlap(Entity* otherEntity)
 {
-
+	
 }

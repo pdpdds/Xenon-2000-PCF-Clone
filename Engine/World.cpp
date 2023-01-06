@@ -25,7 +25,7 @@ void World::Init()
 void World::Update(float deltaTime)
 {
 	m_world->DebugDraw();
-	m_world->Step(deltaTime, 36, 28);
+	m_world->Step(deltaTime, 12, 8);
 }
 
 void World::BeginContact(b2Contact* contact)

@@ -21,7 +21,11 @@ public:
 		droneSpawnTimer = 0.f;
 		droneSpawnTimerMax = 130.f + (rand() % (140 - 130) + 1);
 
+		weaponPickupSpawnTimer = 0.f;
+		weaponPickupSpawnTimerMax = 200.f + (rand() % (210 - 200) + 1);
+
 		enemiesToSpawn = 0;
+		pickupsToSpawn = 0;
 	}
 
 	~GameManager();
@@ -48,11 +52,13 @@ public:
 
 	void SpawnDebris();
 
+	void SpawnPickups();
+
 private:
 	static Manager* m_manager;
 	static GameManager* m_instance;
 
-	int enemiesToSpawn = 0;
+	int enemiesToSpawn;
 
 	//Spawn Timers
 	float lonerSpawnTimer;
@@ -67,9 +73,8 @@ private:
 	float debrisSpawnTimer;
 	float debrisSpawnTimerMax;
 
-	const int NUM_ENEMIES = 6; // the number of enemies to spawn
-	const int SPAWN_INTERVAL = 60; // the interval at which the enemies will spawn, in seconds
-	const int ENEMY_SPAWN_DELAY = 1; // the delay between spawning each enemy, in seconds
+	float weaponPickupSpawnTimer;
+	float weaponPickupSpawnTimerMax;
 
-	int elapsedTime = 0; // the elapsed time since the last enemy spawns
+	int pickupsToSpawn;
 };

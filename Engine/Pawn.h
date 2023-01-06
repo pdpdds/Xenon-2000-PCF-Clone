@@ -15,6 +15,8 @@ public:
 
 	virtual void TakeDamage(float damage) = 0;
 
+	virtual void Destroyed(Entity* entity);
+
 	float hp;
 	float maxHp;
 };

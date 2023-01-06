@@ -28,6 +28,8 @@ public:
 
 	void ChangeSrcRect(int width, int height) { m_srcRect.w = width; m_srcRect.h = height; }
 
+	void SetFlashing(bool flashing);
+
 	int m_animIndex = 0;
 	
 	std::map<const char*, struct Animation> m_animations;
@@ -44,4 +46,7 @@ private:
 	bool m_loopable = false;
 	int m_frames = 0;
 	int m_speed = 100;
+
+	bool m_flashing = false;
+	float m_flashTimer;
 };

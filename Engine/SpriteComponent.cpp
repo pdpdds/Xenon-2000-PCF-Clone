@@ -7,6 +7,7 @@
 SpriteComponent::SpriteComponent(const char* texPath)
 {
 	SetTexture(texPath);
+	m_flashTimer = false;
 }
 
 SpriteComponent::SpriteComponent(const char* texPath, bool isAnimated, bool isLoop)
@@ -21,10 +22,16 @@ SpriteComponent::SpriteComponent(const char* texPath, bool isAnimated, bool isLo
 
 	Animation m_droneIdle = Animation(0, 16, 200);
 
+	Animation m_explosion = Animation(0, 10, 95);
+
+	Animation m_pickupIdle = Animation(0, 8, 150);
+
 	m_animations.emplace("PlayerIdle", m_playerIdle);
 	m_animations.emplace("PlayerTurnRight", m_playerTurnRight);
 	m_animations.emplace("EnemyIdle", m_enemyIdle);
 	m_animations.emplace("DroneIdle", m_droneIdle);
+	m_animations.emplace("Explosion", m_explosion);
+	m_animations.emplace("PickupIdle", m_pickupIdle);
 
 	SetTexture(texPath);
 }
@@ -60,10 +67,30 @@ void SpriteComponent::Update()
 	m_dstRect.y = static_cast<int>(m_transformComponent->GetPosition().Y());
 	m_dstRect.w = m_transformComponent->width * 1;
 	m_dstRect.h = m_transformComponent->height * 1;
+
+	if (m_flashing)
+	{
+		m_flashTimer += 1.f;
+
+		if (m_flashTimer >= 1000)
+		{
+			m_flashing = false;
+			m_flashTimer = 0;
+		}
+	}
 }
 
 void SpriteComponent::Draw()
 {
+	if (m_flashing)
+	{
+		SDL_SetTextureColorMod(m_texture, 194, 116, 107);
+	}
+	else
+	{
+		SDL_SetTextureColorMod(m_texture, 255, 255, 255);
+	}
+
 	Texture::Draw(m_texture, m_srcRect, m_dstRect, spriteFlip);
 }
 
@@ -77,4 +104,10 @@ void SpriteComponent::Play(const char* animName)
 void SpriteComponent::SetTexture(const char* texPath)
 {
 	m_texture = Texture::LoadTexture(texPath);
+}
+
+void SpriteComponent::SetFlashing(bool flashing)
+{
+	m_flashing = flashing;
+	m_flashTimer = 0;
 }

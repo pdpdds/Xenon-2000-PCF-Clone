@@ -25,6 +25,9 @@
     <Filter Include="Header Files\Projectiles">
       <UniqueIdentifier>{868b078a-2960-49ff-b4f8-bb73ca97a221}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Pickups">
+      <UniqueIdentifier>{674e75f0-bc27-4ce7-96a2-53e7ba1d3a83}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -66,6 +69,15 @@
     <ClCompile Include="PlayerProjectileHeavy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Pickup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CompanionPickup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WeaponPickup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -103,6 +115,15 @@
     </ClInclude>
     <ClInclude Include="PlayerProjectileHeavy.h">
       <Filter>Header Files\Projectiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Pickup.h">
+      <Filter>Header Files\Pickups</Filter>
+    </ClInclude>
+    <ClInclude Include="CompanionPickup.h">
+      <Filter>Header Files\Pickups</Filter>
+    </ClInclude>
+    <ClInclude Include="WeaponPickup.h">
+      <Filter>Header Files\Pickups</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

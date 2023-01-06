@@ -156,6 +156,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Companion.cpp" />
+    <ClCompile Include="CompanionPickup.cpp" />
     <ClCompile Include="Debris.cpp" />
     <ClCompile Include="Drone.cpp" />
     <ClCompile Include="EnemyProjectile.cpp" />
@@ -163,25 +164,30 @@
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Loner.cpp" />
+    <ClCompile Include="Pickup.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerProjectile.cpp" />
     <ClCompile Include="PlayerProjectileHeavy.cpp" />
     <ClCompile Include="PlayerProjectileMedium.cpp" />
     <ClCompile Include="Rusher.cpp" />
+    <ClCompile Include="WeaponPickup.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Companion.h" />
+    <ClInclude Include="CompanionPickup.h" />
     <ClInclude Include="Debris.h" />
     <ClInclude Include="Drone.h" />
     <ClInclude Include="EnemyProjectile.h" />
     <ClInclude Include="Loner.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="GameManager.h" />
+    <ClInclude Include="Pickup.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerProjectile.h" />
     <ClInclude Include="PlayerProjectileHeavy.h" />
     <ClInclude Include="PlayerProjectileMedium.h" />
     <ClInclude Include="Rusher.h" />
+    <ClInclude Include="WeaponPickup.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -14,10 +14,13 @@ EnemyProjectile::EnemyProjectile(Vector2D position, float projRange, float projS
 	projectileStartPosition = position;
 	range = projRange;
 	speed = projSpeed;
+
+	this->projectileDamage = 10.f;
 }
 
 EnemyProjectile::~EnemyProjectile()
 {
+	projectileTransform = nullptr;
 }
 
 void EnemyProjectile::Init()
@@ -29,7 +32,7 @@ void EnemyProjectile::Init()
 	AddComponent<ColliderComponent>(this, 64, 64);
 	projectileTransform = &GetComponent<TransformComponent>();
 
-	SetTag(Tag::Projectile);
+	SetTag(Tag::EnemyProjectile);
 	SetName("Enemy Projectile");
 }
 
@@ -50,7 +53,10 @@ void EnemyProjectile::Update()
 
 void EnemyProjectile::BeginOverlap(Entity* otherEntity)
 {
-	
+	if (otherEntity->GetTag() == Tag::Player)
+	{
+		otherEntity->TakeDamage(this->projectileDamage);
+	}
 }
 
 void EnemyProjectile::EndOverlap(Entity* otherEntity)

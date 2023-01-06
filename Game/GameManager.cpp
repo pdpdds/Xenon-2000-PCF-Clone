@@ -10,6 +10,8 @@
 #include "Level.h"
 #include "Debris.h"
 #include "Drone.h"
+#include "CompanionPickup.h"
+#include "WeaponPickup.h"
 
 GameManager* GameManager::m_instance = nullptr;
 Manager* GameManager::m_manager = nullptr;
@@ -29,6 +31,7 @@ void GameManager::Update()
 {
 	SpawnEnemies();
 	SpawnDebris();
+	SpawnPickups();
 }
 
 void GameManager::CreateLevel()
@@ -66,7 +69,7 @@ void GameManager::SpawnEnemies()
 		rusherSpawnTimer = 0.f;
 	}
 
-	if (droneSpawnTimer >= droneSpawnTimerMax)
+	/*if (droneSpawnTimer >= droneSpawnTimerMax)
 	{
 		enemiesToSpawn = 6;
 
@@ -77,7 +80,7 @@ void GameManager::SpawnEnemies()
 		}
 
 		droneSpawnTimer = 0.f;
-	}
+	}*/
 
 }
 
@@ -90,6 +93,23 @@ void GameManager::SpawnDebris()
 		m_manager->CreateEntity<Debris>(true);
 		debrisSpawnTimerMax = 150 + (rand() % (200 - 150) + 1);
 		debrisSpawnTimer = 0.f;
+	}
+}
+
+void GameManager::SpawnPickups()
+{
+	weaponPickupSpawnTimer += 0.5f;
+
+	if (weaponPickupSpawnTimer >= weaponPickupSpawnTimerMax)
+	{
+		pickupsToSpawn = 1;
+
+		for (int i = 0; i < pickupsToSpawn; ++i)
+		{
+			GameEngine::manager.CreateEntity<WeaponPickup>();
+		}
+
+		weaponPickupSpawnTimer = 0.f;
 	}
 }
 

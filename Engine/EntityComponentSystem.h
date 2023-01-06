@@ -21,6 +21,8 @@ enum class Tag
 	Enemy,
 	Player,
 	Projectile,
+	EnemyProjectile,
+	Pickup
 };
 
 inline ComponentID GetNewComponentTypeID() 

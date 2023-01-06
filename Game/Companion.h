@@ -7,6 +7,13 @@ class TransformComponent;
 class SpriteComponent;
 class Player;
 
+enum class MissileAugment : int
+{
+	DEFAULT = 0,
+	MEDIUM = 1,
+	HEAVY = 2
+};
+
 class Companion : public Pawn
 {
 public:
@@ -21,9 +28,9 @@ public:
 	virtual void BeginOverlap(Entity* otherEntity);
 	virtual void EndOverlap(Entity* otherEntity);
 
-	//bool CanFire();
+	inline MissileAugment GetMissileAugment() { return currentMissileAugment; }
 
-	/*void FireCooldown();*/
+	void UpgradeWeapon(MissileAugment upgrade);
 
 	virtual void TakeDamage(float damage);
 
@@ -34,6 +41,8 @@ private:
 	TransformComponent* transformComponent = nullptr;
 	SpriteComponent* spriteComponent = nullptr;
 	Player* spaceship = nullptr;
+
+	MissileAugment currentMissileAugment;
 
 	Vector2D gunOffset;
 };

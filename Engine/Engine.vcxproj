@@ -24,10 +24,12 @@
     <ClCompile Include="CollisionComponent.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EntityComponentSystem.cpp" />
+    <ClCompile Include="Explosion.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="InitError.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="LevelManager.cpp" />
+    <ClCompile Include="LogOutput.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Pawn.cpp" />
     <ClCompile Include="Projectile.cpp" />
@@ -49,11 +51,13 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EntityComponentSystem.h" />
     <ClInclude Include="EntityFilters.h" />
+    <ClInclude Include="Explosion.h" />
     <ClInclude Include="GroupLabels.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="InitError.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="LevelManager.h" />
+    <ClInclude Include="LogOutput.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MathLibrary.h" />
     <ClInclude Include="Pawn.h" />

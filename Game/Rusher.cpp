@@ -25,7 +25,6 @@ void Rusher::Init()
 	AddComponent<TransformComponent>(startPosition.x, startPosition.y);
 	AddComponent<SpriteComponent>("../Assets/graphics/rusherB.bmp", true, true);
 	AddComponent<ColliderComponent>(this, 64, 64);
-	//GetComponent<ColliderComponent>().SetCollisionFilter(EntityCategory::ENEMY, 0x0001);
 	GetComponent<SpriteComponent>().Play("EnemyIdle");
 
 	SetName("Rusher");
@@ -51,17 +50,24 @@ void Rusher::Update()
 
 	if (transformComponent->position.y < -30 || transformComponent->position.y > 850)
 	{
-		Destroy();
+		Destroyed(this);
 	}
 }
 
 void Rusher::BeginOverlap(Entity* otherEntity)
 {
-
+	if (otherEntity->GetTag() == Tag::Projectile)
+	{
+		GetComponent<SpriteComponent>().SetFlashing(true);
+	}
 }
 
 void Rusher::EndOverlap(Entity* otherEntity)
 {
+	if (otherEntity->GetTag() == Tag::Projectile)
+	{
+		GetComponent<SpriteComponent>().SetFlashing(false);
+	}
 }
 
 void Rusher::Fire()
@@ -74,6 +80,6 @@ void Rusher::TakeDamage(float damage)
 
 	if (this->hp <= 0)
 	{
-		Destroy();
+		Destroyed(this);
 	}
 }

@@ -23,7 +23,7 @@ Loner::Loner()
 
 Loner::~Loner()
 {
-
+	transformComponent = nullptr;
 }
 
 void Loner::Init()
@@ -56,7 +56,7 @@ void Loner::Update()
 
 		if (transformComponent->position.x < -50)
 		{
-			Destroy();
+			Destroyed(this);
 		}
 	}
 }
@@ -76,11 +76,18 @@ void Loner::Fire()
 
 void Loner::BeginOverlap(Entity* otherEntity)
 {
-	
+	if (otherEntity->GetTag() == Tag::Projectile)
+	{
+		GetComponent<SpriteComponent>().SetFlashing(true);
+	}
 }
 
 void Loner::EndOverlap(Entity* otherEntity)
 {
+	if (otherEntity->GetTag() == Tag::Projectile)
+	{
+		GetComponent<SpriteComponent>().SetFlashing(false);
+	}
 }
 
 void Loner::TakeDamage(float damage)
@@ -89,6 +96,6 @@ void Loner::TakeDamage(float damage)
 	
 	if (this->hp <= 0)
 	{
-		Destroy();
+		Destroyed(this);
 	}
 }

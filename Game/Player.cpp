@@ -1,33 +1,36 @@
 #include "Player.h"
 #include "TransformComponent.h"
 #include "SpriteComponent.h"
-#include "GroupLabels.h"
 #include "Input.h"
-#include <iostream>
 #include "GameManager.h"
 #include "PlayerProjectile.h"
 #include "ColliderComponent.h"
-#include "CollisionComponent.h"
 #include "PlayerProjectileMedium.h"
 #include "PlayerProjectileHeavy.h"
-#include "Collision.h"
+#include "LogOutput.h"
+#include "Companion.h"
 
 Player::Player()
 {
 	playerStartPosition = Vector2D(470.f, 700.f);
 	playerSpeed = 0.f;
-	weaponAugment = 0;
+	currentWeaponAugment = WeaponAugment::DEFAULT;
 	
 	fireTimer = 0.f;
 	fireTimerMax = 2.5f;
 	canFire = true;
 	isFiring = false;
+
+	this->maxHp = 100.f;
+	this->hp = maxHp;
+
+	playerLives = 3;
 }
 
 Player::~Player()
 {
-	delete playerTransform;
-	delete spriteComponent;
+	playerTransform = nullptr;
+	spriteComponent = nullptr;
 }
 
 void Player::Init()
@@ -43,7 +46,6 @@ void Player::Init()
 	spriteComponent->Play("PlayerIdle");
 
 	AddComponent<ColliderComponent>(this, 64, 64);
-	AddComponent<CollisionComponent>();
 
 	playerSpeed = 3.f;
 
@@ -53,7 +55,10 @@ void Player::Init()
 
 	gunOffset = Vector2D(18, -20);
 
+	 playerCompanion = GameManager::GetManager()->CreateEntity<Companion>(this);
+
 	std::cout << "Player Initialized" << std::endl;
+	std::cout << "Player lives: " << playerLives << std::endl;
 }
 
 void Player::Update()
@@ -114,17 +119,17 @@ void Player::Fire()
 {	
 	if (CanFire())
 	{
-		if (weaponAugment == 0)
+		if (currentWeaponAugment == WeaponAugment::DEFAULT)
 		{
 			isFiring = true;
 			GameManager::GetInstance()->InstantiateProjectile<PlayerProjectile>(Vector2D(playerPosition.x + gunOffset.x, playerPosition.y + gunOffset.y * 2), 850, 10);
 		}
-		else if (weaponAugment == 1)
+		else if (currentWeaponAugment == WeaponAugment::MEDIUM)
 		{
 			isFiring = true;
 			GameManager::GetInstance()->InstantiateProjectile<PlayerProjectileMedium>(Vector2D(playerPosition.x + gunOffset.x, playerPosition.y + gunOffset.y), 850, 10);
 		}
-		else if (weaponAugment >= 2)
+		else if (currentWeaponAugment >= WeaponAugment::HEAVY)
 		{
 			isFiring = true;
 			GameManager::GetInstance()->InstantiateProjectile<PlayerProjectileHeavy>(Vector2D(playerPosition.x + gunOffset.x, playerPosition.y + gunOffset.y * 2), 850, 10);
@@ -134,15 +139,14 @@ void Player::Fire()
 	{
 		isFiring = false;
 	}
-	/*if (Collision::AABB(this->GetComponent<CollisionComponent>().collider, loner->GetComponent<CollisionComponent>().collider))
-	{
-		std::cout << "Enemy hit" << std::endl;
-	}*/
 }
 
 void Player::BeginOverlap(Entity* otherEntity)
 {
-
+	if (otherEntity->GetTag() == Tag::Enemy)
+	{
+		TakeDamage(5.f);
+	}
 }
 
 void Player::EndOverlap(Entity* otherEntity)
@@ -173,10 +177,50 @@ void Player::FireCooldown()
 	}
 }
 
-void Player::UpgradeWeapon()
+void Player::UpgradeWeapon(WeaponAugment upgrade)
 {
+	currentWeaponAugment = upgrade;
+	DebugLog(LogMessage::WARNING, "Upgraded Player Weapon");
+}
+
+void Player::ResetLife()
+{
+	this->hp = this->maxHp;
+	DebugLog(LogMessage::WARNING, "Player Lives: " + std::to_string(playerLives));
+
+	//std::cout << "Player lives: " << playerLives << std::endl;
 }
 
 void Player::TakeDamage(float damage)
 {
+	this->hp -= damage;
+
+	DebugLog(LogMessage::WARNING, "Player took " + std::to_string(damage) + " damage");
+	DebugLog(LogMessage::WARNING, "Player has " + std::to_string(this->hp) + " health");
+	/*std::cout << "Player took " << damage << " damage" << std::endl;
+	std::cout << "Player has " << this->hp << " health" << std::endl;*/
+
+	if (this->hp <= 0)
+	{
+		if (playerLives > 0)
+		{
+			playerLives--;
+			ResetLife();
+		}
+		else if (playerLives <= 0)
+		{
+			playerLives = 0;
+			DebugLog(LogMessage::WARNING, "Player died");
+			Destroy();
+		}
+	}
+}
+
+bool Player::IsAlive()
+{
+	if (this->hp <= 0)
+	{
+		return true;
+	}
+	return false;
 }

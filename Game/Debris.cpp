@@ -36,8 +36,8 @@ void Debris::Init()
 		horizontalMargin = -300 + (rand() % (-150 - -300) + 1);
 		verticalMargin = -1100 + (rand() % (-950 - -1100 + 1));
 
-		std::cout << horizontalMargin << std::endl;
-		std::cout << verticalMargin << std::endl;
+		//std::cout << horizontalMargin << std::endl;
+		//std::cout << verticalMargin << std::endl;
 		AddComponent<TransformComponent>(horizontalMargin, verticalMargin);
 		AddComponent<SpriteComponent>("../Assets/graphics/blocksB.bmp", false, false);
 	}
@@ -57,8 +57,6 @@ void Debris::Update()
 	
 	if (transformComponent->position.y > 2000)
 	{
-		std::cout << "deleted?" << std::endl;
-
 		Destroy();
 	}
 }
