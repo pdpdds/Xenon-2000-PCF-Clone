@@ -57,6 +57,11 @@ void EnemyProjectile::BeginOverlap(Entity* otherEntity)
 	{
 		otherEntity->TakeDamage(this->projectileDamage);
 	}
+
+	if (otherEntity->GetTag() == Tag::Projectile)
+	{
+		Destroyed(this);
+	}
 }
 
 void EnemyProjectile::EndOverlap(Entity* otherEntity)

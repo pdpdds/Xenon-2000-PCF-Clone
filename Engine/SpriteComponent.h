@@ -39,6 +39,7 @@ public:
 private:
 	TransformComponent* m_transformComponent;
 	SDL_Texture* m_texture;
+	SDL_Texture* m_whiteTexture;
 	SDL_Rect m_srcRect;
 	SDL_Rect m_dstRect;
 

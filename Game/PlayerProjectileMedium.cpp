@@ -6,6 +6,7 @@
 #include <iostream>
 #include <CollisionComponent.h>
 #include "Loner.h"
+#include "MetalAsteroid.h"
 
 PlayerProjectileMedium::PlayerProjectileMedium()
 {
@@ -58,6 +59,20 @@ void PlayerProjectileMedium::BeginOverlap(Entity* otherEntity)
 	if (otherEntity->GetTag() == Tag::Enemy)
 	{
 		otherEntity->TakeDamage(this->projectileDamage);
+		Destroy();
+	}
+
+	if (otherEntity->GetTag() == Tag::Asteroid)
+	{
+		MetalAsteroid* metalAsteroid = dynamic_cast<MetalAsteroid*>(otherEntity);
+
+		if (metalAsteroid)
+		{
+			Destroyed(this);
+		}
+
+		otherEntity->TakeDamage(this->projectileDamage);
+
 		Destroy();
 	}
 }

@@ -3,11 +3,14 @@
 #include "TransformComponent.h"
 #include "Texture.h"
 #include "Animation.h"
+#include "GameEngine.h"
 
 SpriteComponent::SpriteComponent(const char* texPath)
 {
 	SetTexture(texPath);
 	m_flashTimer = false;
+	m_whiteTexture = SDL_CreateTexture(GameEngine::GetRenderer(), SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, 64, 64);
+	SDL_SetTextureColorMod(m_whiteTexture, 511, 511, 511);
 }
 
 SpriteComponent::SpriteComponent(const char* texPath, bool isAnimated, bool isLoop)
@@ -67,31 +70,24 @@ void SpriteComponent::Update()
 	m_dstRect.y = static_cast<int>(m_transformComponent->GetPosition().Y());
 	m_dstRect.w = m_transformComponent->width * 1;
 	m_dstRect.h = m_transformComponent->height * 1;
-
-	if (m_flashing)
-	{
-		m_flashTimer += 1.f;
-
-		if (m_flashTimer >= 1000)
-		{
-			m_flashing = false;
-			m_flashTimer = 0;
-		}
-	}
 }
 
 void SpriteComponent::Draw()
 {
 	if (m_flashing)
 	{
-		SDL_SetTextureColorMod(m_texture, 194, 116, 107);
+		//SDL_SetTextureColorMod(m_texture, 194, 116, 107);
+		SDL_SetTextureBlendMode(m_texture, SDL_BLENDMODE_ADD);
+		SDL_SetTextureBlendMode(m_whiteTexture, SDL_BLENDMODE_MOD);
+
+		Texture::Draw(m_whiteTexture, m_srcRect, m_dstRect, spriteFlip);
 	}
 	else
 	{
-		SDL_SetTextureColorMod(m_texture, 255, 255, 255);
+		SDL_SetTextureBlendMode(m_texture, SDL_BLENDMODE_BLEND);
+		//SDL_SetTextureColorMod(m_texture, 255, 255, 255);
+		Texture::Draw(m_texture, m_srcRect, m_dstRect, spriteFlip);
 	}
-
-	Texture::Draw(m_texture, m_srcRect, m_dstRect, spriteFlip);
 }
 
 void SpriteComponent::Play(const char* animName)

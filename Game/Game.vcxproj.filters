@@ -28,6 +28,9 @@
     <Filter Include="Header Files\Pickups">
       <UniqueIdentifier>{674e75f0-bc27-4ce7-96a2-53e7ba1d3a83}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Asteroids">
+      <UniqueIdentifier>{25748b2c-aa8c-4b69-bdf5-9aa087cfcf67}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -78,6 +81,24 @@
     <ClCompile Include="WeaponPickup.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ShieldPickup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Asteroid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BigAsteroid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SmallAsteroid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MetalAsteroid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MediumAsteroids.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -124,6 +145,24 @@
     </ClInclude>
     <ClInclude Include="WeaponPickup.h">
       <Filter>Header Files\Pickups</Filter>
+    </ClInclude>
+    <ClInclude Include="ShieldPickup.h">
+      <Filter>Header Files\Pickups</Filter>
+    </ClInclude>
+    <ClInclude Include="Asteroid.h">
+      <Filter>Header Files\Asteroids</Filter>
+    </ClInclude>
+    <ClInclude Include="BigAsteroid.h">
+      <Filter>Header Files\Asteroids</Filter>
+    </ClInclude>
+    <ClInclude Include="SmallAsteroid.h">
+      <Filter>Header Files\Asteroids</Filter>
+    </ClInclude>
+    <ClInclude Include="MetalAsteroid.h">
+      <Filter>Header Files\Asteroids</Filter>
+    </ClInclude>
+    <ClInclude Include="MediumAsteroid.h">
+      <Filter>Header Files\Asteroids</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

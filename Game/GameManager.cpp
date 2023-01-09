@@ -12,6 +12,9 @@
 #include "Drone.h"
 #include "CompanionPickup.h"
 #include "WeaponPickup.h"
+#include "ShieldPickup.h"
+#include "BigAsteroid.h"
+#include "MetalAsteroid.h"
 
 GameManager* GameManager::m_instance = nullptr;
 Manager* GameManager::m_manager = nullptr;
@@ -44,6 +47,7 @@ void GameManager::SpawnEnemies()
 	lonerSpawnTimer += 0.5f;
 	rusherSpawnTimer += +0.5f;
 	droneSpawnTimer += 0.5f;
+	asteroidSpawnTimer += 0.5f;
 
 	if (lonerSpawnTimer >= lonerSpawnTimerMax)
 	{
@@ -67,6 +71,19 @@ void GameManager::SpawnEnemies()
 		}
 
 		rusherSpawnTimer = 0.f;
+	}
+
+	if (asteroidSpawnTimer >= asteroidSpawnTimerMax)
+	{
+		 int asteroidsToSpawn = rand() % 1 + 2;
+
+		for (int i = 0; i < asteroidsToSpawn; ++i)
+		{
+			GameEngine::manager.CreateEntity<BigAsteroid>();
+			GameEngine::manager.CreateEntity<MetalAsteroid>();
+		}
+
+		asteroidSpawnTimer = 0.f;
 	}
 
 	/*if (droneSpawnTimer >= droneSpawnTimerMax)
@@ -98,18 +115,20 @@ void GameManager::SpawnDebris()
 
 void GameManager::SpawnPickups()
 {
-	weaponPickupSpawnTimer += 0.5f;
+	pickupSpawnTimer += 0.5f;
 
-	if (weaponPickupSpawnTimer >= weaponPickupSpawnTimerMax)
+	if (pickupSpawnTimer >= pickupSpawnTimerMax)
 	{
 		pickupsToSpawn = 1;
 
 		for (int i = 0; i < pickupsToSpawn; ++i)
 		{
+			//GameEngine::manager.CreateEntity<CompanionPickup>();
 			GameEngine::manager.CreateEntity<WeaponPickup>();
+			GameEngine::manager.CreateEntity<ShieldPickup>();
 		}
 
-		weaponPickupSpawnTimer = 0.f;
+		pickupSpawnTimer = 0.f;
 	}
 }
 

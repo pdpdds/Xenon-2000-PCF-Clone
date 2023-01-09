@@ -25,6 +25,7 @@ Player::Player()
 	this->hp = maxHp;
 
 	playerLives = 3;
+	numOfCompanions = 0;
 }
 
 Player::~Player()
@@ -47,7 +48,7 @@ void Player::Init()
 
 	AddComponent<ColliderComponent>(this, 64, 64);
 
-	playerSpeed = 3.f;
+	playerSpeed = 4.f;
 
 	SetName("Player");
 
@@ -55,7 +56,8 @@ void Player::Init()
 
 	gunOffset = Vector2D(18, -20);
 
-	 playerCompanion = GameManager::GetManager()->CreateEntity<Companion>(this);
+	playerCompanion = GameManager::GetManager()->CreateEntity<Companion>(this);
+	GameManager::GetManager()->CreateEntity<Companion>(this);
 
 	std::cout << "Player Initialized" << std::endl;
 	std::cout << "Player lives: " << playerLives << std::endl;
@@ -122,17 +124,17 @@ void Player::Fire()
 		if (currentWeaponAugment == WeaponAugment::DEFAULT)
 		{
 			isFiring = true;
-			GameManager::GetInstance()->InstantiateProjectile<PlayerProjectile>(Vector2D(playerPosition.x + gunOffset.x, playerPosition.y + gunOffset.y * 2), 850, 10);
+			GameManager::GetInstance()->InstantiateProjectile<PlayerProjectile>(Vector2D(playerPosition.x + gunOffset.x, playerPosition.y + gunOffset.y * 2), 850, 12);
 		}
 		else if (currentWeaponAugment == WeaponAugment::MEDIUM)
 		{
 			isFiring = true;
-			GameManager::GetInstance()->InstantiateProjectile<PlayerProjectileMedium>(Vector2D(playerPosition.x + gunOffset.x, playerPosition.y + gunOffset.y), 850, 10);
+			GameManager::GetInstance()->InstantiateProjectile<PlayerProjectileMedium>(Vector2D(playerPosition.x + gunOffset.x, playerPosition.y + gunOffset.y), 850, 12);
 		}
 		else if (currentWeaponAugment >= WeaponAugment::HEAVY)
 		{
 			isFiring = true;
-			GameManager::GetInstance()->InstantiateProjectile<PlayerProjectileHeavy>(Vector2D(playerPosition.x + gunOffset.x, playerPosition.y + gunOffset.y * 2), 850, 10);
+			GameManager::GetInstance()->InstantiateProjectile<PlayerProjectileHeavy>(Vector2D(playerPosition.x + gunOffset.x, playerPosition.y + gunOffset.y * 2), 850, 12);
 		}
 	}	
 	else
@@ -146,11 +148,18 @@ void Player::BeginOverlap(Entity* otherEntity)
 	if (otherEntity->GetTag() == Tag::Enemy)
 	{
 		TakeDamage(5.f);
+		GetComponent<SpriteComponent>().SetFlashing(true);
+	}
+
+	if (otherEntity->GetTag() == Tag::Asteroid || otherEntity->GetTag() == Tag::EnemyProjectile)
+	{
+		GetComponent<SpriteComponent>().SetFlashing(true);
 	}
 }
 
 void Player::EndOverlap(Entity* otherEntity)
 {
+	GetComponent<SpriteComponent>().SetFlashing(false);
 }
 
 bool Player::CanFire()
@@ -166,7 +175,6 @@ bool Player::IsFiring()
 void Player::FireCooldown()
 {
 	canFire = false;
-	//isFiring = false;
 
 	fireTimer += 0.3f;
 
@@ -187,8 +195,6 @@ void Player::ResetLife()
 {
 	this->hp = this->maxHp;
 	DebugLog(LogMessage::WARNING, "Player Lives: " + std::to_string(playerLives));
-
-	//std::cout << "Player lives: " << playerLives << std::endl;
 }
 
 void Player::TakeDamage(float damage)
@@ -197,11 +203,14 @@ void Player::TakeDamage(float damage)
 
 	DebugLog(LogMessage::WARNING, "Player took " + std::to_string(damage) + " damage");
 	DebugLog(LogMessage::WARNING, "Player has " + std::to_string(this->hp) + " health");
-	/*std::cout << "Player took " << damage << " damage" << std::endl;
-	std::cout << "Player has " << this->hp << " health" << std::endl;*/
 
 	if (this->hp <= 0)
 	{
+		if (playerCompanion)
+		{
+			playerCompanion->Destroy();
+		}
+
 		if (playerLives > 0)
 		{
 			playerLives--;
@@ -216,11 +225,24 @@ void Player::TakeDamage(float damage)
 	}
 }
 
+void Player::BoostHealth(float health)
+{
+	if (this->hp < this->maxHp)
+	{
+		this->hp += health;
+		DebugLog(LogMessage::WARNING, "Player received " + std::to_string(health) + " health");
+	}
+	else
+	{
+		this->hp = this->maxHp;
+	}
+}
+
 bool Player::IsAlive()
 {
 	if (this->hp <= 0)
 	{
-		return true;
+		return false;
 	}
-	return false;
+	return true;
 }

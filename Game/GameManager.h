@@ -21,8 +21,11 @@ public:
 		droneSpawnTimer = 0.f;
 		droneSpawnTimerMax = 130.f + (rand() % (140 - 130) + 1);
 
-		weaponPickupSpawnTimer = 0.f;
-		weaponPickupSpawnTimerMax = 200.f + (rand() % (210 - 200) + 1);
+		pickupSpawnTimer = 0.f;
+		pickupSpawnTimerMax = 200.f + (rand() % (210 - 200) + 1);
+
+		asteroidSpawnTimer = 0.f;
+		asteroidSpawnTimerMax = 250.f + (rand() % (270 - 250) + 1);
 
 		enemiesToSpawn = 0;
 		pickupsToSpawn = 0;
@@ -73,8 +76,11 @@ private:
 	float debrisSpawnTimer;
 	float debrisSpawnTimerMax;
 
-	float weaponPickupSpawnTimer;
-	float weaponPickupSpawnTimerMax;
+	float pickupSpawnTimer;
+	float pickupSpawnTimerMax;
 
 	int pickupsToSpawn;
+
+	float asteroidSpawnTimer;
+	float asteroidSpawnTimerMax;
 };

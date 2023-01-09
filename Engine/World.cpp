@@ -26,6 +26,17 @@ void World::Update(float deltaTime)
 {
 	m_world->DebugDraw();
 	m_world->Step(deltaTime, 12, 8);
+
+	for (const std::function<void()>& action : m_actions)
+	{
+		action();
+	}
+	m_actions.clear();
+}
+
+void World::QueueAction(const std::function<void()>& action)
+{
+	m_actions.push_back(action);
 }
 
 void World::BeginContact(b2Contact* contact)

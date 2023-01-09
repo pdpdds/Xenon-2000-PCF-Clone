@@ -34,6 +34,8 @@ public:
 
 	virtual void TakeDamage(float damage);
 
+	void BoostHealth(float health);
+
 private:
 	Vector2D startPosition;
 	Vector2D position;
@@ -45,4 +47,6 @@ private:
 	MissileAugment currentMissileAugment;
 
 	Vector2D gunOffset;
+
+	float offsetX;
 };

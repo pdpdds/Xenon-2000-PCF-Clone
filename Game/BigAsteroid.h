@@ -1,27 +1,34 @@
 #pragma once
 
-#include "Pickup.h"
+#include "Asteroid.h"
 #include "Vector2D.h"
 
 class TransformComponent;
-class Player;
+class SpriteComponent;
 
-class CompanionPickup : public Pickup
+class BigAsteroid : public Asteroid
 {
 public:
-	CompanionPickup();
-	~CompanionPickup();
+	BigAsteroid();
+	~BigAsteroid();
 
 	virtual void Init();
 	virtual void Update();
+	virtual void Break();
+	virtual void TakeDamage(float damage);
+
 	virtual void BeginOverlap(Entity* otherEntity);
 	virtual void EndOverlap(Entity* otherEntity);
 
-	void AttachCompanion(Player* player);
+	void CreateNewAsteroids();
 
 private:
 	Vector2D startPosition;
 	float speed;
 
+	float hp;
+	float maxHP;
+
 	TransformComponent* transformComponent = nullptr;
+	SpriteComponent* spriteComponent = nullptr;
 };

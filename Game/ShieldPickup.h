@@ -4,24 +4,23 @@
 #include "Vector2D.h"
 
 class TransformComponent;
-class Player;
 
-class CompanionPickup : public Pickup
+class ShieldPickup : public Pickup
 {
 public:
-	CompanionPickup();
-	~CompanionPickup();
+	ShieldPickup();
+	~ShieldPickup();
 
 	virtual void Init();
 	virtual void Update();
 	virtual void BeginOverlap(Entity* otherEntity);
 	virtual void EndOverlap(Entity* otherEntity);
 
-	void AttachCompanion(Player* player);
-
 private:
 	Vector2D startPosition;
 	float speed;
+
+	float healthBoost;
 
 	TransformComponent* transformComponent = nullptr;
 };

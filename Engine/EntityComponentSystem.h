@@ -22,7 +22,8 @@ enum class Tag
 	Player,
 	Projectile,
 	EnemyProjectile,
-	Pickup
+	Pickup,
+	Asteroid
 };
 
 inline ComponentID GetNewComponentTypeID() 
@@ -61,6 +62,9 @@ class Component
 private:
 	bool m_isActive = true;
 
+protected:
+	bool m_destroyed = false;
+
 public:
 	virtual ~Component()
 	{
@@ -94,18 +98,15 @@ private:
 	std::vector<std::unique_ptr<Component>> m_components;
 	std::string m_name;
 	Tag m_tag;
-	/*std::map<Tag, std::string> m_tags =
-	{
-		{Tag::Enemy, "Enemy"},
-		{Tag::Player, "Player"},
-		{Tag::Projectile, "Projectile"},
-	};*/
 
 	ComponentArray m_componentArray;
 	ComponentBitSet m_componentBitSet;
 	GroupBitSet m_groupBiset;
 
 public:
+
+	bool m_destroyed = false;
+
 	Entity() = default;
 
 	Entity(Manager* manager) : m_manager(manager) 

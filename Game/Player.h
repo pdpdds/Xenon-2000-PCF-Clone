@@ -31,6 +31,8 @@ public:
 
 	virtual void TakeDamage(float damage);
 
+	void BoostHealth(float health);
+
 	bool CanFire();
 
 	bool IsFiring();
@@ -48,6 +50,8 @@ public:
 	void ResetLife();
 
 	bool IsAlive();
+
+	int numOfCompanions;
 
 private:
 	Vector2D playerStartPosition;

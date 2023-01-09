@@ -7,6 +7,7 @@
 #include "LogOutput.h"
 #include "Player.h"
 #include "Loner.h"
+#include "World.h"
 
 CompanionPickup::CompanionPickup()
 {
@@ -55,8 +56,11 @@ void CompanionPickup::BeginOverlap(Entity* otherEntity)
 
 		if (player)
 		{
-			//DebugLog(LogMessage::LOG, "Picked up Companion");
-			//GameManager::GetManager()->CreateEntity<Companion>(player);
+			World::GetInstance()->QueueAction([&]() 
+				{
+				 Companion* companion =	GameManager::GetManager()->CreateEntity<Companion>(player); 
+				});
+			//World::GetInstance()->QueueAction([&]() { AttachCompanion(player); });
 			Destroy();
 		}
 	}
@@ -64,4 +68,9 @@ void CompanionPickup::BeginOverlap(Entity* otherEntity)
 
 void CompanionPickup::EndOverlap(Entity* otherEntity)
 {
+}
+
+void CompanionPickup::AttachCompanion(Player* player)
+{
+	GameManager::GetManager()->CreateEntity<Companion>(player);
 }

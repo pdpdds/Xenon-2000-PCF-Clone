@@ -4,6 +4,7 @@
 #include "SpriteComponent.h"
 #include "ColliderComponent.h"
 #include <iostream>
+#include "MetalAsteroid.h"
 
 PlayerProjectile::PlayerProjectile()
 {
@@ -54,6 +55,20 @@ void PlayerProjectile::BeginOverlap(Entity* otherEntity)
 	if (otherEntity->GetTag() == Tag::Enemy)
 	{
 		otherEntity->TakeDamage(this->projectileDamage);
+		Destroy();
+	}
+
+	if (otherEntity->GetTag() == Tag::Asteroid)
+	{
+		MetalAsteroid* metalAsteroid = dynamic_cast<MetalAsteroid*>(otherEntity);
+
+		if (metalAsteroid)
+		{
+			Destroyed(this);
+		}
+
+		otherEntity->TakeDamage(this->projectileDamage);
+
 		Destroy();
 	}
 }

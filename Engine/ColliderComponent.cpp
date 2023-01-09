@@ -17,6 +17,7 @@ ColliderComponent::~ColliderComponent()
 	m_world->DestroyBody(m_body);
 	m_body = nullptr;
 	m_fixture = nullptr;
+	this->m_destroyed = true;
 }
 
 void ColliderComponent::Init()
@@ -57,7 +58,9 @@ void ColliderComponent::Init()
 
 void ColliderComponent::Update()
 {
-	if (m_parent)
+	if (this->m_destroyed) return;
+
+	if (m_parent && !m_parent->m_destroyed)
 	{
 		m_body->SetTransform(b2Vec2(m_parent->GetComponent<TransformComponent>().position.x,
 			m_parent->GetComponent<TransformComponent>().position.y), m_body->GetAngle());

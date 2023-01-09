@@ -13,7 +13,7 @@ const MissileAugment missileUpgrades[] = { MissileAugment::DEFAULT, MissileAugme
 
 WeaponPickup::WeaponPickup()
 {
-	startPosition = Vector2D(rand() % 950, -10);
+	startPosition = Vector2D(rand() % 950, -30);
 	speed = 0.f;
 }
 

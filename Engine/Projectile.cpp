@@ -3,6 +3,8 @@
 #include "TransformComponent.h"
 #include "SpriteComponent.h"
 #include <iostream>
+#include "../Game/GameManager.h"
+#include "Explosion.h"
 
 Projectile::Projectile()
 {
@@ -27,4 +29,10 @@ void Projectile::Init()
 void Projectile::Update()
 {
 	__super::Update();
+}
+
+void Projectile::Destroyed(Entity* entity)
+{
+	GameManager::GetManager()->CreateEntity<Explosion>(entity->GetComponent<TransformComponent>().position);
+	entity->Destroy();
 }

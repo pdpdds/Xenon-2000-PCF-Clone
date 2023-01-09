@@ -13,5 +13,7 @@ public:
 	virtual void Init();
 	virtual void Update();
 
+	virtual void Destroyed(Entity* entity);
+
 	float projectileDamage;
 };
