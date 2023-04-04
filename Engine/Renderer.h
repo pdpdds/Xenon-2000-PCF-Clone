@@ -1,6 +1,6 @@
 #pragma once
 
-class SDL_Renderer;
+struct SDL_Renderer;
 class Window;
 
 class Renderer
@@ -8,7 +8,7 @@ class Renderer
 public:
 	Renderer(Window* window, int index, int flags);
 
-	class SDL_Renderer* GetRenderer();
+	struct SDL_Renderer* GetRenderer();
 
 	~Renderer();
 

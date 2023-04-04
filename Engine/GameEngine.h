@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 
-class SDL_Renderer;
+struct SDL_Renderer;
 union SDL_Event;
 class Manager;
 class SDLWrapper;

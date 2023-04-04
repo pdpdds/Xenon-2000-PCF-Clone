@@ -9,7 +9,7 @@ public:
 	~Map();
 
 	void LoadMap();
-	void Draw(int x, int y, class SDL_Rect* clip);
+	void Draw(int x, int y, struct SDL_Rect* clip);
 	void Update();
 	void DrawMap();
 
@@ -18,8 +18,8 @@ public:
 	int mHeight;
 
 private:
-	class SDL_Rect m_srcRect, m_dstRect;
-	class SDL_Texture* m_bgTexture;
+	SDL_Rect m_srcRect, m_dstRect;
+	SDL_Texture* m_bgTexture;
 
 	//The background scrolling offset
 	int scrollingOffset = 0;

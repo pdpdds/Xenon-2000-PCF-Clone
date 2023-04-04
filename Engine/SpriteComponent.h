@@ -5,8 +5,8 @@
 #include <map>
 
 class TransformComponent;
-class SDL_Texture;
-class SDL_Rect;
+struct SDL_Texture;
+struct SDL_Rect;
 
 class SpriteComponent : public Component
 {

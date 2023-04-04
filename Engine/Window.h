@@ -1,8 +1,8 @@
 #pragma once
 #include <string>
 
-class SDL_Window;
-class SDL_Surface;
+struct SDL_Window;
+struct SDL_Surface;
 
 class Window
 {
